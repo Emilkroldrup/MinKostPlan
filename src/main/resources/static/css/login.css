@@ -1,58 +1,109 @@
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #EAF7EE;
-    color: #333;
+/* Basic reset and box-sizing setup */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
+/* Full-page background settings and font */
+html, body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; 
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Container for the entire content */
+.content-container {
+    width: 80%;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background: white;
+    border-radius: 8px; 
+}
+
+/* Slideshow container setup */
+.slideshow-container {
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Styling for each slide */
+.mySlides {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; 
+    transition: opacity 1s ease-in-out;
+}
+
+.mySlides.active {
+    opacity: 1;
+}
+
+.mySlides img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Login form container */
 .login-container {
-    background: #FFFFFF;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 300px; 
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    background: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Form element styling */
+h2, label, button, input {
+    width: 100%;
 }
 
 h2 {
-    color: #333;
-    font-size: 24px;
+    margin-bottom: 15px;
     text-align: center;
-    margin-bottom: 20px;
 }
 
 .form-group {
-    margin-bottom: 20px;
-}
-
-label {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
 }
 
 input[type="text"],
 input[type="password"] {
-    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box;
 }
 
 button {
-    width: 100%;
-    padding: 10px 0;
+    padding: 10px;
     background-color: #4CAF50;
-    border: none;
     border-radius: 5px;
     color: white;
-    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -62,9 +113,7 @@ button:hover {
 }
 
 a {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
     color: #4CAF50;
     text-decoration: none;
 }
@@ -72,39 +121,3 @@ a {
 a:hover {
     text-decoration: underline;
 }
-
-
-.slideshow-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1000px;
-    height: 450px; 
-    position: relative;
-    overflow: hidden;
-}
-
-.mySlides {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.mySlides img {
-    max-width: 80%;
-    max-height: 100%;
-    object-fit: contain;
-    transition: opacity 2s ease;
-  }
-
-  .mySlides:not(:first-child) img {
-    opacity: 0; 
-}
-
-  
