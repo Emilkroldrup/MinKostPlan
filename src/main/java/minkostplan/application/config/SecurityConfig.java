@@ -25,10 +25,12 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
+
                                 .requestMatchers(
                                         new OrRequestMatcher(
                                                 new AntPathRequestMatcher("/login"),
                                                 new AntPathRequestMatcher("/UserCreation"),
+                                                new AntPathRequestMatcher("/profilePage"),
                                                 new AntPathRequestMatcher("/**/*.css"),
                                                 new AntPathRequestMatcher("/**/*.jpg"),
                                                 new AntPathRequestMatcher("/**/*.png"),
