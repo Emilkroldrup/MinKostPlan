@@ -30,14 +30,16 @@ public class SecurityConfig {
                                                 new AntPathRequestMatcher("/login"),
                                                 new AntPathRequestMatcher("/UserCreation"),
                                                 new AntPathRequestMatcher("/**/*.css"),
-                                                new AntPathRequestMatcher("/**/*.jpg")
+                                                new AntPathRequestMatcher("/**/*.jpg"),
+                                                new AntPathRequestMatcher("/**/*.png"),
+                                                new AntPathRequestMatcher("/**/*.js")
                                         )
                                 ).permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
-                                .loginPage("/LoginPage")
+                                .loginPage("/login")
                                 .defaultSuccessUrl("/HomeSite")
                                 .permitAll()
                 )
