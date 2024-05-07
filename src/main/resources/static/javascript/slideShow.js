@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Move to the next slide
         currentSlide = (currentSlide + 1) % slides.length;
 
-        // Set a timeout to show the next slide after 3 seconds
+        // Set a timeout to show the next slide after 4 seconds
         setTimeout(showSlide, 4000);
     }
 
