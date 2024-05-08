@@ -6,27 +6,76 @@
     <title>Home</title>
     <link rel="stylesheet" th:href="@{/css/homepage.css}">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
-    
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
 </head>
 <body>
-    
-    <nav class="navbar">
-       <div class="navbar-logo">
-            <a href="#homepage.html">
-                 <img src="images/minkostplan-logo.png" alt="Minkostplan Logo" />
-            </a>
+    <div id="header"></div>
+    <div id="contentArea"></div>
+    <div id="footer"></div>
+
+
+
+    <!--Form for the survey and its controls-->
+    <form id="survey">
+        <div class="survey-control">
+            <label>
+                Choose your goals below
+            </label>
+            <!--Input type checkbox-->
+            <label for="input-1">
+                <input type="checkbox" name ="input"> LOSE WEIGHT
+                </input>
+            </label>
+            <label for="input-2">
+                <input type="checkbox" name ="input"> BUILD MUSCLE
+                </input>
+            </label>
+            <label for="input-3">
+                <input type="checkbox" name ="input"> GAIN WEIGHT
+                </input>
+            </label>
+            <label for="input-4">
+                <input type="checkbox" name ="input"> KEEP CURRENT WEIGHT
+                </input>
+            </label>
+            <button type="submit">
+                Next
+            </button>
         </div>
-        <ul class="navbar-menu">
-            <li><a href="#">Food</a></li>
-            <li><a href="#">Other Sites</a></li>
-        </ul>
-        <div class="navbar-account">
-            <a href="#">Login</a>
-        </div>
-    </nav>
-    
-    
-    
-    
+    </form>
+
+    <div class="paragraph-container">
+        <h2>Den billige løsning til at opnå din drømmekrop</h2>
+        <p>Minkostplan.com giver dig skræddersyede kostplaner, som du kender dem.<br> <br> Bare langt billigere.<br>
+
+            Hver uge giver vi dig 21 nye opskrifter fordelt på dagens tre måltider.<br>
+
+            Alle opskrifter er skræddersyet efter dine mål og ønsker for at opnå den krop, du drømmer om.<br>
+
+            Alt sammen til kun DKK 49,00 om ugen (DKK 196,00 pr. måned)</p>
+    </div>
+
+    <div class="image-container">
+        <img alt="italian pasta salad" src="images\italian-pasta-salad.jpg">
+    </div>
+
+
+
+    <footer class = "footer">
+        <section >
+            <p> Copyright@ 2024 Minkostplan</p>
+        </section>
+
+        <section class="message-section">
+            <p>Billig, hurtig og overskuelig kostplan til hverdagen</p>
+        </section>
+
+        <section class = "contactinfo-section">
+            <p class="contactinfo-text">📍Farimagsvej 45, 4700 Næstved</p>
+            <p class="contactinfo-text"> 📧kontakt@minkostplan.com</p>
+        </section>
+
+   </footer>
+
 </body>
 </html>

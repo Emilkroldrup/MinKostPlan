@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(76, 175, 80, 0.8);
+    background-color: rgba(179, 255, 179, 0.8);
     padding: 10px 20px;
     width: 100%;
     font-family: 'Arial', sans-serif;
@@ -32,11 +32,11 @@
 }
 
 .navbar-menu a {
-    color: white;
+    color: black;
     text-decoration: none;
 }
 
 .navbar-account a {
-    color: white;
+    color: black;
     text-decoration: none;
 }

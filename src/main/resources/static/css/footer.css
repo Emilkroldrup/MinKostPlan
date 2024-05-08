@@ -1,0 +1,23 @@
+.footer{
+    background-color: #b3ffb3;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.contactinfo-text{
+    display: inline-block;
+    margin-left: 20px;
+}
+
+
+
+.message-section{
+    margin-left: 200px;
+}
