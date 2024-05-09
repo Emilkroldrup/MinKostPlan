@@ -8,7 +8,6 @@ entity "Users" as users {
   email : varchar
   password_hash : varchar
   created_at : datetime
-  updated_at : datetime
 }
 
 entity "Recipes" as recipes {
@@ -18,7 +17,6 @@ entity "Recipes" as recipes {
   cook_name : varchar
   average_time : int
   created_at : datetime
-  updated_at : datetime
 }
 
 entity "Ingredients" as ingredients {
