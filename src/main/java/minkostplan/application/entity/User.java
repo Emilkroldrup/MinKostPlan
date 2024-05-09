@@ -10,8 +10,6 @@ public class User {
     private String passwordHash;
     private LocalDateTime createdAt;
 
-    // Constructors, Getters, and Setters and tostring
-
     public User() {
     }
 
