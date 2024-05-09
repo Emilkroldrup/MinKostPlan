@@ -78,6 +78,10 @@ body {
         width: auto;
     }
 
+    .question-survey {
+        margin-top: 5%;
+    }
+
     .paragraph-container {
         text-align: left;
         position: absolute;
