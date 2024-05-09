@@ -1,0 +1,62 @@
+@startuml
+
+' Define the entities
+entity "Users" as users {
+  + user_id : int
+  -- 
+  username : varchar
+  email : varchar
+  password_hash : varchar
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "Recipes" as recipes {
+  + recipe_id : int
+  --
+  name : varchar
+  cook_name : varchar
+  average_time : int
+  created_at : datetime
+  updated_at : datetime
+}
+
+entity "Ingredients" as ingredients {
+  + ingredient_id : int
+  --
+  name : varchar
+  description : text
+}
+
+entity "Recipe Ingredients" as recipe_ingredients {
+  # recipe_id : int
+  # ingredient_id : int
+  --
+  quantity : varchar
+}
+
+entity "Steps" as steps {
+  + step_id : int
+  # recipe_id : int
+  --
+  step_number : int
+  instruction : text
+}
+
+entity "Subscriptions" as subscriptions {
+  + subscription_id : int
+  # user_id : int
+  --
+  start_date : datetime
+  end_date : datetime
+  status : enum
+}
+
+' Define relationships
+users ||--o{ subscriptions : "has"
+recipes ||--o{ steps : "includes"
+recipes ||--o{ recipe_ingredients : "uses"
+ingredients ||--o{ recipe_ingredients : "included in"
+users ||--o{ recipes : "creates" "optional [0..*]"
+
+@enduml
