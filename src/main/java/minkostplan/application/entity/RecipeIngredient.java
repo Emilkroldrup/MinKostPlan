@@ -6,8 +6,6 @@ public class RecipeIngredient {
     private Ingredient ingredient;
     private String quantity;
 
-    // Constructors, Getters, and Setters and tostring
-
     public RecipeIngredient() {
     }
 
