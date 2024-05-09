@@ -1,0 +1,42 @@
+package minkostplan.application.UIcontroller;
+
+import java.security.Principal;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import minkostplan.application.entity.user;
+import minkostplan.application.repository.user.JdbcUserRepository;
+
+
+
+@Controller
+public class BaseController {
+
+    private int getCurrentUserId(Principal principal) {
+        String email = principal.getName();
+        user currentUser = JdbcUserRepository.getUserByEmail(email);
+        return currentUser.getUserId();
+    }
+
+    @GetMapping("")
+    public String defaultpage() {
+        return "loginPage";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("user", new user());
+        return "loginPage";
+    }
+
+    @PostMapping("changeProfilePicture")
+    public String profilepicture(){
+
+        
+    }
+
+}
+        
