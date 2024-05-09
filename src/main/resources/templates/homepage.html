@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/homepage.css}">
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+<body>
+
+    <div class="background-container">
+        
+    </div>
+
+    <div class="leak-bar">
+        <img src="images\leak.png">
+    </div>
+
+    <div class="question-survey">
+
+    </div>
+    <!--Form for the survey and its controls-->
+    <form id="survey">
+        <div class="survey-control">
+            <label>
+                Choose your goals below
+            </label>
+            <!--Input type checkbox-->
+            <label for="input-1">
+                <input type="checkbox" name ="input"> LOSE WEIGHT
+                </input>
+            </label>
+            <label for="input-2">
+                <input type="checkbox" name ="input"> BUILD MUSCLE
+                </input>
+            </label>
+            <label for="input-3">
+                <input type="checkbox" name ="input"> GAIN WEIGHT
+                </input>
+            </label>
+            <label for="input-4">
+                <input type="checkbox" name ="input"> KEEP CURRENT WEIGHT
+                </input>
+            </label>
+            <button type="submit">
+                Next
+            </button>
+        </div>
+    </form>
+
+    <div class="paragraph-container">
+        <h2>Den billige løsning til at opnå din drømmekrop</h2><br>
+        <p>Minkostplan.com giver dig skræddersyede kostplaner, som du kender dem.<br> Bare langt billigere.<br>
+
+            Hver uge giver vi dig 21 nye opskrifter fordelt på dagens tre måltider.<br>
+
+            Alle opskrifter er skræddersyet efter dine mål og ønsker for at opnå den krop, du drømmer om.<br>
+
+            Alt sammen til kun DKK 49,00 om ugen (DKK 196,00 pr. måned)</p>
+    </div>
+
+    <div class="image-container">
+        <img alt="italian pasta salad" src="images\italian-pasta-salad.jpg">
+    </div>
+    <section>
+        <div class="paragraph2-container">
+            <h2>Hvordan fungerer det?</h2><br>
+            <p>Hos Minkostplan.com skal du blot udfylde formularen øverst på siden, og så er du i gang.<br> Du modtager din regulerede kostplan lige efter, vi har modtaget din ordre.<br>
+
+                Den indeholder 21 opskrifter. 7 til morgen, 7 til frokost og 7 til aften. <br>Ugen efter vil du på samme ugedag modtage 21 nye opskrifter.<br>
+                Opskrifterne vil aldrig være de samme, men de vil altid være skræddersyet efter dine mål.<br>
+                
+                Alle opskrifter har en udførlig guide med både indhold og fremgangsmåde. Minkostplan har en måneds binding.</p>
+        </div>
+        <div class="image2-container">
+            <img alt="father with children" src="images\fatherwithchildren.jpg">
+        </div>
+    </section>
+    
+
+
+
+    <footer class = "footer">
+        <section >
+            <p> Copyright@ 2024 Minkostplan</p>
+        </section>
+
+        <section class="message-section">
+            <p>Billig, hurtig og overskuelig kostplan til hverdagen</p>
+        </section>
+
+        <section class = "contactinfo-section">
+            <p class="contactinfo-text">📍Farimagsvej 45, 4700 Næstved</p>
+            <p class="contactinfo-text"> 📧kontakt@minkostplan.com</p>
+        </section>
+
+   </footer>
+
+</body>
+</html>
