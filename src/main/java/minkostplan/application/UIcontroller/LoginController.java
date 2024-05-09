@@ -24,6 +24,11 @@ public class LoginController {
         return "profilePage";
     }
 
+    @GetMapping("/recipe")
+    public String recipe() {
+        return "recipePage";
+    }
+
     @PostMapping("changeProfilePicture")
     public String profilepicture(){
 
