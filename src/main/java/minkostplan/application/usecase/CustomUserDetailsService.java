@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import minkostplan.application.entity.user;
+import minkostplan.application.entity.Users;
 import minkostplan.application.repository.user.JdbcUserRepository;
 
 @Service
@@ -24,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = null;
+        Users user = null;
         try {
             user = userRepository.findByUsername(username);
             System.out.println(user);

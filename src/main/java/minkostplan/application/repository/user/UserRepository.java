@@ -2,12 +2,12 @@ package minkostplan.application.repository.user;
 
 import java.util.List;
 
-import minkostplan.application.entity.user;
+import minkostplan.application.entity.Users;
 
 public interface UserRepository {
 
-    user findByUsername(String username);
+    Users findByUsername(String username);
 
-    List<user> getAllUsers();
+    List<Users> getAllUsers();
     
 }

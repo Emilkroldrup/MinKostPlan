@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import minkostplan.application.entity.user;
+import minkostplan.application.entity.Users;
 import minkostplan.application.repository.user.JdbcUserRepository;
 
 
@@ -17,7 +17,7 @@ public class BaseController {
 
     private int getCurrentUserId(Principal principal) {
         String email = principal.getName();
-        user currentUser = JdbcUserRepository.getUserByEmail(email);
+        Users currentUser = JdbcUserRepository.getUserByEmail(email);
         return currentUser.getUserId();
     }
 
@@ -28,7 +28,7 @@ public class BaseController {
 
     @GetMapping("/login")
     public String login(Model model) {
-        model.addAttribute("user", new user());
+        model.addAttribute("user", new Users());
         return "loginPage";
     }
 

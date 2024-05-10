@@ -1,6 +1,6 @@
 package minkostplan.application.repository.user;
 
-import minkostplan.application.entity.user;
+import minkostplan.application.entity.Users;
 
 import java.util.List;
 
@@ -25,10 +25,10 @@ public class JdbcUserRepository implements UserRepository {
      * @return the user with the given username
      */
     @Override
-    public user findByUsername(String username) {
+    public Users findByUsername(String username) {
         try{
             String sql = "SELECT * FROM users WHERE username = ?";
-            return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new user(
+            return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new Users(
                     rs.getInt("user_Id"),
                     rs.getString("username"),
                     rs.getString("email"),
@@ -45,10 +45,10 @@ public class JdbcUserRepository implements UserRepository {
      *
      * @return a list of all users
      */
-    public List<user> getAllUsers() {
+    public List<Users> getAllUsers() {
         try {
             String sql = "SELECT * FROM users";
-            return jdbcTemplate.query(sql, (rs, rowNum) -> new user(
+            return jdbcTemplate.query(sql, (rs, rowNum) -> new Users(
                     rs.getInt("user_id"),
                     rs.getString("username"),
                     rs.getString("email"),
