@@ -63,6 +63,6 @@ public class SecurityConfig {
 }
 
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
+                auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
         }
 }
