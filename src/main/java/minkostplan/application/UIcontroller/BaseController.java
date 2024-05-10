@@ -1,14 +1,12 @@
 package minkostplan.application.UIcontroller;
 
 import java.security.Principal;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import minkostplan.application.entity.Users;
-import minkostplan.application.repository.user.JdbcUserRepository;
+import minkostplan.application.repository.user.UserRepository;
 
 
 
@@ -17,7 +15,7 @@ public class BaseController {
 
     private int getCurrentUserId(Principal principal) {
         String email = principal.getName();
-        Users currentUser = JdbcUserRepository.getUserByEmail(email);
+        Users currentUser = UserRepository.getUserByEmail(email);
         return currentUser.getUserId();
     }
 

@@ -7,14 +7,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import minkostplan.application.entity.Users;
-import minkostplan.application.repository.user.JdbcUserRepository;
+import minkostplan.application.repository.user.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final JdbcUserRepository userRepository;
+    private final UserRepository userRepository;
     
-    public CustomUserDetailsService(JdbcUserRepository userRepository) {
+    public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
