@@ -13,6 +13,7 @@ import minkostplan.application.repository.user.UserRepository;
 @Controller
 public class BaseController {
 
+    //TODO take this into a serivce layer class (usecase)
     private int getCurrentUserId(Principal principal) {
         String email = principal.getName();
         Users currentUser = UserRepository.getUserByEmail(email);
