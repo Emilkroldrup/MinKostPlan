@@ -1,13 +1,8 @@
 package minkostplan.application.repository.user;
 
-import java.util.List;
-
 import minkostplan.application.entity.Users;
+import minkostplan.application.repository.SimpleDataAccess;
 
-public interface UserRepository {
-
+public interface UserRepository extends SimpleDataAccess<Users> {
     Users findByUsername(String username);
-
-    List<Users> getAllUsers();
-    
 }
