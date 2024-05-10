@@ -1,6 +1,5 @@
 package minkostplan.application.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,8 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
-
-import minkostplan.application.repository.user.JdbcUserRepository;
 import minkostplan.application.usecase.CustomUserDetailsService;
 
 
@@ -19,17 +16,13 @@ import minkostplan.application.usecase.CustomUserDetailsService;
 @EnableWebSecurity
 public class SecurityConfig {
 
-        private final JdbcUserRepository JdbcUserRepository;
+        private final CustomUserDetailsService customUserDetailsService;
+        private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-        public SecurityConfig(JdbcUserRepository userRepository) {
-            this.JdbcUserRepository = userRepository;
+        public SecurityConfig(CustomUserDetailsService customUserDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+                this.customUserDetailsService = customUserDetailsService;
+                this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         }
-
-        @Autowired
-        private CustomUserDetailsService customUserDetailsService;
-
-        @Autowired
-        private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
