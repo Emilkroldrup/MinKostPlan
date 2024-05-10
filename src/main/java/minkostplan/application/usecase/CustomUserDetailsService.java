@@ -1,6 +1,5 @@
 package minkostplan.application.usecase;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,9 +14,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final JdbcUserRepository userRepository;
     
-    
-
-    @Autowired
     public CustomUserDetailsService(JdbcUserRepository userRepository) {
         this.userRepository = userRepository;
     }
