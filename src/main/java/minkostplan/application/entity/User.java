@@ -2,7 +2,7 @@ package minkostplan.application.entity;
 
 import java.time.LocalDateTime;
 
-public class User {
+public class user {
 
     private Long userId;
     private String username;
@@ -10,10 +10,10 @@ public class User {
     private String passwordHash;
     private LocalDateTime createdAt;
 
-    public User() {
+    public user() {
     }
 
-    public User(Long userId, String username, String email, String passwordHash, LocalDateTime createdAt) {
+    public user(Long userId, String username, String email, String passwordHash, LocalDateTime createdAt) {
         this.userId = userId;
         this.username = username;
         this.email = email;

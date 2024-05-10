@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Subscription {
 
     private Long subscriptionId;
-    private User user;
+    private user user;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String status;
@@ -13,7 +13,7 @@ public class Subscription {
     public Subscription() {
     }
 
-    public Subscription(Long subscriptionId, User user, LocalDateTime startDate, LocalDateTime endDate, String status) {
+    public Subscription(Long subscriptionId, user user, LocalDateTime startDate, LocalDateTime endDate, String status) {
         this.subscriptionId = subscriptionId;
         this.user = user;
         this.startDate = startDate;
@@ -29,11 +29,11 @@ public class Subscription {
         this.subscriptionId = subscriptionId;
     }
 
-    public User getUser() {
+    public user getUser() {
         return this.user;
     }
 
-    public void setUser(User user) {
+    public void setUser(user user) {
         this.user = user;
     }
 
