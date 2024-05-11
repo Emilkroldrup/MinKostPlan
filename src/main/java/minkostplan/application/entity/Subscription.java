@@ -4,8 +4,7 @@ import java.time.LocalDateTime;
 
 public class Subscription {
 
-    private Long subscriptionId;
-    private user user;
+    private Users user;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String status;
@@ -13,27 +12,18 @@ public class Subscription {
     public Subscription() {
     }
 
-    public Subscription(Long subscriptionId, user user, LocalDateTime startDate, LocalDateTime endDate, String status) {
-        this.subscriptionId = subscriptionId;
+    public Subscription(Users user, LocalDateTime startDate, LocalDateTime endDate, String status) {
         this.user = user;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = status;
     }
 
-    public Long getSubscriptionId() {
-        return this.subscriptionId;
-    }
-
-    public void setSubscriptionId(Long subscriptionId) {
-        this.subscriptionId = subscriptionId;
-    }
-
-    public user getUser() {
+    public Users getUser() {
         return this.user;
     }
 
-    public void setUser(user user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 
@@ -64,7 +54,6 @@ public class Subscription {
     @Override
     public String toString() {
         return "{" +
-            " subscriptionId='" + getSubscriptionId() + "'" +
             ", user='" + getUser() + "'" +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +

@@ -2,31 +2,21 @@ package minkostplan.application.entity;
 
 import java.time.LocalDateTime;
 
-public class user {
+public class Users {
 
-    private Long userId;
     private String username;
     private String email;
     private String passwordHash;
     private LocalDateTime createdAt;
 
-    public user() {
+    public Users() {
     }
 
-    public user(Long userId, String username, String email, String passwordHash, LocalDateTime createdAt) {
-        this.userId = userId;
+    public Users(String username, String email, String passwordHash, LocalDateTime createdAt) {
         this.username = username;
         this.email = email;
         this.passwordHash = passwordHash;
         this.createdAt = createdAt;
-    }
-
-    public Long getUserId() {
-        return this.userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getUsername() {
@@ -64,7 +54,6 @@ public class user {
     @Override
     public String toString() {
         return "{" +
-            " userId='" + getUserId() + "'" +
             ", username='" + getUsername() + "'" +
             ", email='" + getEmail() + "'" +
             ", passwordHash='" + getPasswordHash() + "'" +
