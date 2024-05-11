@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 public class Recipe {
 
-    private Long recipeId;
     private String name;
     private String cookName;
     private Integer averageTime;
@@ -14,8 +13,7 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(Long recipeId, String name, String cookName, Integer averageTime, LocalDateTime createdAt) {
-        this.recipeId = recipeId;
+    public Recipe(String name, String cookName, Integer averageTime, LocalDateTime createdAt) {
         this.name = name;
         this.cookName = cookName;
         this.averageTime = averageTime;
@@ -23,14 +21,6 @@ public class Recipe {
     }
 
     // Getters and Setters
-
-    public Long getRecipeId() {
-        return recipeId;
-    }
-
-    public void setRecipeId(Long recipeId) {
-        this.recipeId = recipeId;
-    }
 
     public String getName() {
         return name;
@@ -62,5 +52,15 @@ public class Recipe {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+            ", name='" + getName() + "'" +
+            ", cookName='" + getCookName() + "'" +
+            ", averageTime='" + getAverageTime() + "'" +
+            ", createdAt='" + getCreatedAt() + "'" +
+            "}";
     }
 }
