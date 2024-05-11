@@ -21,4 +21,10 @@ public class HomepageController {
     }
 
 
+    @GetMapping("/about")
+    public String aboutPage(){
+        return "aboutPage";
+    }
+
+
 }
