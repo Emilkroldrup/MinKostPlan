@@ -26,5 +26,8 @@ public class HomepageController {
         return "aboutPage";
     }
 
-
+    @GetMapping("/admin")
+    public String admin(){
+        return "adminPage";
+    }
 }

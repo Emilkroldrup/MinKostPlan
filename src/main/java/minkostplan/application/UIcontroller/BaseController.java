@@ -33,8 +33,7 @@ public class BaseController {
 
     @PostMapping("changeProfilePicture")
     public String profilepicture(){
-
-        
+        return "profilepicture";
     }
 
 }
