@@ -1,0 +1,70 @@
+html {
+    background: #d8f0d6;
+    color: #333;
+}
+
+
+.about{
+    text-align: center;
+    font-size: 50px;
+    margin-top: 150px;
+    background-color: #a1dbb2;
+
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+.startup, .now, .goal{
+    display: inline-block;
+    margin-top: 85px;
+    font-size: 50px;
+    background-color: #a1dbb2;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 450px;
+}
+
+.startup{
+
+    margin-left: 700px;
+
+}
+
+.now{
+    margin-left: 250px;
+}
+
+
+
+.goal{
+    margin-left: 250px;
+
+}
+
+.keymembers{
+   margin-top: 200px;
+   text-align: center;
+    font-size: 50px;
+    background-color: #a1dbb2;
+
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.profilepicture1,.profilepicture2{
+    display: inline-block;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.profilepicture1{
+
+    margin-left: 500px;
+
+}
+
+.profilepicture2{
+   margin-left: 400px;
+}
