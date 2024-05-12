@@ -1,15 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav</title>
+    <link rel="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+<body>
 <nav class="navbar">
     <div class="navbar-logo">
-        <a href="homepage.html">
+        <a href="home">
             <img src="images/minkostplan-logo.png" alt="Minkostplan Logo" />
         </a>
     </div>
+
     <ul class="navbar-menu">
-        <li><a href="homepage.html">Hjem</a></li>
+        <li><a href="home">Hjem</a></li>
         <li><a href="#">Opskrifter</a></li>
         <li><a href="#">Om os</a></li>
+        <li><a href="admin">Admin</a></li>
     </ul>
+
     <div class="navbar-account">
-        <a href="loginPage.html">Login</a>
+        <a href="login">Login</a>
     </div>
 </nav>
+</body>
+</html>
