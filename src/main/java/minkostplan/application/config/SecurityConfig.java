@@ -32,6 +32,7 @@ public class SecurityConfig {
                     .requestMatchers(
                         new OrRequestMatcher(
                             new AntPathRequestMatcher("/login"),
+                            new AntPathRequestMatcher("/home"),
                             new AntPathRequestMatcher("/UserCreation"),
                             new AntPathRequestMatcher("/**/*.css"),
                             new AntPathRequestMatcher("/**/*.jpg"),
@@ -43,7 +44,7 @@ public class SecurityConfig {
             )
             .formLogin(formLogin ->
                 formLogin
-                    .loginPage("/login")
+                    .loginPage("/home")
                     .defaultSuccessUrl("/home")
                     .permitAll()
             )

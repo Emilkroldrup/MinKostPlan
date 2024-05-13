@@ -22,7 +22,7 @@ public class BaseController {
 
     @GetMapping("")
     public String defaultpage() {
-        return "loginPage";
+        return "homepage";
     }
 
     @GetMapping("/login")
