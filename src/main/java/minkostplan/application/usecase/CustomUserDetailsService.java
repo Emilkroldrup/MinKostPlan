@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import minkostplan.application.entity.Users;
-import minkostplan.application.repository.user.UserRepository;
+import minkostplan.application.DBcontroller.user.UserRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
