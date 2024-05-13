@@ -1,4 +1,4 @@
-package minkostplan.application.repository;
+package minkostplan.application.DBcontroller;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

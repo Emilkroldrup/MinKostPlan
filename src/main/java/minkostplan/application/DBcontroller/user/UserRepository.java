@@ -1,7 +1,7 @@
-package minkostplan.application.repository.user;
+package minkostplan.application.DBcontroller.user;
 
 import minkostplan.application.entity.Users;
-import minkostplan.application.repository.SimpleDataAccess;
+import minkostplan.application.DBcontroller.SimpleDataAccess;
 
 public interface UserRepository extends SimpleDataAccess<Users> {
     Users findByUsername(String username);

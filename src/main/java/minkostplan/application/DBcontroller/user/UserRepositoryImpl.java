@@ -1,7 +1,7 @@
-package minkostplan.application.repository.user;
+package minkostplan.application.DBcontroller.user;
 
 import minkostplan.application.entity.Users;
-import minkostplan.application.repository.GenericJdbcRepository;
+import minkostplan.application.DBcontroller.GenericJdbcRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
