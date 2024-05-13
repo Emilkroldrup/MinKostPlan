@@ -24,6 +24,11 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public Users getUserByEmail(String email) {
+        return findByProperty("email", email);
+    }
+
+    @Override
     public Users findByProperty(String property, Object value) {
         return dataAccess.findByProperty(property, value);
     }
