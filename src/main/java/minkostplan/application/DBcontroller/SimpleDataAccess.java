@@ -1,4 +1,4 @@
-package minkostplan.application.repository;
+package minkostplan.application.DBcontroller;
 
 import java.util.List;
 

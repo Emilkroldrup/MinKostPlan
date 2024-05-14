@@ -32,6 +32,7 @@ public class SecurityConfig {
                     .requestMatchers(
                         new OrRequestMatcher(
                             new AntPathRequestMatcher("/login"),
+                            new AntPathRequestMatcher("/home"),
                             new AntPathRequestMatcher("/UserCreation"),
                             new AntPathRequestMatcher("/**/*.css"),
                             new AntPathRequestMatcher("/**/*.jpg"),
