@@ -14,11 +14,13 @@ import minkostplan.application.DBcontroller.user.UserRepository;
 public class BaseController {
 
     //TODO take this into a serivce layer class (usecase)
-    private int getCurrentUserId(Principal principal) {
+ /*   private int getCurrentUserId(Principal principal) {
         String email = principal.getName();
         Users currentUser = UserRepository.getUserByEmail(email);
         return currentUser.getUserId();
     }
+
+  */
 
     @GetMapping("")
     public String defaultpage() {
