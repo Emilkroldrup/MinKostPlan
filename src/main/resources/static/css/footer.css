@@ -1,25 +1,36 @@
 .footer{
     background-color: #b3ffb3;
-    padding: 15px;
+    padding: 1.1vh;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
+    max-width: 100%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 
+.copyright{
+    font-size: 1.3vh;
+}
+
+.message-section{
+
+    margin-left: 10vw;
+    font-size: 1.3vh;
+
+}
+
+
+
 
 .contactinfo-text{
     display: inline-block;
     margin-left: 20px;
+    font-size: 1.3vh;
 }
 
-
-
-.message-section{
-    margin-left: 200px;
-}
 
