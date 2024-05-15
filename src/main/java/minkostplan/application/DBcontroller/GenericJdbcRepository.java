@@ -26,7 +26,6 @@ public class GenericJdbcRepository<T> implements SimpleDataAccess<T> {
     }
 
     private String getTableName(Class<T> type) {
-        //TODO Replace with actual logic to derive table name
         return type.getSimpleName().toLowerCase();
     }
 }
