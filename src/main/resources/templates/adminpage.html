@@ -7,8 +7,60 @@
     <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
-<div th:replace="navbar.html"></div>
+    <section class="container">
+        <h1>Tilføj en ret her på Admin siden, følg instruktionerne</h1>
+    </section>
 
-<input type="text" placeholder="Navn på opskriften">
+    <section class="dish-name">
+        <input type="text" placeholder="Skriv navnet på retten..">
+        <button>Godkend</button>
+    </section>
+
+    <section class="ingredient">
+        <p>Tilføj ingredienser</p>
+        <button class="addIngredient">+</button>
+    </section>
+
+    <section class="dish-recipe">
+        <textarea type="text" cols="40" rows="10" placeholder="Skriv opskriften på retten her.."></textarea>
+        <button>Godkend</button>
+    </section>
+
+    <section class="box">
+        <h1 class="container">Dine valgt</h1>
+    </section>
+
+    <section class="addPic">
+        <button>Tilføj billede</button>
+    </section>
+
+    <section th:replace="navbar.html"></section>
+
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        var addButton = document.querySelector('.addIngredient');
+        var ingredientSection = document.querySelector('.ingredient');
+
+        addButton.addEventListener('click', function() {
+            // Create input field
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'Indtast ingrediens...';
+
+            // Create button
+            var button = document.createElement('button');
+            button.textContent = 'Godkend';
+
+            // Create container for input and button
+            var container = document.createElement('div');
+            container.appendChild(input);
+            container.appendChild(button);
+
+            container.classList.add('addIng');
+
+            // Append container to ingredient section
+            ingredientSection.appendChild(container);
+        });
+    });</script>
+
 </body>
 </html>
