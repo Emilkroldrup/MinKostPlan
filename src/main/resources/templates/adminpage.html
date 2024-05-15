@@ -36,31 +36,7 @@
 
     <section th:replace="navbar.html"></section>
 
-    <script>document.addEventListener('DOMContentLoaded', function() {
-        var addButton = document.querySelector('.addIngredient');
-        var ingredientSection = document.querySelector('.ingredient');
-
-        addButton.addEventListener('click', function() {
-            // Create input field
-            var input = document.createElement('input');
-            input.type = 'text';
-            input.placeholder = 'Indtast ingrediens...';
-
-            // Create button
-            var button = document.createElement('button');
-            button.textContent = 'Godkend';
-
-            // Create container for input and button
-            var container = document.createElement('div');
-            container.appendChild(input);
-            container.appendChild(button);
-
-            container.classList.add('addIng');
-
-            // Append container to ingredient section
-            ingredientSection.appendChild(container);
-        });
-    });</script>
+    <script th:src="@{/javascript/addIng.js}"></script>
 
 </body>
 </html>
