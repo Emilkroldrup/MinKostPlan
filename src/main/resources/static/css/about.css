@@ -42,21 +42,21 @@ html {
     box-shadow: 0 0 0.8vh rgba(0, 0, 0, 0.1);
 }
 
-.profilepicture1, .profilepicture2{
-    display: inline-block;
+.profilepicture1,.profilepicture2 {
+    width: 30%;
+    max-width: 30%;
+    height: auto;
     text-align: center;
-    margin-top: 3vh;
-
+    float: left;
+    margin-top: 2vh;
 }
 
 .profilepicture1{
-    margin-left: 14.2vw;
-
+    margin-left: 15vw;
 }
 
 .profilepicture2{
-    margin-left: 2vw;
-
+   margin-left: 10vw;
 
 
 }
