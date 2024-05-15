@@ -163,13 +163,18 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `user_id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(30) NOT NULL,
+  `firstname` varchar(30) NOT NULL,
+  `lastname` varchar(30) NOT NULL,
+  `age` int NOT NULL,
+  `height` int NOT NULL,
+  `weight` int NOT NULL,
+  `gender` varchar(30) NOT NULL,
+  `goal` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `username` (`username`)
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores information about the users.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -179,7 +184,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'john_doe','john.doe@example.com','hashed_password1','2024-05-09 09:56:28'),(2,'jane_smith','jane.smith@example.com','hashed_password2','2024-05-09 09:56:28');
+INSERT INTO `users` VALUES (1,'John','Doe','30','180','80','male','build muscle','john.doe@example.com','hashed_password1','2024-05-09 09:56:28'),(2,'Jane','Smith','22','165','55','female','gain weight','jane.smith@example.com','hashed_password2','2024-05-09 09:56:28');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 

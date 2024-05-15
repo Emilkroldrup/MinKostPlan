@@ -10,44 +10,32 @@
 </head>
 <body>
 
-<div class="background-container">
-
-</div>
 <!--Container for the leak image-->
 <div class="leak-bar">
     <img src="images\leak.png">
 </div>
 
-<!--Container for upcoming jQuery acces-->
-<div class="question-survey">
-
-</div>
-
-<!--Install for jQuery-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-
 <!--Form for the survey and its controls-->
-<form id="survey">
+<form method= "post" id="survey">
     <div class="survey-control">
         <label for="survey-title">
             Choose your goals below
         </label>
         <!--Input type checkbox-->
         <label for="input-1">
-            <input type="checkbox" name ="input" id="input-1"> LOSE WEIGHT
+            <input type="radio" th:field ="${SurveyRepo.description}" id="input-1"> LOSE WEIGHT
             </input>
         </label>
         <label for="input-2">
-            <input type="checkbox" name ="input" id="input-2"> BUILD MUSCLE
+            <input type="radio" th:field ="${SurveyRepo.description}" id="input-2"> BUILD MUSCLE
             </input>
         </label>
         <label for="input-3">
-            <input type="checkbox" name ="input" id="input-3"> GAIN WEIGHT
+            <input type="radio" th:field ="${SurveyRepo.description}" id="input-3"> GAIN WEIGHT
             </input>
         </label>
         <label for="input-4">
-            <input type="checkbox" name ="input" id="input-4"> KEEP CURRENT WEIGHT
+            <input type="radio" th:field ="${SurveyRepo.description}" id="input-4"> KEEP CURRENT WEIGHT
             </input>
         </label>
         <button type="submit">
@@ -55,8 +43,6 @@
         </button>
     </div>
 </form>
-
-<script src="survey.js"></script>
 
 <div class="paragraph-container">
     <h2>Den billige løsning til at opnå din drømmekrop</h2><br>

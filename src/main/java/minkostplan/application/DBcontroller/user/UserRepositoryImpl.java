@@ -19,8 +19,8 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Users findByUsername(String username) {
-        return findByProperty("username", username);
+    public Users findByName(String firstName, String lastName) {
+        return findByProperty("'firstname'" + firstName + "'lastname'" + lastName, lastName);
     }
 
     @Override
