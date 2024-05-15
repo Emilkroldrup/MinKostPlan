@@ -51,6 +51,10 @@ input, textarea {
     font-family: 'Arial', sans-serif;
 }
 
+textarea::-webkit-scrollbar {
+    display: none;
+}
+
 .box{
     width: 25%;
     height: 100%;
