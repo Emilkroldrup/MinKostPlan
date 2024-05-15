@@ -26,4 +26,10 @@ public class HomepageController {
     public String admin(){
         return "adminPage";
     }
+
+
+    @GetMapping("/profile")
+    public String profilepage(){
+        return"profilePage";
+    }
 }

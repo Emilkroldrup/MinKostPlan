@@ -9,13 +9,13 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgba(179, 255, 179, 0.8);
-    padding: 0.8vh 2vh;
+    padding: 1.5vh 2vh;
     width: 100%;
     max-width: 100%;
     height: auto;
     font-family: 'Arial', sans-serif;
-    border-bottom-left-radius: 0.1vh;
-    border-bottom-right-radius: 0.1vh;
+    border-bottom-left-radius: 1vh;
+    border-bottom-right-radius:1vh;
     top: 0;
     left: 0;
     font-size: 1.5vh;
@@ -25,10 +25,10 @@
 
 .navbar-logo {
     height: auto;
-    width: 1.5%;
-    max-width: 1.5%;
+    width: 1.6%;
+    max-width: 1.6%;
     position: absolute;
-    top: 0.2vh;
+    top: 0.6vh;
 
 }
 
