@@ -24,7 +24,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Users getUserByEmail(String email) {
+    public Users findByEmail(String email) {
         return findByProperty("email", email);
     }
 
