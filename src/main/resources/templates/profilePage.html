@@ -11,23 +11,26 @@
       <h1>Hello user</h1>
    </header>
    <main class="profile-container">
+       <form th:action="@{/test}" th:object="${User}" th:method="post">
       <section class="account-details">
          <h2>Account details</h2>
-         <p>Username: <span text="${user.username}"></span></p>
-         <p>Email: <span text="${user.email}"></span></p>
+         <p>Username: <span th:text="${User.username}"></span></p>
+         <p>Email: <span th:text="${User.email}"></span></p>
       </section>
+       </form>
       <article class="profile-picture">
          <img th:src="@{/images/defaultProfilePicture.jpg}" alt="User's profile picture">
          <button type="button" class="btn-change">Change picture</button>
       </article>
+
       <section class="subscription">
          <h2>Subscription</h2>
          <p>Subscription status: <span text="${user.subscriptionStatus}"></span></p>
          <button type="button" class="btn-change">Change subscription</button>
       </section>
+
+
    </main>
  </body>
  </html>
 
-
- add th: back on stuff

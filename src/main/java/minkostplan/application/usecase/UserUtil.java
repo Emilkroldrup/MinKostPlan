@@ -7,7 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import minkostplan.application.DBcontroller.user.UserRepository;
 import minkostplan.application.entity.Users;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class UserUtil {
 
     private static UserRepository userRepository;
