@@ -1,6 +1,5 @@
 package minkostplan.application.usecase;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,9 +11,11 @@ public class UserUtil {
 
     private static UserRepository userRepository;
 
-    @Autowired
-    public UserUtil(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    private UserUtil() {
+    }
+
+    public static void setUserRepository(UserRepository userRepository) {
+        UserUtil.userRepository = userRepository;
     }
 
     public static Users getCurrentUser() {
