@@ -9,29 +9,34 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgba(179, 255, 179, 0.8);
-    padding: 10px 20px;
+    padding: 1.5vh 2vh;
     width: 100%;
+    max-width: 100%;
+    height: auto;
     font-family: 'Arial', sans-serif;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 1vh;
+    border-bottom-right-radius:1vh;
     top: 0;
     left: 0;
+    font-size: 1.5vh;
+
 }
+
 
 .navbar-logo {
-    height: 40px;
-}
+    height: auto;
+    width: 1.6%;
+    max-width: 1.6%;
+    position: absolute;
+    top: 0.6vh;
 
-.navbar-logo img {
-    height: 100%;
-    display: block;
 }
 
 .navbar-menu {
     display: flex;
     list-style: none;
-    margin: 0;
     padding: 0;
+
 }
 
 .navbar-menu li {

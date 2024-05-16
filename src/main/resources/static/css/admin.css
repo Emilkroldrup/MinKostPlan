@@ -1,11 +1,109 @@
 body, html {
     height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
 }
 
 .container {
-    width: 300px;
+    justify-content: center;
+    align-items: center;
+    top: 10%;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    padding: 8px 10px;
+    background-color: #45A049;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover {
+    background-color: #367C39;
+}
+
+.dish-name {
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 20px;
+    position: relative;
+    top: 15%;
+    left: 5%;
+}
+
+input, textarea {
+    padding: 8px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    resize: none;
+    width: 15%;
+    font-family: 'Arial', sans-serif;
+}
+
+textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.box{
+    width: 25%;
+    height: 100%;
+    background-color: rgba(204, 204, 204, 0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.ingredient {
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 20px;
+    position: relative;
+    top: 20%;
+    left: 5%;
+}
+
+.ingredient p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.addIngredient {
+    font-size: 24px;
+    padding: 10px 20px;
+}
+
+.addIng {
+    margin-bottom: 10px;
+}
+
+.dish-recipe {
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 20px;
+    position: relative;
+    top: 25%;
+    left: 5%;
+}
+
+.addPic {
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 20px;
+    position: relative;
+    top: 30%;
+    left: 5%;
 }
