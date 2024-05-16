@@ -22,8 +22,8 @@ public class UserUtil {
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
             if (principal instanceof UserDetails) {
-                String username = ((UserDetails) principal).getUsername();
-                return userRepository.findByUsername(username);
+                String Email = ((UserDetails) principal).getUsername();
+                return userRepository.getUserByEmail(Email);
             }
         }
         return null;
