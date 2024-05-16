@@ -23,7 +23,7 @@ public class UserUtil {
             Object principal = authentication.getPrincipal();
             if (principal instanceof UserDetails) {
                 String Email = ((UserDetails) principal).getUsername();
-                return userRepository.getUserByEmail(Email);
+                return userRepository.findByEmail(Email);
             }
         }
         return null;
