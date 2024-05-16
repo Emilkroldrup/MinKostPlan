@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 class UserRepositoryTest {
 
     @Mock
-    private UserRepositoryImpl userRepository;
+    private UserRepository userRepository;
 
     @Test
     void findbyUsername(){

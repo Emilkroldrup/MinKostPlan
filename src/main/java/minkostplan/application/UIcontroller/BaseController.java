@@ -22,15 +22,6 @@ public class BaseController {
 
 
 
-     UserUtil userUtil;
-    UserRepository userRepository;
-
-    @Autowired
-    public BaseController(UserUtil userUtil, UserRepository userRepository) {
-        this.userUtil = userUtil;
-        this.userRepository = userRepository; // Assigning userRepository
-        UserUtil.setUserRepository(userRepository);
-    }
 
     @GetMapping("")
     public String defaultpage() {
