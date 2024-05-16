@@ -21,6 +21,7 @@ public class SurveyService {
     public Users createUser(String firstName, String lastName, int age, int height, int weight, String gender, String goal, String email, String password) {
         String passwordHash = passwordEncoder.encode(password);
         Users user = new Users(firstName, lastName, age, height, weight, gender, goal, email, passwordHash, LocalDateTime.now());
-        UserRepository.save(user);
+        userRepository.save(user);
         return user;
+    }
 }

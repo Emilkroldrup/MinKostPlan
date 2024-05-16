@@ -1,16 +1,27 @@
-document.getElementById('survey').addEventListener('submit', function(event) {
+function nextStep(currentStep) {
+    var currentDiv = document.getElementById("step" + currentStep);
+    var nextDiv = document.getElementById("step" + (currentStep + 1));
+    if (nextDiv) {
+        currentDiv.style.display = "none";
+        nextDiv.style.display = "block";
+    }
+}
+
+document.getElementById("surveryForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    var checkboxes = document-this.querySelectorAll('input[type="checkbox"]');
+    var formData = new FormData(event.target);
 
-    // Array to store selected input
-    var selectedGoals = [];
-
-    checkboxes.forEach(function(checkbox){
-        if (checkbox.checked) {
-            selectedGoals.push(checkbox.nextSibling.nodeValue.trim()); //Stores text after the trim
-        }
+    fetch("/survey", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log('Success:', result);
+        // redirect to the home page
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
-    // Displays the selected input from the user in console
-    console.log('Selected goals: ', selectedGoals);
-})
+});
