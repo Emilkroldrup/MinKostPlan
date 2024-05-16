@@ -18,17 +18,40 @@
 
 <!--Form for the survey and its controls-->
 <form id="surveyForm">
+
     <div class="survey-step" id="step1">
+        <label>What is your goal?</label>
+        <div>
+            <input type="radio" id="lose weight" name="goal" value="lose weight" checked />
+            <label for="huey">Lose weight</label>
+        </div>
+        <div>
+            <input type="radio" id="gain weight" name="goal" value="gain weight" checked />
+            <label for="gain weight">Gain weight</label>
+        </div>
+        <div>
+            <input type="radio" id="build muscle" name="goal" value="build muscle" checked />
+            <label for="build muscle">Build muscle</label>
+        </div>
+        <div>
+            <input type="radio" id="keep current weight" name="goal" value="keep current weight" checked/>
+            <label for="keep current weight">Keep current weight</label>
+        </div>
+
+        <button type="button" onclick="nextStep(1)">Next</button>
+    </div>
+
+    <div class="survey-step" id="step2" style="display:none;">
         <label>First Name:</label>
         <input type="text" id="firstName" name="firstName" required>
 
         <label>Last Name:</label>
         <input type="text" id="lastName" name="lastName" required>
 
-        <button type="button" onclick="nextStep(1)">Next</button>
+        <button type="button" onclick="nextStep(2)">Next</button>
     </div>
 
-    <div class="survey-step" id="step2" style="display:none;">
+    <div class="survey-step" id="step3" style="display:none;">
         <label>Age:</label>
         <input type="number" id="age" name="age" required>
 
@@ -38,14 +61,25 @@
         <label>Weight (kg)</label>
         <input type="number" id="weight" name="weight" required>
 
-        <button type="button" onclick="nextStep(2)">Next</button>
+        <button type="button" onclick="nextStep(3)">Next</button>
     </div>
 
-    <div class="survey-step" id="step3" style="display:none">
+    <div class="survey-step" id="step4" style="display:none">
         <label>Gender:</label>
         <select name="gender" required>
             <option value="male">Male</option>
         </select>
+        <button type="button" onclick="nextStep(4)">Next</button>
+    </div>
+
+    <div class="survey.step" id="step5" style="display: none;">
+        <label>E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label>Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Sign up</button>
     </div>
 </form>
 

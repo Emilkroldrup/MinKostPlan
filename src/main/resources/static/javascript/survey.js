@@ -7,7 +7,7 @@ function nextStep(currentStep) {
     }
 }
 
-document.getElementById("surveryForm").addEventListener("submit", function(event) {
+document.getElementById("surveyForm").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var formData = new FormData(event.target);
