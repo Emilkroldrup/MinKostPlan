@@ -1,19 +1,57 @@
 body, html {
     height: 100%;
     align-items: center;
-    background-color: #f0f0f0;
     font-family: 'Arial', sans-serif;
+    background-image: url('../images/Ceasar.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.container {
-    justify-content: center;
-    align-items: center;
-    top: 10%;
-    position: relative;
+
+.box {
+    width: 50%;
+    height: 60%;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    border-radius: 10px;
+    padding: 20px;
 }
 
-h1 {
+.box h1 {
     text-align: center;
+}
+
+.dish-name, .dish-recipe, .addPic {
+    margin-top: 30px;
+}
+
+.ingredient {
+    position: absolute;
+    margin-left: 45%;
+    top: 10%;
+}
+
+.ingredient, .addIng {
+    margin-top: 10px;
+}
+
+.addIng {
+    margin-bottom: 10px;
+}
+
+.ingredient input {
+    width: 50%;
+}
+
+.food-picture {
+    display: none;
+    height: 128px;
+    width: 128px;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
 button {
@@ -30,16 +68,6 @@ button:hover {
     background-color: #367C39;
 }
 
-.dish-name {
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 20px;
-    position: relative;
-    top: 15%;
-    left: 5%;
-}
-
 input, textarea {
     padding: 8px;
     margin-right: 5px;
@@ -47,63 +75,21 @@ input, textarea {
     border-radius: 10px;
     outline: none;
     resize: none;
-    width: 15%;
+    width: 25%;
     font-family: 'Arial', sans-serif;
 }
 
-textarea::-webkit-scrollbar {
-    display: none;
+.fileButton {
+    padding: 8px 10px;
+    background-color: #45A049;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    display: inline-block;
 }
 
-.box{
-    width: 25%;
-    height: 100%;
-    background-color: rgba(204, 204, 204, 0.5);
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
-.ingredient {
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 20px;
-    position: relative;
-    top: 20%;
-    left: 5%;
-}
-
-.ingredient p {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.addIngredient {
-    font-size: 24px;
-    padding: 10px 20px;
-}
-
-.addIng {
-    margin-bottom: 10px;
-}
-
-.dish-recipe {
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 20px;
-    position: relative;
-    top: 25%;
-    left: 5%;
-}
-
-.addPic {
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 20px;
-    position: relative;
-    top: 30%;
-    left: 5%;
+.fileButton:hover {
+    background-color: #367C39;
 }
