@@ -8,4 +8,5 @@ import org.springframework.stereotype.Component;
 public interface UserRepository extends SimpleDataAccess<Users> {
     Users findByUsername(String username);
     Users findByEmail(String email);
+    void editUserDetails(Users users);
 }
