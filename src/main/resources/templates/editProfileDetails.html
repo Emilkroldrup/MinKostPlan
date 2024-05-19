@@ -5,11 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/editprofile}" th:object="${User}" th:method="post">
+<form th:action="@{/editprofile}"  th:method="post">
     <section class="account-details">
         <h2>Account details</h2>
-        <p>Username: <input type="text" th:field="*{username}"></p>
-        <p>Email: <input type = "text" th:field="*{email}"></p>
+        <p>Username: <input type="text" th:field="*{User.username}"></p>
+        <p>Email: <input type = "text" th:field="*{User.email}"></p>
         <button type = submit> confirm</button>
 
     </section>
