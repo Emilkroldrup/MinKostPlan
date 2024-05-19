@@ -29,7 +29,6 @@ public class ProfilepageController {
     @GetMapping("/profile")
     public String profilepage(Model model){
         Users user = UserUtil.getCurrentUser();
-        System.out.println("User" + user);
         model.addAttribute("User",user);
         return"profilePage";
     }
