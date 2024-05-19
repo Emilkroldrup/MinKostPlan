@@ -1,5 +1,4 @@
 // For at tilføje et input felt når man trykker på plus
-
 document.addEventListener('DOMContentLoaded', function() {
     var addButton = document.querySelector('.addIngredient');
     var ingredientSection = document.querySelector('.ingredient');
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         input.placeholder = 'Indtast ingrediens...';
 
         var button = document.createElement('button');
-        button.textContent = 'Godkend';
+        button.textContent = 'Fjern';
 
         var container = document.createElement('div');
         container.appendChild(input);
@@ -19,12 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
         container.classList.add('addIng');
 
         ingredientSection.appendChild(container);
+
+        button.addEventListener('click', function() {
+            container.remove();
+        });
     });
 });
 
-
 // For at tilføje et billede med "Tilføj billede" knappen
-
 document.getElementById('fileInput').addEventListener('change', function(event) {
     var file = event.target.files[0];
     var reader = new FileReader();

@@ -10,14 +10,14 @@ body, html {
 
 
 .box {
-    width: 50%;
-    height: 60%;
+    width: 50vw;
+    height: 60vh;
     background-color: rgba(255, 255, 255, 0.8);
     position: absolute;
-    top: 20%;
-    left: 25%;
+    top: 20vh;
+    left: 25vw;
     border-radius: 10px;
-    padding: 20px;
+    padding: 2vh 2vw;
 }
 
 .box h1 {
@@ -26,35 +26,41 @@ body, html {
 
 .dish-name, .dish-recipe, .addPic {
     margin-top: 30px;
+    padding-top: 30px;
 }
 
 .ingredient {
     position: absolute;
-    margin-left: 45%;
-    top: 10%;
-}
-
-.ingredient, .addIng {
-    margin-top: 10px;
+    top: 15%;
+    left: 45%;
 }
 
 .addIng {
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
+.addIng button {
+    background-color: red;
+}
+
+.addIng button:hover {
+    background-color: darkred;
+}
+
 .ingredient input {
-    width: 50%;
+    width: 70%;
 }
 
 .food-picture {
     display: none;
-    height: 128px;
-    width: 128px;
+    height: 64px;
+    width: 64px;
     margin-top: 10px;
     border-radius: 10px;
 }
 
-button {
+button, .fileButton {
     padding: 8px 10px;
     background-color: #45A049;
     color: white;
@@ -77,19 +83,11 @@ input, textarea {
     resize: none;
     width: 25%;
     font-family: 'Arial', sans-serif;
+    overflow: hidden;
 }
 
-.fileButton {
-    padding: 8px 10px;
-    background-color: #45A049;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    outline: none;
-    display: inline-block;
-}
-
-.fileButton:hover {
-    background-color: #367C39;
+.dish-create {
+    position: absolute;
+    left: 90%;
+    top: 92%;
 }
