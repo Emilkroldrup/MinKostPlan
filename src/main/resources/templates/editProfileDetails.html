@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/editprofile}"  th:method="post">
+    <section class="account-details">
+        <h2>Account details</h2>
+        <p>Username: <input type="text" th:field="*{User.username}"></p>
+        <p>Email: <input type = "text" th:field="*{User.email}"></p>
+        <button type = submit> confirm</button>
+
+    </section>
+</form>
+</body>
+</html>

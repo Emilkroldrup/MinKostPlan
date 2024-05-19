@@ -7,4 +7,5 @@ import minkostplan.application.DBcontroller.SimpleDataAccess;
 public interface UserRepository extends SimpleDataAccess<Users> {
     Users findByUsername(String username);
     Users findByEmail(String email);
+    void editUserDetails(Users users);
 }

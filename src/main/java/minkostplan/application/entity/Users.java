@@ -9,6 +9,7 @@ public class Users {
     private String passwordHash;
     private LocalDateTime createdAt;
 
+
     public Users() {
     }
 
@@ -18,9 +19,6 @@ public class Users {
         this.passwordHash = passwordHash;
         this.createdAt = createdAt;
     }
-
-
-
 
     public String getUsername() {
         return this.username;
