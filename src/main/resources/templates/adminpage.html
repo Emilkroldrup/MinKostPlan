@@ -7,8 +7,37 @@
     <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
-<div th:replace="navbar.html"></div>
 
-<input type="text" placeholder="Navn på opskriften">
+    <section class="box">
+        <h1>Tilføj en ret</h1>
+
+        <section class="dish-name">
+            <input type="text" placeholder="Skriv navnet på retten..">
+        </section>
+
+        <section class="dish-recipe">
+            <textarea type="text" cols="40" rows="10" placeholder="Skriv opskriften på retten her.."></textarea>
+        </section>
+
+        <section class="addPic">
+            <input type="file" id="fileInput" accept="image/png, image/jpeg" style="display: none;">
+            <label for="fileInput" class="fileButton">Tilføj billede</label>
+            <img id="previewImage" src="" alt="Preview" class="food-picture">
+        </section>
+
+        <section class="ingredient">
+            <p>Tilføj ingredienser</p>
+            <button class="addIngredient">+</button>
+        </section>
+
+        <section class="dish-create">
+            <button>Opret retten</button>
+        </section>
+    </section>
+
+    <section th:replace="navbar.html"></section>
+
+    <script th:src="@{/javascript/adminPage.js}"></script>
+
 </body>
 </html>
