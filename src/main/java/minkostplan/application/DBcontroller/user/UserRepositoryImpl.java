@@ -11,11 +11,19 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Implementation of the UserRepository interface.
+ */
 @Repository
 public class UserRepositoryImpl implements UserRepository {
     private GenericJdbcRepository<Users> dataAccess;
     private JdbcTemplate jdbcTemplate;
 
+     /**
+     * Constructs a new UserRepositoryImpl.
+     *
+     * @param jdbcTemplate the JdbcTemplate instance
+     */
     @Autowired
     public UserRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe-list</title>
+    <link rel="stylesheet" th:href="@{/css/userrecipe.css}">
+</head>
+<body>
+
+    <section class="food-selection">
+        <li >Alle</li>
+        <li>Morgenmad</li>
+        <li>Middagsmad</li>
+        <li>Aftensmad</li>
+    </section>
+
+    <section class="category">
+        <h1>Kategori</h1>
+
+        <label class="checkbox-container">
+            <li>Vegetar</li>
+            <input type="checkbox">
+        </label>
+
+        <label class="checkbox-container">
+            <li>Glutenfri</li>
+            <input type="checkbox">
+        </label>
+
+        <label class="checkbox-container">
+            <li>Lav kalorier</li>
+            <input type="checkbox">
+        </label>
+
+    </section>
+
+    <section th:replace="navbar.html"></section>
+    <section th:replace="footer.html"></section>
+
+
+</body>
+</html>
