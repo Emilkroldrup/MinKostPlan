@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
+/**
+ * Controller for handling profile page related requests.
+ */
 @Controller
 public class ProfilepageController {
 
@@ -26,6 +28,12 @@ public class ProfilepageController {
         UserUtil.setUserRepository(userRepository);
     }
 
+    /**
+     * Handles the profile page request.
+     *
+     * @param model the model to add attributes
+     * @return the profile page view
+     */
     @GetMapping("/profile")
     public String profilepage(Model model){
         Users user = UserUtil.getCurrentUser();
@@ -33,11 +41,23 @@ public class ProfilepageController {
         return"profilePage";
     }
 
+    /**
+     * Handles the profile picture change request.
+     *
+     * @return the profile page view
+     */
     @PostMapping("/changeProfilePicture")
     public String profilePictureChange(){
 
         return"profilePage";
     }
+
+    /**
+     * Handles the edit profile page request.
+     *
+     * @param model the model to add attributes
+     * @return the edit profile details view
+     */
     @GetMapping("/editprofile")
     public String editProfilePage(Model model){
         Users user = UserUtil.getCurrentUser();
@@ -45,6 +65,14 @@ public class ProfilepageController {
         model.addAttribute("User",user);
         return "editProfileDetails";
     }
+
+    /**
+     * Handles the edit profile request.
+     *
+     * @param user the user entity with updated details
+     * @param model the model to add attributes
+     * @return the edit profile details view
+     */
     @PostMapping("/editprofile")
     public String editProfile(@ModelAttribute("User") Users user, Model model) {
         System.out.println("Received User: " + user);
