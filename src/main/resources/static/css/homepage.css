@@ -37,11 +37,8 @@ button[type=submit]{
 }
 
 body::-webkit-scrollbar {
-
     height: 100%;
     overflow-y: scroll;
-
-
 }
 
 .survey-control {
