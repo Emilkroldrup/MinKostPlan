@@ -11,19 +11,34 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import minkostplan.application.usecase.CustomUserDetailsService;
 
-
+/**
+ * Security configuration class.
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-        private final CustomUserDetailsService customUserDetailsService;
-        private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final CustomUserDetailsService customUserDetailsService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-        public SecurityConfig(CustomUserDetailsService customUserDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-                this.customUserDetailsService = customUserDetailsService;
-                this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        }
+    /**
+     * Constructs a new SecurityConfig.
+     *
+     * @param customUserDetailsService the CustomUserDetailsService instance
+     * @param bCryptPasswordEncoder the BCryptPasswordEncoder instance
+     */
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+            this.customUserDetailsService = customUserDetailsService;
+            this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
+    /**
+     * Configures the security filter chain.
+     *
+     * @param http the HttpSecurity instance
+     * @return the SecurityFilterChain instance
+     * @throws Exception in case of configuration errors
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -55,9 +70,15 @@ public class SecurityConfig {
                     .logoutSuccessUrl("/LoginPage?logout")
             );
         return http.build();
-}
+    }
 
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-                auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
-        }
+    /**
+     * Configures the authentication manager with custom user details service and password encoder.
+     *
+     * @param auth the AuthenticationManagerBuilder instance
+     * @throws Exception in case of configuration errors
+     */
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
+    }
 }

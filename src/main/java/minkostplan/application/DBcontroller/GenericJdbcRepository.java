@@ -4,10 +4,21 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import java.util.List;
 
+/**
+ * Generic JDBC repository for data access operations.
+ *
+ * @param <T> the type of the entity
+ */
 public class GenericJdbcRepository<T> implements SimpleDataAccess<T> {
     private JdbcTemplate jdbcTemplate;
     private Class<T> type;
 
+    /**
+     * Constructs a new GenericJdbcRepository.
+     *
+     * @param jdbcTemplate the JdbcTemplate instance
+     * @param type the class type of the entity
+     */
     public GenericJdbcRepository(JdbcTemplate jdbcTemplate, Class<T> type) {
         this.jdbcTemplate = jdbcTemplate;
         this.type = type;

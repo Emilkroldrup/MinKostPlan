@@ -9,11 +9,19 @@ import org.springframework.stereotype.Service;
 import minkostplan.application.entity.Users;
 import minkostplan.application.DBcontroller.user.UserRepository;
 
+/**
+ * Custom implementation of UserDetailsService to load user-specific data.
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
     
+    /**
+     * Constructs a new CustomUserDetailsService.
+     *
+     * @param userRepository the UserRepository instance
+     */
     public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
