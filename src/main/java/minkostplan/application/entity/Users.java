@@ -2,6 +2,9 @@ package minkostplan.application.entity;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a user entity.
+ */
 public class Users {
 
     private String username;
@@ -9,10 +12,20 @@ public class Users {
     private String passwordHash;
     private LocalDateTime createdAt;
 
-
+    /**
+     * Default constructor.
+     */
     public Users() {
     }
 
+    /**
+     * Constructs a new Users with specified details.
+     *
+     * @param username the username of the user
+     * @param email the email of the user
+     * @param passwordHash the password hash of the user
+     * @param createdAt the creation date and time of the user
+     */
     public Users(String username, String email, String passwordHash, LocalDateTime createdAt) {
         this.username = username;
         this.email = email;

@@ -1,14 +1,27 @@
 package minkostplan.application.entity;
 
+/**
+ * Represents a step entity.
+ */
 public class Step {
 
     private Recipe recipe;
     private int stepNumber;
     private String instruction;
 
+    /**
+     * Default constructor.
+     */
     public Step() {
     }
 
+    /**
+     * Constructs a new Step with specified details.
+     *
+     * @param recipe the recipe
+     * @param stepNumber the step number
+     * @param instruction the instruction
+     */
     public Step(Recipe recipe, int stepNumber, String instruction) {
         this.recipe = recipe;
         this.stepNumber = stepNumber;

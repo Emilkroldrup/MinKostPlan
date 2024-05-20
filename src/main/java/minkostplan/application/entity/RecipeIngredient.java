@@ -1,14 +1,27 @@
 package minkostplan.application.entity;
 
+/**
+ * Represents a relationship between a recipe and an ingredient.
+ */
 public class RecipeIngredient {
 
     private Recipe recipe;
     private Ingredient ingredient;
     private String quantity;
 
+    /**
+     * Default constructor.
+     */
     public RecipeIngredient() {
     }
 
+    /**
+     * Constructs a new RecipeIngredient with specified details.
+     *
+     * @param recipe the recipe
+     * @param ingredient the ingredient
+     * @param quantity the quantity of the ingredient
+     */
     public RecipeIngredient(Recipe recipe, Ingredient ingredient, String quantity) {
         this.recipe = recipe;
         this.ingredient = ingredient;
