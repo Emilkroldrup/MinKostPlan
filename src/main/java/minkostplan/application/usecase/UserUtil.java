@@ -9,6 +9,9 @@ import minkostplan.application.entity.Users;
 import org.springframework.stereotype.Component;
 
 
+/**
+ * Utility class for user-related operations.
+ */
 @Component
 public class UserUtil {
 
@@ -17,10 +20,20 @@ public class UserUtil {
     private UserUtil() {
     }
 
+    /**
+     * Sets the UserRepository instance.
+     *
+     * @param userRepository the UserRepository instance
+     */
     public static void setUserRepository(UserRepository userRepository) {
         UserUtil.userRepository = userRepository;
     }
 
+    /**
+     * Retrieves the current authenticated user.
+     *
+     * @return the current user
+     */
     public static Users getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {

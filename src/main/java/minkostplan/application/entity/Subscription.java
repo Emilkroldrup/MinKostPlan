@@ -2,6 +2,9 @@ package minkostplan.application.entity;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a subscription entity.
+ */
 public class Subscription {
 
     private Users user;
@@ -9,9 +12,20 @@ public class Subscription {
     private LocalDateTime endDate;
     private String status;
 
+    /**
+     * Default constructor.
+     */
     public Subscription() {
     }
 
+    /**
+     * Constructs a new Subscription with specified details.
+     *
+     * @param user the user
+     * @param startDate the start date of the subscription
+     * @param endDate the end date of the subscription
+     * @param status the status of the subscription
+     */
     public Subscription(Users user, LocalDateTime startDate, LocalDateTime endDate, String status) {
         this.user = user;
         this.startDate = startDate;
