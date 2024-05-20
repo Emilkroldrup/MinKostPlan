@@ -56,6 +56,7 @@ public class SecurityConfig {
                             new AntPathRequestMatcher("/**/*.js")
                         )
                     ).permitAll()
+                    .requestMatchers("/admin").authenticated()
                     .anyRequest().authenticated()
             )
             .formLogin(formLogin ->
