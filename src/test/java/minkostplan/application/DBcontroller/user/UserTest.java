@@ -29,4 +29,18 @@ class UserRepositoryTest {
       System.out.println();
       System.out.println("Result: " + result);
     }
+
+    void findbyUsername(){
+      String username ="test";
+      Users user = new Users("test","test@test.com","testword", LocalDateTime.now());
+      when(userRepository.findByUsername(username)).thenReturn(user);
+
+      Users result = userRepository.findByUsername(username);
+
+      assertEquals(user,result);
+
+      System.out.println("Has to equal: " + user);
+      System.out.println();
+      System.out.println("Result: " + result);
+    }
 }
