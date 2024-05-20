@@ -1,5 +1,7 @@
 package minkostplan.application.UIcontroller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,7 @@ public class SurveyController {
                                @RequestParam String email,
                                @RequestParam String password,
                                Model model) {
-        Users user = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password);
+        Users user = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, LocalDateTime.now());
         model.addAttribute("user", user);
         return "loginPage"; 
     }
