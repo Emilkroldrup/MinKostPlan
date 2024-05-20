@@ -1,5 +1,4 @@
 package minkostplan.application.UIcontroller;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -24,12 +23,7 @@ public class HomepageController {
 
     @GetMapping("/admin")
     public String admin(){
-        return "adminPage";
+        return "adminpage";
     }
 
-
-    @GetMapping("/profile")
-    public String profilepage(){
-        return"profilePage";
-    }
 }
