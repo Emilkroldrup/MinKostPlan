@@ -61,7 +61,6 @@ public class ProfilepageController {
     @GetMapping("/editprofile")
     public String editProfilePage(Model model){
         Users user = UserUtil.getCurrentUser();
-        System.out.println("User" + user);
         model.addAttribute("User",user);
         return "editProfileDetails";
     }
@@ -70,25 +69,11 @@ public class ProfilepageController {
      * Handles the edit profile request.
      *
      * @param user the user entity with updated details
-     * @param model the model to add attributes
      * @return the edit profile details view
      */
     @PostMapping("/editprofile")
-    public String editProfile(@ModelAttribute("User") Users user, Model model) {
-        System.out.println("Received User: " + user);
-        try {
-            System.out.println("Attempting to edit user details...");
-            userRepository.editUserDetails(user);
-            System.out.println("User details edited successfully.");
-            model.addAttribute("successMessage", "Profile updated successfully.");
-        } catch (DuplicateKeyException e) {
-            System.out.println("DuplicateKeyException caught: " + e.getMessage());
-            model.addAttribute("errorMessage", "Email already exists. Please choose a different email.");
-        } catch (Exception e) {
-            System.out.println("Exception caught: " + e.getMessage());
-            model.addAttribute("errorMessage", "An unexpected error occurred.");
-        }
-        model.addAttribute("User", user);
+    public String editProfile(@ModelAttribute("User") Users user) {
+        userRepository.editUserDetails(user);
         return "editProfileDetails";
     }
 }
