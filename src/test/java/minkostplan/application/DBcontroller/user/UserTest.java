@@ -16,12 +16,12 @@ class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    void findbyUsername(){
-      String username ="test";
-      Users user = new Users("test","test@test.com","testword", LocalDateTime.now());
-      when(userRepository.findByUsername(username)).thenReturn(user);
+    void findByEmail(){
+      String email ="test@test.com";
+      Users user = new Users("test","tester",30,180,90,"male","lose weight","test@test.com","testword", LocalDateTime.now());
+      when(userRepository.findByEmail(email)).thenReturn(user);
 
-      Users result = userRepository.findByUsername(username);
+      Users result = userRepository.findByEmail(email);
 
       assertEquals(user,result);
 
@@ -29,20 +29,4 @@ class UserRepositoryTest {
       System.out.println();
       System.out.println("Result: " + result);
     }
-
-    @Test
-    void findbyEmail(){
-        String email= "Test@gmail.com";
-        Users user = new Users("test","test@test.com","testword", LocalDateTime.now());
-        when(userRepository.findByEmail(email)).thenReturn(user);
-
-        Users result = userRepository.findByEmail(email);
-
-        assertEquals(user,result);
-
-        System.out.println("Has to equal: " + user);
-        System.out.println();
-        System.out.println("Result: " + result);
-    }
-
 }

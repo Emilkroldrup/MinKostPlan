@@ -52,9 +52,9 @@ public class UserRepositoryImpl implements UserRepository {
     public void editUserDetails(Users users) {
         Users currentuser = UserUtil.getCurrentUser();
         try {
-            String sql = "UPDATE users SET username = COALESCE(?, username), email = COALESCE(?, email) WHERE email =?";
-            if( !users.getUsername().isEmpty() && !users.getEmail().isEmpty()){
-                jdbcTemplate.update(sql, users.getUsername(), users.getEmail(), currentuser.getEmail());
+            String sql = "UPDATE users SET firstname = COALESCE(?, firstname), email = COALESCE(?, email) WHERE email =?";
+            if( !users.getFirstName().isEmpty() && !users.getEmail().isEmpty()){
+                jdbcTemplate.update(sql, users.getFirstName(), users.getEmail(), currentuser.getEmail());
             }
         } catch (DuplicateKeyException duplicateKeyException){
             System.out.println("duplicatekey error, same user-details already exists" + duplicateKeyException);

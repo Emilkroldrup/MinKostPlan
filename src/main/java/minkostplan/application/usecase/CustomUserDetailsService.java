@@ -25,11 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-
-        // Changed it to getFirstName, because we don't use username
-        return User.withUsername(user.getFirstName())
-
-
+        
         return User.withUsername(user.getEmail())
 
                 .password(user.getPasswordHash())
