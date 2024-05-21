@@ -32,7 +32,4 @@ public class BaseController {
         model.addAttribute("user", new Users());
         return "loginPage";
     }
-
-
 }
-        

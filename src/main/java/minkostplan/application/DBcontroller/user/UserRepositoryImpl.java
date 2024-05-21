@@ -31,13 +31,19 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Users findByUsername(String username) {
-        return findByProperty("username", username);
+    public Users findByName(String firstName, String lastName) {
+        return findByProperty("'firstname'" + firstName + "'lastname'" + lastName, lastName);
     }
 
     @Override
     public Users findByEmail(String email) {
         return findByProperty("email", email);
+    }
+
+    @Override
+    public void save(Users user) {
+        String sql = "INSERT INTO users (firstname, lastname, age, height, weight, gender, goal, email, password_hash, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        dataAccess.getJdbcTemplate().update(sql, user.getFirstName(), user.getLastName(), user.getAge(), user.getHeight(), user.getWeight(), user.getGender(), user.getGoal(), user.getEmail(), user.getPasswordHash(), user.getCreatedAt());
     }
 
     @Override
@@ -54,9 +60,11 @@ public class UserRepositoryImpl implements UserRepository {
     public void editUserDetails(Users users) {
         Users currentuser = UserUtil.getCurrentUser();
         try {
+
             String sql = "UPDATE users SET firstname = COALESCE(?, firstname), lastname = COALESCE(?, lastname), email = COALESCE(?, email), age = COALESCE(?, age), height = COALESCE(?, height), weight = COALESCE(?, weight), gender = COALESCE(?, gender), goal = COALESCE(?, goal) WHERE email = ?";
             if (!users.getFirstName().isEmpty() && !users.getLastName().isEmpty() && !users.getEmail().isEmpty() && users.getAge() >= 0 && users.getHeight() >= 0 && users.getWeight() >= 0 && !users.getGender().isEmpty() && !users.getGoal().isEmpty()) {
                 jdbcTemplate.update(sql, users.getFirstName(), users.getLastName(), users.getEmail(), users.getAge(), users.getHeight(), users.getWeight(), users.getGender(), users.getGoal(), currentuser.getEmail());
+
             }
         } catch (DuplicateKeyException duplicateKeyException){
             System.out.println("same user-details already exists " + duplicateKeyException);

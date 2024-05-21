@@ -7,56 +7,82 @@
     <link rel="stylesheet" th:href="@{/css/homepage.css}">
     <link rel="stylesheet" th:href="@{/css/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <script src="/javascript/survey.js" defer></script>
 </head>
 <body>
 
-<div class="background-container">
-
-</div>
 <!--Container for the leak image-->
 <section>
     <img src="images\leak.png" class="leak-bar">
 </section>
 
-<!--Container for upcoming jQuery acces-->
-<div class="question-survey">
-
-</div>
-
-<!--Install for jQuery-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-
 <!--Form for the survey and its controls-->
-<form id="survey">
-    <div class="survey-control">
-        <label for="survey-title">
-            Choose your goals below
-        </label>
-        <!--Input type checkbox-->
-        <label for="input-1">
-            <input type="checkbox" name ="input" id="input-1"> LOSE WEIGHT
-            </input>
-        </label>
-        <label for="input-2">
-            <input type="checkbox" name ="input" id="input-2"> BUILD MUSCLE
-            </input>
-        </label>
-        <label for="input-3">
-            <input type="checkbox" name ="input" id="input-3"> GAIN WEIGHT
-            </input>
-        </label>
-        <label for="input-4">
-            <input type="checkbox" name ="input" id="input-4"> KEEP CURRENT WEIGHT
-            </input>
-        </label>
-        <button type="submit">
-            Next
-        </button>
+<form id="surveyForm" method="post" th:action="@{/survey}" th:object="${surveyForm}">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+
+    <div class="survey-step" id="step1">
+        <label>What is your goal?</label>
+        <div>
+            <input type="radio" id="lose weight" name="goal" value="lose weight" checked />
+            <label for="huey">Lose weight</label>
+        </div>
+        <div>
+            <input type="radio" id="gain weight" name="goal" value="gain weight" checked />
+            <label for="gain weight">Gain weight</label>
+        </div>
+        <div>
+            <input type="radio" id="build muscle" name="goal" value="build muscle" checked />
+            <label for="build muscle">Build muscle</label>
+        </div>
+        <div>
+            <input type="radio" id="keep current weight" name="goal" value="keep current weight" checked/>
+            <label for="keep current weight">Keep current weight</label>
+        </div>
+
+        <button type="button" onclick="nextStep(1)">Next</button>
+    </div>
+
+    <div class="survey-step" id="step2" style="display:none;">
+        <label>First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+
+        <label>Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+
+        <button type="button" onclick="nextStep(2)">Next</button>
+    </div>
+
+    <div class="survey-step" id="step3" style="display:none;">
+        <label>Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label>Height (cm)</label>
+        <input type="number" id="height" name="height" required>
+
+        <label>Weight (kg)</label>
+        <input type="number" id="weight" name="weight" required>
+
+        <button type="button" onclick="nextStep(3)">Next</button>
+    </div>
+
+    <div class="survey-step" id="step4" style="display:none">
+        <label>Gender:</label>
+        <select name="gender" required>
+            <option value="male">Male</option>
+        </select>
+        <button type="button" onclick="nextStep(4)">Next</button>
+    </div>
+
+    <div class="survey.step" id="step5" style="display: none;">
+        <label>E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label>Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Sign up</button>
     </div>
 </form>
-
-<script src="survey.js"></script>
 
 <div class="paragraph-container">
     <h2>Den billige løsning til at opnå din drømmekrop</h2><br>

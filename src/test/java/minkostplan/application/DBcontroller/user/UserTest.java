@@ -1,11 +1,16 @@
 package minkostplan.application.DBcontroller.user;
 import minkostplan.application.entity.Users;
+import minkostplan.application.usecase.UserUtil;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
 
 import java.time.LocalDateTime;
 @SpringBootTest
@@ -15,34 +20,49 @@ class UserRepositoryTest {
     @Mock
     private UserRepository userRepository;
 
-    @Test
-    void findbyUsername(){
-      String username ="test";
-      Users user = new Users("test","test@test.com","testword", LocalDateTime.now());
-      when(userRepository.findByUsername(username)).thenReturn(user);
 
-      Users result = userRepository.findByUsername(username);
+    private Users existingUser;
+    private String firstname;
+    private String lastname;
+    private int age;
+    private int height;
+    private int weight;
+    private String gender;
+    private String goal;
+    private String email;
+    private String passwordHash;
+    private LocalDateTime createdAt;
 
-      assertEquals(user,result);
-
-      System.out.println("Has to equal: " + user);
-      System.out.println();
-      System.out.println("Result: " + result);
+    @BeforeEach
+    void setUp() {
+        firstname = "test";
+        lastname = "masden";
+        age = 50;
+        height= 192;
+        weight = 80;
+        gender ="Guy";
+        goal ="gain weight";
+        passwordHash = "testenpassword";
+        email = "testemail@gmail.com";
+        existingUser = new Users(firstname,lastname, age,height,weight,gender,goal,email,passwordHash, LocalDateTime.now());
     }
+
 
     @Test
     void findbyEmail(){
-        String email= "Test@gmail.com";
-        Users user = new Users("test","test@test.com","testword", LocalDateTime.now());
-        when(userRepository.findByEmail(email)).thenReturn(user);
+
+        when(userRepository.findByEmail(email)).thenReturn(existingUser);
 
         Users result = userRepository.findByEmail(email);
 
-        assertEquals(user,result);
+        assertEquals(existingUser,result);
 
-        System.out.println("Has to equal: " + user);
+        System.out.println(email);
+
+        System.out.println("Has to equal: " + existingUser);
         System.out.println();
         System.out.println("Result: " + result);
     }
+
 
 }
