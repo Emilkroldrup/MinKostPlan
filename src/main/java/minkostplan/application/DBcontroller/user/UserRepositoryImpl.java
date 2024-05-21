@@ -54,9 +54,9 @@ public class UserRepositoryImpl implements UserRepository {
     public void editUserDetails(Users users) {
         Users currentuser = UserUtil.getCurrentUser();
         try {
-            String sql = "UPDATE users SET username = COALESCE(?, username), email = COALESCE(?, email) WHERE email =?";
-            if( !users.getUsername().isEmpty() && !users.getEmail().isEmpty()){
-                jdbcTemplate.update(sql, users.getUsername(), users.getEmail(), currentuser.getEmail());
+            String sql = "UPDATE users SET firstname = COALESCE(?, firstname), lastname = COALESCE(?, lastname), email = COALESCE(?, email), age = COALESCE(?, age), height = COALESCE(?, height), weight = COALESCE(?, weight), gender = COALESCE(?, gender), goal = COALESCE(?, goal) WHERE email = ?";
+            if (!users.getFirstName().isEmpty() && !users.getLastName().isEmpty() && !users.getEmail().isEmpty() && users.getAge() >= 0 && users.getHeight() >= 0 && users.getWeight() >= 0 && !users.getGender().isEmpty() && !users.getGoal().isEmpty()) {
+                jdbcTemplate.update(sql, users.getFirstName(), users.getLastName(), users.getEmail(), users.getAge(), users.getHeight(), users.getWeight(), users.getGender(), users.getGoal(), currentuser.getEmail());
             }
         } catch (DuplicateKeyException duplicateKeyException){
             System.out.println("same user-details already exists " + duplicateKeyException);
