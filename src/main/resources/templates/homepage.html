@@ -17,7 +17,8 @@
 </section>
 
 <!--Form for the survey and its controls-->
-<form id="surveyForm">
+<form id="surveyForm" method="post" th:action="@{/survey}" th:object="${surveyForm}">
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 
     <div class="survey-step" id="step1">
         <label>What is your goal?</label>
