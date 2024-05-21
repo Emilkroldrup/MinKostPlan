@@ -7,39 +7,51 @@
 </head>
 <body>
 
-
 <section th:replace="navbar.html"></section>
-<section th:replace="footer.html"></section>
+<section th:replace="footer.html.html"></section>
 
 <section class="mission">
-<b class="HeaderMission">Vores mission</b>
-<p class="HeaderStory"> Mission for min kostplan har altid været en sundere fremtid. Det er vist gang på gang at en sundere kost næsten altid leder op til en sundere livstil. </p>
-
+    <b class="HeaderMission">Vores mission</b>
+    <p class="HeaderStory"> Mission for min kostplan har altid været en sundere fremtid. Det er vist gang på gang at en sundere kost næsten altid leder op til en sundere livstil. </p>
 </section>
 
-<section class="startup">Minkostplan oprindelse</section>
-
-
-<section class="now">Minkostplan nu</section>
-
-
-<section class="goal">Mål for Minkostplan</section>
-
-<section class="keymembers">Nøgle-medlemmer</section>
-
-<section  > <img src="/images/test1.jpg" class="profilepicture1" alt="profile picture description 1" >
-    <p>profile picture description 1</p>
-</section>
-<section  > <img src="/images/test2.jpg" class="profilepicture2" alt="profile picture description 2">
-    <p>profile picture description 2</p>
+<section > <img src="images\Mission.jpg" class="missionpicture" alt="Det her er et billede af vores mission">
+    <p></p>
 </section>
 
-    <section th:replace="navbar.html"></section>
+<section class="history">
+    <b class="HeaderHistory" >Vores histoie</b>
+    <p class="historyStory"> Vores idé om dette projekt startede langt tilbage.. Jeg kunne mærke at jeg selv havde brug en reset på min sundhed.</p>
+</section>
+<section > <img src="images\Idea.jpg" class="historyPicture" alt="Det her er et billede af vores idé">
+    <p></p>
+</section>
+
+<section class="members">
+    <b class="headerMember">Nøgle-medlemmer </b>
+</section>
+
+<section class="imageSameLine">
+    <section class="image1Container" >
+        <img class="profilepicture1" src="images\key-member1.jpg" alt="profilbillede1">
+        <ul class="profilepicture1Text">
+            <li>Navn:Emil</li>
+            <li>Alder:44år</li>
+            <li>E-mail:git@gmail.com</li>
+        </ul>
+    </section>
+
+    <section class="image2Container">
+        <img class="profilepicture2" src="images\key-member2.jpg" alt="profilbillede2">
+        <ul class="profilepicture2Text">
+            <li>Navn: Mads</li>
+            <li>Alder: 20år</li>
+            <li>E-mail:madsen@gmail.com</li>
+        </ul>
+    </section>
+</section>
 
 
 
 </body>
-
-
-
 </html>
