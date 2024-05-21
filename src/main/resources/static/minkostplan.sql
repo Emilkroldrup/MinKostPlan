@@ -83,6 +83,7 @@ CREATE TABLE `recipes` (
   `cook_name` varchar(100) DEFAULT NULL,
   `average_time` int NOT NULL COMMENT 'in minutes',
   `created_at` datetime NOT NULL,
+  `instructions` json DEFAULT NULL,
   PRIMARY KEY (`recipe_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores details about various recipes.';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -93,36 +94,8 @@ CREATE TABLE `recipes` (
 
 LOCK TABLES `recipes` WRITE;
 /*!40000 ALTER TABLE `recipes` DISABLE KEYS */;
-INSERT INTO `recipes` VALUES (1,'Spaghetti Carbonara','Chef Gino',30,'2024-05-09 09:57:03'),(2,'Ratatouille','Chef Rémy',45,'2024-05-09 09:57:03');
+INSERT INTO `recipes` VALUES (1,'Spaghetti Carbonara','Chef Gino',30,'2024-05-09 09:57:03',NULL),(2,'Ratatouille','Chef Rémy',45,'2024-05-09 09:57:03',NULL);
 /*!40000 ALTER TABLE `recipes` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `steps`
---
-
-DROP TABLE IF EXISTS `steps`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `steps` (
-  `step_id` int NOT NULL AUTO_INCREMENT,
-  `recipe_id` int DEFAULT NULL,
-  `step_number` int NOT NULL,
-  `instruction` text,
-  PRIMARY KEY (`step_id`),
-  KEY `steps_fk` (`recipe_id`),
-  CONSTRAINT `steps_fk` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Detailed cooking steps for each recipe.';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `steps`
---
-
-LOCK TABLES `steps` WRITE;
-/*!40000 ALTER TABLE `steps` DISABLE KEYS */;
-INSERT INTO `steps` VALUES (1,1,1,'Boil spaghetti in salted water until al dente.'),(2,1,2,'Fry bacon until crisp and mix with beaten eggs.'),(3,2,1,'Dice all vegetables.'),(4,2,2,'Sauté vegetables starting with those that take longest to cook.');
-/*!40000 ALTER TABLE `steps` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -175,7 +148,7 @@ CREATE TABLE `users` (
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores information about the users.';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores information about the users.';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +157,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John','Doe','30','180','80','male','build muscle','john.doe@example.com','hashed_password1','2024-05-09 09:56:28'),(2,'Jane','Smith','22','165','55','female','gain weight','jane.smith@example.com','hashed_password2','2024-05-09 09:56:28');
+INSERT INTO `users` VALUES (1,'John','Doe',30,180,80,'male','build muscle','john.doe@example.com','$2y$10$AMqS/rJnvOF214ezcLqhi.4/VmoE61iy8BksPQiWWmAI2CwpZ73tO','2024-05-09 09:56:28'),(2,'Jane','Smith',22,165,55,'female','gain weight','jane.smith@example.com','hashed_password2','2024-05-09 09:56:28'),(3,'test','test',21,150,50,'male','gain weight','test@mail.com','$2y$10$GScfVjPOZn8q34lMCCzGfekGIbYGopu8wHGH6ThsWOYhEGoAIqhsy','2024-05-20 22:20:10'),(7,'Emil','test',21,21,21,'male','keep current weight','Emilkroldrup@outlook.com','$2a$10$fMRw6VfxuA0q3JR8kAG15OrNIU28ayp749DogPu1kAYKA0oN31WyC','2024-05-21 10:55:59');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,4 +178,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-09 10:07:04
+-- Dump completed on 2024-05-21 11:28:28
