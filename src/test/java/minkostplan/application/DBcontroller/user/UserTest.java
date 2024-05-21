@@ -19,45 +19,33 @@ class UserRepositoryTest {
 
     @Mock
     private UserRepository userRepository;
-    
 
-<<<<<<< Updated upstream
-    @Test
-    void findByEmail(){
-      String email ="test@test.com";
-      Users user = new Users("test","tester",30,180,90,"male","lose weight","test@test.com","testword", LocalDateTime.now());
-      when(userRepository.findByEmail(email)).thenReturn(user);
 
-      Users result = userRepository.findByEmail(email);
-
-      assertEquals(user,result);
-
-      System.out.println("Has to equal: " + user);
-      System.out.println();
-      System.out.println("Result: " + result);
-    }
-
-    void findbyUsername(){
-      String username ="test";
-      Users user = new Users("test","test@test.com","testword", LocalDateTime.now());
-      when(userRepository.findByUsername(username)).thenReturn(user);
-=======
     private Users existingUser;
-    private String username;
->>>>>>> Stashed changes
-
+    private String firstname;
+    private String lastname;
+    private int age;
+    private int height;
+    private int weight;
+    private String gender;
+    private String goal;
     private String email;
+    private String passwordHash;
+    private LocalDateTime createdAt;
 
     @BeforeEach
     void setUp() {
-        username = "test";
+        firstname = "test";
+        lastname = "masden";
+        age = 50;
+        height= 192;
+        weight = 80;
+        gender ="Guy";
+        goal ="gain weight";
+        passwordHash = "testenpassword";
         email = "testemail@gmail.com";
-        existingUser = new Users(username, email, "testword", LocalDateTime.now());
+        existingUser = new Users(firstname,lastname, age,height,weight,gender,goal,email,passwordHash, LocalDateTime.now());
     }
-<<<<<<< Updated upstream
-}
-=======
-
 
 
     @Test
@@ -78,4 +66,3 @@ class UserRepositoryTest {
 
 
 }
->>>>>>> Stashed changes
