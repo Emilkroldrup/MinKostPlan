@@ -72,8 +72,12 @@ public class ProfilepageController {
      * @return the edit profile details view
      */
     @PostMapping("/editprofile")
-    public String editProfile(@ModelAttribute("User") Users user) {
-        userRepository.editUserDetails(user);
+    public String editProfile(@ModelAttribute("User") Users user,Model model) {
+       userRepository.editUserDetails(user);
+
+       Users userupdate = UserUtil.getCurrentUser();
+       model.addAttribute("User",userupdate);
+
         return "editProfileDetails";
     }
 }
