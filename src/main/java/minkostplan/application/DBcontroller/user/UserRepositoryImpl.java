@@ -65,7 +65,7 @@ public class UserRepositoryImpl implements UserRepository {
                 jdbcTemplate.update(sql, users.getFirstName(), users.getEmail(), currentuser.getEmail());
             }
         } catch (DuplicateKeyException duplicateKeyException){
-            System.out.println("duplicatekey error, same user-details already exists" + duplicateKeyException);
+            System.out.println("same user-details already exists " + duplicateKeyException);
         } catch (Exception e) {
             System.out.println("Error trying to update user: " + e.getMessage());
         }

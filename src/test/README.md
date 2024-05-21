@@ -1,6 +1,6 @@
 # Test Directory
 
-### This is not the final README of this, as we are not doing testdriven development, but this is a brief overview of what we should aim at getting.
+### This is not the final README of this, as we are not doing test-driven development, but this is a brief overview of what we should aim at getting.
 
 This directory contains all the test code for the application. It's crucial for verifying the functionality and reliability of the application through automated testing.
 
