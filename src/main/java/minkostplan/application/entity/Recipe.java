@@ -33,8 +33,6 @@ public class Recipe {
         this.createdAt = createdAt;
     }
 
-    // Getters and Setters
-
     public String getName() {
         return name;
     }
