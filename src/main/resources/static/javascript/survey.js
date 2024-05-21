@@ -23,7 +23,7 @@ document.getElementById("surveyForm").addEventListener("submit", function(event)
     .then(response => response.text())
     .then(result => {
         console.log('Success:', result);
-        // redirect to the home page
+        // redirect to the login page
         window.location.href = "/login";
     })
     .catch(error => {
