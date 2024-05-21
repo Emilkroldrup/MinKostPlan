@@ -10,6 +10,7 @@ html {
     text-align: center;
     margin-top: 6vh;
     font-weight: bold;
+   font-size: 0.9vw;
 }
 
 .food-selection li {
@@ -25,7 +26,8 @@ html {
 
 .category {
     width: 10vw;
-    height: 40vh;
+    min-height: 40vh;
+    height: auto;
     background-color: rgba(255, 255, 255, 0.8);
     position: fixed;
     top: 50%;
@@ -39,6 +41,7 @@ html {
 .category h1 {
     text-align: center;
     margin-bottom: 10%;
+    font-size: 1vw;
 }
 
 .checkbox-container:hover{
@@ -54,6 +57,7 @@ html {
 
 .checkbox-container li {
     list-style: none;
+    font-size: 0.8vw;
 }
 
 .category input {
@@ -63,29 +67,29 @@ html {
 input[type="checkbox"] {
     appearance: none;
     background-color: #fff;
-    border: 2px solid #333;
-    width: 0.8vw;
-    height: 1.6vh;
-    border-radius: 10px;
-    outline: none;
-    cursor: pointer;
+    border: 0.1vw solid #333;
+    min-width: 1vw;
+    min-height: 1vw;
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    box-sizing: border-box;
     position: relative;
 }
 
 input[type="checkbox"]:checked {
     background-color: #4CAF50;
-    border: 2px solid #4CAF50;
 }
 
 input[type="checkbox"]:checked::after {
     content: "";
     display: block;
     position: absolute;
-    top: 2px;
-    left: 6px;
-    width: 4px;
-    height: 8px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 0.25vw;
+    height: 0.9vh;
     border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+    border-width: 0 0.13vw 0.13vw 0;
 }

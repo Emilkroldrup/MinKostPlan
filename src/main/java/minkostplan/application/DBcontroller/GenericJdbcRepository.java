@@ -24,6 +24,10 @@ public class GenericJdbcRepository<T> implements SimpleDataAccess<T> {
         this.type = type;
     }
 
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
+
     @Override
     public T findByProperty(String property, Object value) {
         String sql = String.format("SELECT * FROM %s WHERE %s = ?", getTableName(type), property);
@@ -34,6 +38,10 @@ public class GenericJdbcRepository<T> implements SimpleDataAccess<T> {
     public List<T> findAll() {
         String sql = String.format("SELECT * FROM %s", getTableName(type));
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(type));
+    }
+
+    public void save(T entity, String sql, Object... args) {
+        jdbcTemplate.update(sql, args);
     }
 
     private String getTableName(Class<T> type) {

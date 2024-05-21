@@ -9,12 +9,13 @@ import minkostplan.application.DBcontroller.SimpleDataAccess;
 public interface UserRepository extends SimpleDataAccess<Users> {
 
     /**
-     * Finds a user by their username.
+     * Finds a user by their full name.
      *
-     * @param username the username
+     * @param firstname their firstname
+     * @param lastname their lastname
      * @return the found user
      */
-    Users findByUsername(String username);
+    Users findByName(String firstname, String lastname);
 
     /**
      * Finds a user by their email.
@@ -23,6 +24,13 @@ public interface UserRepository extends SimpleDataAccess<Users> {
      * @return the found user
      */
     Users findByEmail(String email);
+
+    /**
+     * Saves a user to the database
+     * 
+     * @param user object of User class
+     */
+    void save(Users user);
 
     /**
      * Edits the details of a user.

@@ -33,6 +33,9 @@ public class BaseController {
         return "loginPage";
     }
 
+    @PostMapping("changeProfilePicture")
+    public String profilepicture() {
+        return "profilepicture";
+    }
 
 }
-        
