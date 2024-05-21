@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import minkostplan.application.entity.Users;
 import minkostplan.application.usecase.SurveyService;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -32,7 +31,7 @@ public class SurveyController {
                                Model model) {
         Users user = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, LocalDateTime.now());
         model.addAttribute("user", user);
-        return "loginPage"; 
+        return "redirect:/loginPage"; 
     }
     
 

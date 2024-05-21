@@ -53,7 +53,8 @@ public class SecurityConfig {
                             new AntPathRequestMatcher("/**/*.css"),
                             new AntPathRequestMatcher("/**/*.jpg"),
                             new AntPathRequestMatcher("/**/*.png"),
-                            new AntPathRequestMatcher("/**/*.js")
+                            new AntPathRequestMatcher("/**/*.js"),
+                            new AntPathRequestMatcher("/survey")
                         )
                     ).permitAll()
                     .requestMatchers("/admin").authenticated()
