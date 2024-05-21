@@ -32,10 +32,4 @@ public class BaseController {
         model.addAttribute("user", new Users());
         return "loginPage";
     }
-
-    @PostMapping("changeProfilePicture")
-    public String profilepicture() {
-        return "profilepicture";
-    }
-
 }
