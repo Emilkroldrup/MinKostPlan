@@ -12,7 +12,7 @@ public class Recipe {
     private String cookName;
     private Integer averageTime;
     private LocalDateTime createdAt;
-    private List<String> instructions; // Add instructions as a list of strings
+    private String instructions; // Add instructions as a list of strings
 
     /**
      * Default constructor.
@@ -29,7 +29,7 @@ public class Recipe {
      * @param createdAt the creation date and time of the recipe
      * @param instructions the list of instructions for the recipe
      */
-    public Recipe(String name, String cookName, Integer averageTime, LocalDateTime createdAt, List<String> instructions) {
+    public Recipe(String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions) {
         this.name = name;
         this.cookName = cookName;
         this.averageTime = averageTime;
@@ -71,11 +71,11 @@ public class Recipe {
         this.createdAt = createdAt;
     }
 
-    public List<String> getInstructions() {
+    public String getInstructions() {
         return instructions;
     }
 
-    public void setInstructions(List<String> instructions) {
+    public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
 

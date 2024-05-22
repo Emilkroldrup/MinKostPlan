@@ -9,29 +9,49 @@
 <body>
 
     <section class="box">
-        <h1>Tilføj en ret</h1>
+        <section class="inner-box">
+            <h1>Tilføj en ret</h1>
+            <form th:action="@{/addrecipe}" th:object="${recipe}" th:method="post">
+                <section class="dish-name">
+                    <input type="text" th:field="*{name}" placeholder="Skriv navnet på retten..">
+                </section>
 
-        <section class="dish-name">
-            <input type="text" placeholder="Skriv navnet på retten..">
-        </section>
+                <section class="cook-name">
+                    <input type="text" th:field="*{cookName}" placeholder="Skriv navnet på kokken..">
+                </section>
 
-        <section class="dish-recipe">
-            <textarea type="text" cols="40" rows="10" placeholder="Skriv opskriften på retten her.."></textarea>
-        </section>
+                <section class="avg-time">
+                    <input type="number" th:field="*{averageTime}" placeholder="Gennemsnitstid minutter">
+                </section>
 
-        <section class="addPic">
-            <input type="file" id="fileInput" accept="image/png, image/jpeg" style="display: none;">
-            <label for="fileInput" class="fileButton">Tilføj billede</label>
-            <img id="previewImage" src="" alt="Preview" class="food-picture">
-        </section>
+                <section class="dish-recipe">
+                    <textarea type="text" th:field="*{instructions}" cols="40" rows="10" placeholder="Skriv opskriften på retten her.."></textarea>
+                </section>
 
-        <section class="ingredient">
-            <p>Tilføj ingredienser</p>
-            <button class="addIngredient">+</button>
-        </section>
+                <section class="addPic">
+                    <input type="file" id="fileInput" accept="image/png, image/jpeg" style="display: none;">
+                    <label for="fileInput" class="fileButton">Tilføj billede</label>
+                    <img id="previewImage" src="" alt="Preview" class="food-picture">
+                </section>
 
-        <section class="dish-create">
-            <button>Opret retten</button>
+                <section class="dish-type">
+                    <select>
+                        <option value="morgenmad">Morgenmad</option>
+                        <option value="middagsmad">Middagsmad</option>
+                        <option value="aftensmad">Aftensmad</option>
+                    </select>
+                </section>
+
+                <section class="dish-create">
+                    <button type="submit">Opret retten</button>
+                </section>
+            </form>
+
+            <section class="ingredient">
+                <p>Tilføj ingredienser</p>
+                <button class="addIngredient">+</button>
+            </section>
+
         </section>
     </section>
 

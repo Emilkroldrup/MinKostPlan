@@ -7,6 +7,8 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.mockito.Mockito.verify;
 
@@ -19,7 +21,7 @@ class RecipeRepositoryImplTest {
 
     @BeforeEach
     void setUp() {
-        Recipe recipe = new Recipe("Flæskesteg", "John Doe", 90, LocalDateTime.now());
+        Recipe recipe = new Recipe("Flæskesteg", "John Doe", 90, LocalDateTime.now(), "Ostemad");
     }
 
     @Test
