@@ -4,15 +4,22 @@ document.addEventListener('DOMContentLoaded', function() {
     var ingredientSection = document.querySelector('.ingredient');
 
     addButton.addEventListener('click', function() {
-        var input = document.createElement('input');
-        input.type = 'text';
-        input.placeholder = 'Indtast ingrediens...';
+        var ingredientInput = document.createElement('input');
+        ingredientInput.type = 'text';
+        ingredientInput.placeholder = 'Indtast ingrediens...';
+        ingredientInput.classList.add('ingredient-input');
+
+        var descriptionInput = document.createElement('input');
+        descriptionInput.type = 'text';
+        descriptionInput.placeholder = 'Indtast en beskrivelse af produktet..';
+        descriptionInput.classList.add('description-input');
 
         var button = document.createElement('button');
         button.textContent = 'Fjern';
 
         var container = document.createElement('div');
-        container.appendChild(input);
+        container.appendChild(ingredientInput);
+        container.appendChild(descriptionInput);
         container.appendChild(button);
 
         container.classList.add('addIng');
