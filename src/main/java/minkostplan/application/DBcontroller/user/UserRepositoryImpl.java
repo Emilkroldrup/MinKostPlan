@@ -57,13 +57,13 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void editUserDetails(Users users) {
+    public void editUserDetails(Users user) {
         Users currentuser = UserUtil.getCurrentUser();
         try {
 
             String sql = "UPDATE users SET firstname = COALESCE(?, firstname), lastname = COALESCE(?, lastname), email = COALESCE(?, email), age = COALESCE(?, age), height = COALESCE(?, height), weight = COALESCE(?, weight), gender = COALESCE(?, gender), goal = COALESCE(?, goal) WHERE email = ?";
-            if (!users.getFirstName().isEmpty() && !users.getLastName().isEmpty() && !users.getEmail().isEmpty() && users.getAge() >= 0 && users.getHeight() >= 0 && users.getWeight() >= 0 && !users.getGender().isEmpty() && !users.getGoal().isEmpty()) {
-                jdbcTemplate.update(sql, users.getFirstName(), users.getLastName(), users.getEmail(), users.getAge(), users.getHeight(), users.getWeight(), users.getGender(), users.getGoal(), currentuser.getEmail());
+            if (!user.getFirstName().isEmpty() && !user.getLastName().isEmpty() && !user.getEmail().isEmpty() && user.getAge() >= 0 && user.getHeight() >= 0 && user.getWeight() >= 0 && !user.getGender().isEmpty() && !user.getGoal().isEmpty()) {
+                jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAge(), user.getHeight(), user.getWeight(), user.getGender(), user.getGoal(), currentuser.getEmail());
 
             }
         } catch (DuplicateKeyException duplicateKeyException){

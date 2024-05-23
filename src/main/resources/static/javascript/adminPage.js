@@ -8,12 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     addButton.addEventListener('click', function() {
         const ingredientInput = createInput('text', 'Indtast ingrediens...', 'ingredient-input');
+        const ingredientQuantityInput = createInput('text', 'Indtast portion (gram/ml)', 'quantity-input');
         const descriptionInput = createInput('text', 'Indtast en beskrivelse af produktet..', 'description-input');
         const button = createButton('Fjern');
 
         const container = document.createElement('div');
         container.classList.add('addIng');
         container.appendChild(ingredientInput);
+        container.appendChild(ingredientQuantityInput);
         container.appendChild(descriptionInput);
         container.appendChild(button);
         ingredientSection.appendChild(container);
@@ -28,12 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault(); // Prevent default form submission
 
         const ingredientInputs = document.querySelectorAll('.ingredient-input');
+        const ingredientQuantityInput = document.querySelectorAll('.quantity-input')
         const descriptionInputs = document.querySelectorAll('.description-input');
 
         const ingredients = Array.from(ingredientInputs).map(input => input.value.trim()).filter(Boolean);
+        const ingredientquantity = Array.from(ingredientQuantityInput).map(input => input.value.trim()).filter(Boolean);
         const descriptions = Array.from(descriptionInputs).map(input => input.value.trim());
 
         form.querySelector('[name="ingredients"]').value = ingredients.join(',');
+        form.querySelector('[name="quantity"]').value = ingredientquantity.join(',');
         form.querySelector('[name="descriptions"]').value = descriptions.join(',');
 
         form.submit();

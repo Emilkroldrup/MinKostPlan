@@ -2,8 +2,10 @@ package minkostplan.application.UIcontroller;
 
 import minkostplan.application.DBcontroller.ingredients.IngredientsRepository;
 import minkostplan.application.DBcontroller.recipe.RecipeRepository;
+import minkostplan.application.DBcontroller.recipeingredient.RecepiIngredientRepository;
 import minkostplan.application.entity.Ingredient;
 import minkostplan.application.entity.Recipe;
+import minkostplan.application.entity.RecipeIngredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -21,6 +23,9 @@ import java.util.List;
  */
 @Controller
 public class AdminController {
+
+    @Autowired
+    private RecepiIngredientRepository recepiIngredientRepository;
 
     @Autowired
     private RecipeRepository recipeRepository;
@@ -48,18 +53,21 @@ public class AdminController {
     }
 
     /**
-     * Adds the recipe and ingredient(s) to the database
+     * Adds the recipe and ingredient(s) to the database and to recipeingredients in the database
      * @param recipe recipe object of recipe class
      * @param ingredients ingredients value of hidden input fields
      * @param descriptions descriptions value of hidden input fields
+     * @param quantity quantity value of hidden input fields
      * @return the admin page view
      */
 
     @PostMapping("/addrecipe")
     public String addRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("ingredients") List<String> ingredients,
-                            @RequestParam("descriptions") List<String> descriptions) {
+                            @RequestParam("descriptions") List<String> descriptions,@RequestParam("quantity") List<String> quantity) {
 
-        recipeRepository.saveRecipe(recipe);
+         recipeRepository.saveRecipe(recipe);
+
+         int recipeid = recipeRepository.getIdByRecipeName(recipe.getName());
 
         for (int i = 0; i < ingredients.size(); i++) {
             String ingredientName = ingredients.get(i);
@@ -69,7 +77,14 @@ public class AdminController {
             ingredient.setName(ingredientName);
             ingredient.setDescription(description);
 
-            ingredientsRepository.saveIngredient(ingredient);
+           String quantityOfIngredient = quantity.get(i);
+
+           ingredientsRepository.saveIngredient(ingredient);
+
+           int ingredientid = ingredientsRepository.getIdByIngredientName(ingredientName);
+
+           RecipeIngredient  recipeIngredient = new RecipeIngredient(recipeid, ingredientid, quantityOfIngredient);
+            recepiIngredientRepository.saveRecipeIngredient(recipeIngredient);
         }
         return "adminpage";
     }

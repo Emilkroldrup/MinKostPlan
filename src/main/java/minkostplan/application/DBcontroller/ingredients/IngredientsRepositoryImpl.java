@@ -27,6 +27,12 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
     }
 
     @Override
+    public int getIdByIngredientName(String name){
+        String sql = "SELECT ingredient_id FROM ingredients WHERE name =?";
+        return jdbcTemplate.queryForObject(sql, Integer.class,name);
+    }
+
+    @Override
     public void deleteIngredient(Ingredient ingredient) {
         String sql = "DELETE FROM ingredients WHERE ingredient_id = ?";
         dataAccess.getJdbcTemplate().update(sql, ingredient.getIngredientId());
@@ -40,7 +46,7 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
 
     @Override
     public Ingredient findByProperty(String property, Object value) {
-        return null;
+        return dataAccess.findByProperty(property,value);
     }
 
     @Override

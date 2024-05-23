@@ -5,8 +5,8 @@ package minkostplan.application.entity;
  */
 public class RecipeIngredient {
 
-    private Recipe recipe;
-    private Ingredient ingredient;
+    private int recipeid;
+    private int ingredientid;
     private String quantity;
 
     /**
@@ -18,30 +18,30 @@ public class RecipeIngredient {
     /**
      * Constructs a new RecipeIngredient with specified details.
      *
-     * @param recipe the recipe
-     * @param ingredient the ingredient
+     * @param recipeid the recipeid
+     * @param ingredientid the ingredientid
      * @param quantity the quantity of the ingredient
      */
-    public RecipeIngredient(Recipe recipe, Ingredient ingredient, String quantity) {
-        this.recipe = recipe;
-        this.ingredient = ingredient;
+    public RecipeIngredient(int recipeid, int ingredientid, String quantity) {
+        this.recipeid = recipeid;
+        this.ingredientid = ingredientid;
         this.quantity = quantity;
     }
 
-    public Recipe getRecipe() {
-        return this.recipe;
+    public int getRecipeid() {
+        return recipeid;
     }
 
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
+    public void setRecipeid(int recipeid) {
+        this.recipeid = recipeid;
     }
 
-    public Ingredient getIngredient() {
-        return this.ingredient;
+    public int getIngredientid() {
+        return ingredientid;
     }
 
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredientid(int ingredientid) {
+        this.ingredientid = ingredientid;
     }
 
     public String getQuantity() {
@@ -54,10 +54,10 @@ public class RecipeIngredient {
 
     @Override
     public String toString() {
-        return "{" +
-            " recipe='" + getRecipe() + "'" +
-            ", ingredient='" + getIngredient() + "'" +
-            ", quantity='" + getQuantity() + "'" +
-            "}";
+        return "RecipeIngredient{" +
+                "recipeid=" + recipeid +
+                ", ingredientid=" + ingredientid +
+                ", quantity='" + quantity + '\'' +
+                '}';
     }
 }
