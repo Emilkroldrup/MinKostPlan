@@ -10,7 +10,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: rgba(179, 255, 179, 0.9);
-    padding: 1.5vh 2vh;
+    padding: 1.5vh 2vw;
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -20,15 +20,15 @@
     top: 0;
     left: 0;
     font-size: 1.5vh;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.4vh 0.6vh rgba(0, 0, 0, 0.1);
 }
 
 .navbar-logo {
     height: auto;
-    width: 3%;
-    min-width: 40px;
-    max-width: 50px;
-    margin-right: 20px;
+    width: 3vw;
+    min-width: 4vh;
+    max-width: 5vh;
+    margin-right: 2vw;
 }
 
 .navbar-menu {
@@ -38,14 +38,14 @@
 }
 
 .navbar-menu li {
-    margin: 0 15px;
+    margin: 0 1.5vw;
 }
 
 .navbar-menu a {
     color: black;
     text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 1vh 1.5vw;
+    border-radius: 0.5vh;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -63,15 +63,15 @@
 .navbar-account a {
     color: black;
     text-decoration: none;
-    margin-left: 15px;
+    margin-left: 1.5vw;
     font-size: 1.8vh;
     font-weight: bold;
 }
 
 .navbar-account a {
-    padding: 10px 15px;
-    border: 1px solid black;
-    border-radius: 5px;
+    padding: 1vh 1.5vw;
+    border: 0.1vh solid black;
+    border-radius: 0.5vh;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
