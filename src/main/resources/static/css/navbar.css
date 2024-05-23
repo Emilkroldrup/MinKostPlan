@@ -3,40 +3,38 @@
     margin: 0;
     padding: 0;
 }
+
 .navbar {
     position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(179, 255, 179, 0.8);
+    background-color: rgba(179, 255, 179, 0.9);
     padding: 1.5vh 2vh;
     width: 100%;
     max-width: 100%;
     height: auto;
     font-family: 'Arial', sans-serif;
     border-bottom-left-radius: 1vh;
-    border-bottom-right-radius:1vh;
+    border-bottom-right-radius: 1vh;
     top: 0;
     left: 0;
     font-size: 1.5vh;
-
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 .navbar-logo {
     height: auto;
-    width: 1.6%;
-    max-width: 1.6%;
-    position: absolute;
-    top: 0.6vh;
-
+    width: 3%;
+    min-width: 40px;
+    max-width: 50px;
+    margin-right: 20px;
 }
 
 .navbar-menu {
     display: flex;
     list-style: none;
     padding: 0;
-
 }
 
 .navbar-menu li {
@@ -46,14 +44,38 @@
 .navbar-menu a {
     color: black;
     text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.navbar-menu a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #007BFF;
+}
+
+.navbar-account {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-account span,
 .navbar-account a {
     color: black;
     text-decoration: none;
+    margin-left: 15px;
+    font-size: 1.8vh;
+    font-weight: bold;
 }
 
-.navbar-menu li:hover {
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
+.navbar-account a {
+    padding: 10px 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar-account a:hover {
+    background-color: black;
+    color: white;
 }

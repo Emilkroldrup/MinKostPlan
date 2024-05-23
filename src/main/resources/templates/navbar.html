@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav class="navbar">
-    <div >
+    <div>
         <a href="home">
             <img src="images/minkostplan-logo.png" class="navbar-logo" alt="Minkostplan Logo" />
         </a>
@@ -22,8 +22,8 @@
     </ul>
 
     <div class="navbar-account">
-        <span th:if="${#authentication.name != null}" th:text="'Hello, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}"></span>
-        <a th:if="${#authentication.name == null}" href="login">Login</a>
+        <span th:if="${#authentication.name != 'anonymousUser'}" th:text="'Hello, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}"></span>
+        <a th:if="${#authentication.name == 'anonymousUser'}" href="login">Login</a>
     </div>
 </nav>
 </body>
