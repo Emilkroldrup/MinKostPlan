@@ -22,36 +22,8 @@ private double basicCalc(Users users){
     return  basicCalories;
 }
 
-private double activityCalc(double bmr, String activityLevel){
-    double activityCalories;
-
-    switch (activityLevel){
-        case"1,2":
-            activityCalories = bmr *1.2;
-            break;
-
-        case "1,5":
-            activityCalories = bmr *1.5;
-            break;
-
-        case"1,7":
-            activityCalories = bmr *1.7;
-            break;
-
-        case"1,9":
-            activityCalories = bmr * 1.9;
-            break;
-
-        case"2,4":
-            activityCalories = bmr * 2.4;
-            break;
-
-        default:
-            throw new IllegalArgumentException("Invalid activity level" + activityLevel);
-
-    }
-
-    return activityCalories;
+private double activityCalc(double bmr, double activityLevel){
+    return bmr *activityLevel;
 }
 
 private double goalCalc(double activitycalories, String goal){
@@ -76,7 +48,7 @@ private double goalCalc(double activitycalories, String goal){
 }
 
 public double totalCalories(Users users){
-    String activity = "1,2";
+    double activity = 1.5;
     double basicalc = basicCalc(users);
     double activitycalc = activityCalc(basicalc,activity);
     double goalcalc = goalCalc(activitycalc, users.getGoal());

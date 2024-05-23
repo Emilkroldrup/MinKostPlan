@@ -19,15 +19,15 @@
                     <div class="left-box">
                         <div class="form-group">
                             <label for="firstname">Firstname:</label>
-                            <input type="text" id="firstname" name="firstname" th:field="${User.firstName}">
+                            <input type="text" id="firstname" name="firstname" pattern="[A-Za-z]+" th:field="${User.firstName}">
                         </div>
                         <div class="form-group">
                             <label for="lastname">Lastname:</label>
-                            <input type="text" id="lastname" name="lastname" th:field="${User.lastName}">
+                            <input type="text" id="lastname" name="lastname" pattern="[A-Za-z]+" th:field="${User.lastName}">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" th:field="${User.email}">
+                            <input type="email" id="email" name="email"  th:field="${User.email}">
                         </div>
                     </div>
                     <div class="middle-box">
@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="goal">Goal:</label>
                             <select id="goal" name="goal" th:field="${User.goal}">
-                                <option value="Lose">Lose</option>
+                                <option value="Lose" >Lose</option>
                                 <option value="Gain">Gain</option>
                                 <option value="Maintain">Maintain</option>
                                 <option value="Build Muscle">Build Muscle</option>
