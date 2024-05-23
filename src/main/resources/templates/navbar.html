@@ -22,7 +22,8 @@
     </ul>
 
     <div class="navbar-account">
-        <a href="login">Login</a>
+        <span th:if="${#httpServletRequest.remoteUser != null}" th:text="'Hello, ' + ${#authentication.principal.firstName}"></span>
+        <a th:if="${#httpServletRequest.remoteUser == null}" href="login">Login</a>
     </div>
 </nav>
 </body>
