@@ -1,6 +1,7 @@
 package minkostplan.application.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Represents a recipe entity.
@@ -11,6 +12,7 @@ public class Recipe {
     private String cookName;
     private Integer averageTime;
     private LocalDateTime createdAt;
+    private String instructions; // Add instructions as a list of strings
 
     /**
      * Default constructor.
@@ -25,12 +27,14 @@ public class Recipe {
      * @param cookName the name of the cook
      * @param averageTime the average time to prepare the recipe
      * @param createdAt the creation date and time of the recipe
+     * @param instructions the list of instructions for the recipe
      */
-    public Recipe(String name, String cookName, Integer averageTime, LocalDateTime createdAt) {
+    public Recipe(String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions) {
         this.name = name;
         this.cookName = cookName;
         this.averageTime = averageTime;
         this.createdAt = createdAt;
+        this.instructions = instructions;
     }
 
     // Getters and Setters
@@ -67,13 +71,22 @@ public class Recipe {
         this.createdAt = createdAt;
     }
 
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
     @Override
     public String toString() {
         return "{" +
-            ", name='" + getName() + "'" +
+            " name='" + getName() + "'" +
             ", cookName='" + getCookName() + "'" +
             ", averageTime='" + getAverageTime() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
+            ", instructions='" + getInstructions() + "'" +
             "}";
     }
 }

@@ -38,14 +38,4 @@ public class HomepageController {
         return "aboutPage";
     }
 
-    /**
-     * Handles the admin page request.
-     *
-     * @return the admin page view
-     */
-    @GetMapping("/admin")
-    public String admin(){
-        return "adminpage";
-    }
-
 }
