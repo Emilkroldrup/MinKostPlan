@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -22,8 +23,9 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 
     @Override
     public void saveRecipe(Recipe recipe) {
-        String sql = "INSERT INTO recipes (name, cook_name, average_time, created_at) VALUES (?, ?, ?, ?)";
-        dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getCookName(), recipe.getAverageTime(), recipe.getCreatedAt());
+        recipe.setCreatedAt(LocalDateTime.now());
+        String sql = "INSERT INTO recipes (name, cook_name, average_time, created_at, instructions) VALUES (?, ?, ?, ?, ?)";
+        dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getCookName(), recipe.getAverageTime(), recipe.getCreatedAt(), recipe.getInstructions());
     }
 
     @Override
