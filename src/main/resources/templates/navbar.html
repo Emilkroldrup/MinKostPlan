@@ -22,8 +22,8 @@
     </ul>
 
     <div class="navbar-account">
-        <span th:if="${#httpServletRequest.remoteUser != null}" th:text="'Hello, ' + ${#authentication.principal.firstName}"></span>
-        <a th:if="${#httpServletRequest.remoteUser == null}" href="login">Login</a>
+        <span th:if="${#authentication.name != null}" th:text="'Hello, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}"></span>
+        <a th:if="${#authentication.name == null}" href="login">Login</a>
     </div>
 </nav>
 </body>
