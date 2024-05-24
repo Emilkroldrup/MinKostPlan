@@ -9,10 +9,14 @@ import java.util.List;
 public class Recipe {
 
     private String name;
+
+    private int recipe_id;
     private String cookName;
     private Integer averageTime;
     private LocalDateTime createdAt;
-    private List<String> instructions; // Add instructions as a list of strings
+    private String instructions; // Add instructions as a list of strings
+
+
 
     /**
      * Default constructor.
@@ -29,7 +33,16 @@ public class Recipe {
      * @param createdAt the creation date and time of the recipe
      * @param instructions the list of instructions for the recipe
      */
-    public Recipe(String name, String cookName, Integer averageTime, LocalDateTime createdAt, List<String> instructions) {
+    public Recipe(String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions) {
+        this.name = name;
+        this.cookName = cookName;
+        this.averageTime = averageTime;
+        this.createdAt = createdAt;
+        this.instructions = instructions;
+    }
+
+    public Recipe(Integer id,String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions) {
+        this.recipe_id = id;
         this.name = name;
         this.cookName = cookName;
         this.averageTime = averageTime;
@@ -71,22 +84,32 @@ public class Recipe {
         this.createdAt = createdAt;
     }
 
-    public List<String> getInstructions() {
+    public String getInstructions() {
         return instructions;
     }
 
-    public void setInstructions(List<String> instructions) {
+    public void setInstructions(String instructions) {
         this.instructions = instructions;
+    }
+
+
+    public Integer getRecipe_id() {
+        return recipe_id;
+    }
+
+    public void setRecipe_id(Integer recipe_id) {
+        this.recipe_id = recipe_id;
     }
 
     @Override
     public String toString() {
-        return "{" +
-            " name='" + getName() + "'" +
-            ", cookName='" + getCookName() + "'" +
-            ", averageTime='" + getAverageTime() + "'" +
-            ", createdAt='" + getCreatedAt() + "'" +
-            ", instructions='" + getInstructions() + "'" +
-            "}";
+        return "Recipe{" +
+                ", recipe_id=" + recipe_id +
+                "name='" + name + '\'' +
+                ", cookName='" + cookName + '\'' +
+                ", averageTime=" + averageTime +
+                ", createdAt=" + createdAt +
+                ", instructions='" + instructions + '\'' +
+                '}';
     }
 }

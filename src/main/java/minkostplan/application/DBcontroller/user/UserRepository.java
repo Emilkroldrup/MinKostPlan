@@ -35,7 +35,7 @@ public interface UserRepository extends SimpleDataAccess<Users> {
     /**
      * Edits the details of a user.
      *
-     * @param users the user entity with updated details
+     * @param user the user entity with updated details
      */
-    void editUserDetails(Users users);
+    void editUserDetails(Users user);
 }
