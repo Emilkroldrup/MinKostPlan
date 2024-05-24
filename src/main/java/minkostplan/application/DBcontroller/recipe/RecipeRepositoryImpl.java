@@ -4,6 +4,7 @@ import minkostplan.application.DBcontroller.GenericJdbcRepository;
 import minkostplan.application.entity.Recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,8 +25,19 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     @Override
     public void saveRecipe(Recipe recipe) {
         recipe.setCreatedAt(LocalDateTime.now());
-        String sql = "INSERT INTO recipes (name, cook_name, average_time, created_at, instructions) VALUES (?, ?, ?, ?, ?)";
-        dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getCookName(), recipe.getAverageTime(), recipe.getCreatedAt(), recipe.getInstructions());
+        try{
+            String sql = "INSERT INTO recipes (name, cook_name, average_time, created_at, instructions) VALUES (?, ?, ?, ?, ?)";
+            dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getCookName(), recipe.getAverageTime(), recipe.getCreatedAt(), recipe.getInstructions());
+        } catch (DuplicateKeyException e){
+            System.out.println("same name as another recipe" + e.getMessage());
+        }
+
+    }
+
+    @Override
+    public int getIdByRecipeName(String name){
+        String sql = "SELECT recipe_id FROM recipes WHERE name =?";
+        return jdbcTemplate.queryForObject(sql, Integer.class,name);
     }
 
     @Override
@@ -42,7 +54,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 
     @Override
     public Recipe findByProperty(String property, Object value) {
-        return null;
+        return dataAccess.findByProperty(property,value);
     }
 
     @Override

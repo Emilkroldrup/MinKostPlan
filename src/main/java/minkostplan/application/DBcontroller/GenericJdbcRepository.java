@@ -45,6 +45,13 @@ public class GenericJdbcRepository<T> implements SimpleDataAccess<T> {
     }
 
     private String getTableName(Class<T> type) {
-        return type.getSimpleName().toLowerCase();
+        String className = type.getSimpleName();
+        if (className.equals("Recipe")) {
+            return "recipes";
+        } else if(className.equals("Ingredient")){
+            return "ingredients";
+        }else {
+            return className.toLowerCase();
+        }
     }
 }

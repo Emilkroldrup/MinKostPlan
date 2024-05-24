@@ -11,6 +11,8 @@ public interface RecipeRepository extends SimpleDataAccess<Recipe> {
      */
     void saveRecipe(Recipe recipe);
 
+    int getIdByRecipeName(String name);
+
     /**
      *
      * @param recipe

@@ -11,6 +11,8 @@ public interface IngredientsRepository extends SimpleDataAccess<Ingredient> {
      */
     void saveIngredient(Ingredient ingredient);
 
+    int getIdByIngredientName(String name);
+
     /**
      *
      * @param ingredient

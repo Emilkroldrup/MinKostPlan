@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: 127.0.0.1:3306
--- Genereringstid: 22. 05 2024 kl. 21:13:10
--- Serverversion: 8.3.0
--- PHP-version: 8.2.18
+-- Genereringstid: 23. 05 2024 kl. 21:20:45
+-- Serverversion: 8.2.0
+-- PHP-version: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
                                              `name` varchar(255) NOT NULL,
     `description` text,
     PRIMARY KEY (`ingredient_id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Contains different ingredients used in recipes.';
+    ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Contains different ingredients used in recipes.';
 
 --
 -- Data dump for tabellen `ingredients`
@@ -44,7 +44,18 @@ INSERT INTO `ingredients` (`ingredient_id`, `name`, `description`) VALUES
                                                                        (2, 'Egg', 'Organic free-range eggs'),
                                                                        (3, 'Bacon', 'Thick slices of smoked bacon'),
                                                                        (4, 'Zucchini', 'Fresh zucchini'),
-                                                                       (5, 'Tomato', 'Ripe tomatoes');
+                                                                       (5, 'Tomato', 'Ripe tomatoes'),
+                                                                       (8, 'egon', 'olsen'),
+                                                                       (9, 'wf', 'sdf'),
+                                                                       (10, 'adsa', 'asdas'),
+                                                                       (11, 'ads', 'asdad'),
+                                                                       (12, 'asd', 'asd'),
+                                                                       (13, 'ads', 'sfsd'),
+                                                                       (14, 'adsaa', 'asda'),
+                                                                       (15, 'asdasdadsadaasdsadasda', 'adasasdasasas'),
+                                                                       (16, 'ads', 'sfsd'),
+                                                                       (17, 'sfsdasdasdadsadada', 'dasdasdasdadsaddasdsaas'),
+                                                                       (18, 'sadasdasdasdas', 'adadadaasd');
 
 -- --------------------------------------------------------
 
@@ -60,8 +71,9 @@ CREATE TABLE IF NOT EXISTS `recipes` (
     `average_time` int NOT NULL COMMENT 'in minutes',
     `created_at` datetime NOT NULL,
     `instructions` text,
-    PRIMARY KEY (`recipe_id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores details about various recipes.';
+    PRIMARY KEY (`recipe_id`),
+    UNIQUE KEY `unique_recipe_name` (`name`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores details about various recipes.';
 
 --
 -- Data dump for tabellen `recipes`
@@ -69,7 +81,9 @@ CREATE TABLE IF NOT EXISTS `recipes` (
 
 INSERT INTO `recipes` (`recipe_id`, `name`, `cook_name`, `average_time`, `created_at`, `instructions`) VALUES
                                                                                                            (1, 'Spaghetti Carbonara', 'Chef Gino', 30, '2024-05-09 09:57:03', NULL),
-                                                                                                           (2, 'Ratatouille', 'Chef Rémy', 45, '2024-05-09 09:57:03', NULL);
+                                                                                                           (2, 'Ratatouille', 'Chef Rémy', 45, '2024-05-09 09:57:03', NULL),
+                                                                                                           (21, 'peterss', 'kat', 3, '2024-05-23 23:10:36', 'hej egons'),
+                                                                                                           (24, 'petersssssss', 'katssssss', 3, '2024-05-23 23:11:00', 'hej egons');
 
 -- --------------------------------------------------------
 
@@ -95,7 +109,16 @@ INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `quantity`) VALU
                                                                                 (1, 2, '4 units'),
                                                                                 (1, 3, '100 grams'),
                                                                                 (2, 4, '150 grams'),
-                                                                                (2, 5, '200 grams');
+                                                                                (2, 5, '200 grams'),
+                                                                                (21, 8, '200gram'),
+                                                                                (24, 9, '23'),
+                                                                                (21, 10, 'asdad'),
+                                                                                (21, 11, 'ada'),
+                                                                                (21, 12, '2'),
+                                                                                (21, 14, 'asd'),
+                                                                                (21, 15, 'sdasasdasd'),
+                                                                                (21, 17, 'asdasdas'),
+                                                                                (21, 18, 'adsadadasdadasdasd');
 
 -- --------------------------------------------------------
 

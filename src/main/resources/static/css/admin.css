@@ -47,10 +47,13 @@ body, html {
     position: absolute;
     top: 15%;
     left: 45%;
+
 }
 
-.addIng .ingredient-input {
-    margin-bottom: 5px;
+.addIng .ingredient-input, .addIng .quantity-input {
+    margin-bottom: 20px;
+    width: 30%;
+
 }
 
 .addIng {
