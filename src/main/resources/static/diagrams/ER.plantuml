@@ -4,57 +4,56 @@
 entity "Users" as users {
   + user_id : int
   -- 
-  username : varchar
-  email : varchar
-  password_hash : varchar
+  firstname : varchar(30)
+  lastname : varchar(30)
+  age : int
+  height : int
+  weight : int
+  gender : varchar(30)
+  goal : varchar(30)
+  email : varchar(50)
+  password_hash : varchar(255)
   created_at : datetime
 }
 
 entity "Recipes" as recipes {
   + recipe_id : int
   --
-  name : varchar
-  cook_name : varchar
+  name : varchar(255)
+  cook_name : varchar(100)
   average_time : int
   created_at : datetime
+  instructions : text
 }
 
 entity "Ingredients" as ingredients {
   + ingredient_id : int
   --
-  name : varchar
+  name : varchar(255)
   description : text
 }
 
 entity "Recipe Ingredients" as recipe_ingredients {
-  # recipe_id : int
-  # ingredient_id : int
+  + recipe_id : int
+  + ingredient_id : int
   --
-  quantity : varchar
-}
-
-entity "Steps" as steps {
-  + step_id : int
-  # recipe_id : int
-  --
-  step_number : int
-  instruction : text
+  quantity : varchar(255)
 }
 
 entity "Subscriptions" as subscriptions {
   + subscription_id : int
-  # user_id : int
   --
+  user_id : int
   start_date : datetime
   end_date : datetime
-  status : enum
+  status : enum('active','inactive')
 }
 
 ' Define relationships
-users ||--o{ subscriptions : "has"
-recipes ||--o{ steps : "includes"
 recipes ||--o{ recipe_ingredients : "uses"
 ingredients ||--o{ recipe_ingredients : "included in"
 users ||--o{ recipes : "creates" "optional [0..*]"
+users ||--o{ subscriptions : "has"
+
 
 @enduml
