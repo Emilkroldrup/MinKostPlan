@@ -70,12 +70,28 @@
 
 .navbar-account a {
     padding: 1vh 1.5vw;
-    border: 0.1vh solid black;
-    border-radius: 0.5vh;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.navbar-account a:hover {
+.navbar-account a.login {
+    border: 0.1vh solid black;
+    border-radius: 0.5vh;
+}
+
+.navbar-account a.login:hover {
     background-color: black;
     color: white;
+}
+
+.navbar-account, .a-navbar span:hover {
+    background-color: transparent;
+}
+
+.a-navbar span {
+    background-color: transparent; /* Ensure the span has no background color */
+}
+
+.a-navbar.logged-in {
+    padding: 1vh 1.5vw; /* Adjust as needed for styling */
+    border: none; /* No border for logged-in */
 }

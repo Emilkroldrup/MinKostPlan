@@ -19,6 +19,7 @@ body, html {
     border-radius: 10px;
     padding: 2vh 2vw;
     position: relative;
+    font-size: 1vw;
 }
 
 .inner-box {
@@ -32,6 +33,9 @@ body, html {
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y:auto;
+    overflow-x: hidden;
+
 }
 
 .box h1 {
@@ -43,22 +47,30 @@ body, html {
     padding-top: 10px;
 }
 
+.dish-name input,
+.cook-name input,
+.avg-time input,
+.dish-recipe textarea{
+    font-size: 0.7vw;
+    width: auto;
+}
+
 .ingredient {
     position: absolute;
     top: 15%;
     left: 45%;
-
+    font-size: 1.1vw;
 }
 
 .addIng .ingredient-input, .addIng .quantity-input {
     margin-bottom: 20px;
     width: 30%;
-
 }
 
 .addIng {
     margin-top: 10px;
     margin-bottom: 10px;
+
 }
 
 .addIng button {
@@ -89,6 +101,7 @@ button, .fileButton {
     border-radius: 10px;
     cursor: pointer;
     outline: none;
+    font-size: 0.9vw;
 }
 
 button:hover {
@@ -115,6 +128,14 @@ input, textarea, select {
     top: 15%;
 }
 
+
+.dish-type {
+  width: 115%;
+
+}
+
+
+
 .dish-create {
     position: absolute;
     left: 80%;
@@ -123,4 +144,8 @@ input, textarea, select {
 
 form {
     display: contents;
+}
+
+.dish-type select {
+font-size: 1vw;
 }

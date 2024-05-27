@@ -4,6 +4,8 @@ import minkostplan.application.DBcontroller.GenericJdbcRepository;
 import minkostplan.application.entity.Ingredient;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,14 +24,26 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
 
     @Override
     public void saveIngredient(Ingredient ingredient) {
-        String sql = "INSERT INTO ingredients (name, description) VALUES (?, ?)";
-        dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription());
+        try{
+            String sql = "INSERT INTO ingredients (name, description) VALUES (?, ?)";
+            dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription());
+        } catch (DuplicateKeyException duplicateKeyException){
+                System.out.println("same ingredient name already exists" + duplicateKeyException);
+        } catch (Exception e){
+            System.out.println("error happend adding ingredient" + e.getMessage());
+        }
+
     }
 
     @Override
     public int getIdByIngredientName(String name){
-        String sql = "SELECT ingredient_id FROM ingredients WHERE name =?";
-        return jdbcTemplate.queryForObject(sql, Integer.class,name);
+        try {
+            String sql = "SELECT ingredient_id FROM ingredients WHERE name = ? LIMIT 1";
+            return jdbcTemplate.queryForObject(sql, Integer.class, name);
+        } catch(DuplicateKeyException d){
+            System.out.println("Same ingredient already exists: " + d.getMessage());
+            return -1;
+        } 
     }
 
     @Override
