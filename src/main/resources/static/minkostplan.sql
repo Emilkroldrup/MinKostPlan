@@ -123,28 +123,25 @@ INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `quantity`) VALU
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `steps`
+-- Struktur-dump for tabellen `profilepictures`
 --
 
-DROP TABLE IF EXISTS `steps`;
-CREATE TABLE IF NOT EXISTS `steps` (
-                                       `step_id` int NOT NULL AUTO_INCREMENT,
-                                       `recipe_id` int DEFAULT NULL,
-                                       `step_number` int NOT NULL,
-                                       `instruction` text,
+DROP TABLE IF EXISTS `profilepictures`;
+CREATE TABLE IF NOT EXISTS `profilepictures` (
+                                       `picture_id` int NOT NULL AUTO_INCREMENT,
+                                       `user_id` int DEFAULT NULL,
+                                       `status` int NOT NULL
                                        PRIMARY KEY (`step_id`),
-    KEY `steps_fk` (`recipe_id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Detailed cooking steps for each recipe.';
+    KEY `profilepictures_fk` (`user_id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores details about uploaded profilepictures.';
 
 --
--- Data dump for tabellen `steps`
+-- Data dump for tabellen `profilepictures`
 --
 
-INSERT INTO `steps` (`step_id`, `recipe_id`, `step_number`, `instruction`) VALUES
-                                                                               (1, 1, 1, 'Boil spaghetti in salted water until al dente.'),
-                                                                               (2, 1, 2, 'Fry bacon until crisp and mix with beaten eggs.'),
-                                                                               (3, 2, 1, 'Dice all vegetables.'),
-                                                                               (4, 2, 2, 'Sauté vegetables starting with those that take longest to cook.');
+INSERT INTO `profilepictures` (`picture_id`, `user_id`, `status`) VALUES
+                                                                               (1, 1, 1),
+                                                                               (2, 2, 0)
 
 -- --------------------------------------------------------
 
@@ -218,8 +215,8 @@ ALTER TABLE `recipe_ingredients`
 --
 -- Begrænsninger for tabel `steps`
 --
-ALTER TABLE `steps`
-    ADD CONSTRAINT `steps_fk` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`);
+ALTER TABLE `profilepictures`
+    ADD CONSTRAINT `profilepictures_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Begrænsninger for tabel `subscriptions`

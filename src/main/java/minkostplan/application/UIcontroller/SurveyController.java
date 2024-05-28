@@ -25,11 +25,12 @@ public class SurveyController {
                                @RequestParam int height,
                                @RequestParam int weight,
                                @RequestParam String gender,
+                               @RequestParam String activityLevel,
                                @RequestParam String goal,
                                @RequestParam String email,
                                @RequestParam String password,
                                Model model) {
-        Users user = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, LocalDateTime.now());
+        Users user = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, LocalDateTime.now(), activityLevel);
         model.addAttribute("user", user);
         return "redirect:/loginPage"; 
     }

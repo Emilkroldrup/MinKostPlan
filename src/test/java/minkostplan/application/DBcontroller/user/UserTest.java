@@ -32,6 +32,7 @@ class UserRepositoryTest {
     private String email;
     private String passwordHash;
     private LocalDateTime createdAt;
+    private String activityLevel;
 
     @BeforeEach
     void setUp() {
@@ -44,7 +45,7 @@ class UserRepositoryTest {
         goal ="gain weight";
         passwordHash = "testenpassword";
         email = "nej";
-        existingUser = new Users(firstname,lastname, age,height,weight,gender,goal,email,passwordHash, LocalDateTime.now());
+        existingUser = new Users(firstname,lastname, age,height,weight,gender,goal,email,passwordHash, LocalDateTime.now(), activityLevel);
     }
 
 
