@@ -24,26 +24,15 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
 
     @Override
     public void saveIngredient(Ingredient ingredient) {
-        try{
             String sql = "INSERT INTO ingredients (name, description) VALUES (?, ?)";
             dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription());
-        } catch (DuplicateKeyException duplicateKeyException){
-                System.out.println("same ingredient name already exists" + duplicateKeyException);
-        } catch (Exception e){
-            System.out.println("error happend adding ingredient" + e.getMessage());
-        }
-
     }
 
     @Override
     public int getIdByIngredientName(String name){
-        try {
             String sql = "SELECT ingredient_id FROM ingredients WHERE name = ? LIMIT 1";
             return jdbcTemplate.queryForObject(sql, Integer.class, name);
-        } catch(DuplicateKeyException d){
-            System.out.println("Same ingredient already exists: " + d.getMessage());
-            return -1;
-        } 
+
     }
 
     @Override
