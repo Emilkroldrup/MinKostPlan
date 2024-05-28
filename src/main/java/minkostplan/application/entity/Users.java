@@ -17,6 +17,7 @@ public class Users {
     private String email;
     private String passwordHash;
     private LocalDateTime createdAt;
+    private String activityLevel;
 
     /**
      * Default constructor.
@@ -32,7 +33,7 @@ public class Users {
      * @param passwordHash the password hash of the user
      * @param createdAt the creation date and time of the user
      */
-    public Users(String firstName, String lastName, int age, int height, int weight, String gender, String goal, String email, String passwordHash, LocalDateTime createdAt) {
+    public Users(String firstName, String lastName, int age, int height, int weight, String gender, String goal, String email, String passwordHash, LocalDateTime createdAt, String activityLevel) {
         this.firstName=firstName;
         this.lastName=lastName;
         this.age=age;
@@ -43,6 +44,7 @@ public class Users {
         this.email = email;
         this.passwordHash = passwordHash;
         this.createdAt = createdAt;
+        this.activityLevel = activityLevel;
     }
 
     public String getFirstName() {
@@ -125,6 +127,14 @@ public class Users {
         this.createdAt = createdAt;
     }
 
+    public String getActivityLevel() {
+        return this.activityLevel;
+    }
+
+    public void setActivityLevel(String activityLevel) {
+        this.activityLevel=activityLevel;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -137,6 +147,7 @@ public class Users {
             ", goal='" + getGoal() + "'" +
             ", email='" + getEmail() + "'" +
             ", passwordHash='" + getPasswordHash() + "'" +
+            ", activityLevel='" + getActivityLevel() + "'" +
             ", createdAt='" + getCreatedAt() + "'" +
             "}";
     }

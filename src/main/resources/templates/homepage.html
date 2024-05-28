@@ -24,7 +24,7 @@
         <label>What is your goal?</label>
         <div>
             <input type="radio" id="lose weight" name="goal" value="lose weight" checked />
-            <label for="huey">Lose weight</label>
+            <label for="lose weight">Lose weight</label>
         </div>
         <div>
             <input type="radio" id="gain weight" name="goal" value="gain weight" checked />
@@ -66,14 +66,40 @@
     </div>
 
     <div class="survey-step" id="step4" style="display:none">
-        <label>Gender:</label>
+        <label>Køn:</label>
         <select name="gender" required>
-            <option value="male">Male</option>
+            <option value="male">Mand</option>
+            <option value="female">Kvinde</option>
         </select>
         <button type="button" onclick="nextStep(4)">Next</button>
     </div>
 
     <div class="survey.step" id="step5" style="display: none;">
+        <label>Hvor ofte er du aktiv?</label>
+        <div>
+            <input type="radio" id="none" name="activityLevel" value="ingen eller meget lidt" checked />
+            <label for="none">Ingen eller meget lidt aktivitet</label>
+        </div>
+        <div>
+            <input type="radio" id="1-2" name="activityLevel" value="1-2 gange om ugen" checked />
+            <label for="1-2">1-2 gange om ugen</label>
+        </div>
+        <div>
+            <input type="radio" id="3-5" name="activityLevel" value="3-5 gange om ugen" checked />
+            <label for="3-5">3-5 gange om ugen</label>
+        </div>
+        <div>
+            <input type="radio" id="6-7" name="activityLevel" value="6-7 gange om ugen" checked/>
+            <label for="6-7">6-7 gange om ugen</label>
+        </div>
+        <div>
+            <input type="radio" id="1-2 daily" name="activityLevel" value="1-2 gange om dagen" checked/>
+            <label for="1-2 daily">1-2 gange om dagen</label>
+        </div>
+        <button type="button" onclick="nextStep(5)">Next</button>
+    </div>
+
+    <div class="survey.step" id="step6" style="display: none;">
         <label>E-mail:</label>
         <input type="email" id="email" name="email" required>
 
