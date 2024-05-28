@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class Caloriealgorithm {
 
 
-private double basicCalc(Users users){
+private double calculateBMR(Users users){
     double basicCalories;
     if(users.getGender().equals("male")){
         basicCalories = (10 * users.getWeight()) + (6.25*  users.getHeight() - (5 * users.getAge()) + 5);
@@ -22,31 +22,32 @@ private double basicCalc(Users users){
     return  basicCalories;
 }
 
-private double activityCalc(double bmr, String activityLevel){
+private double calculateTDEE(double bmr, String activityLevel){
     double activityNumber;
     switch (activityLevel){
         case"none":
             activityNumber = 1.2;
             break;
-        case"1-2":
+        case"1-2 gange om ugen":
             activityNumber = 1.5;
             break;
-        case"3-5":
+        case"3-5 gange om ugen":
             activityNumber = 1.7;
             break;
-        case "6-7":
+        case "6-7 gange om ugen":
             activityNumber = 1.9;
             break;
-        case "1-2 daily":
+        case "1-2 gange om dagen":
             activityNumber = 2.4;
             break;
         default:
-            throw new IllegalArgumentException("Invalid activity level" + activityLevel);
+            activityNumber = 1.2;
+            break;
     }
     return bmr *activityNumber;
 }
 
-private double goalCalc(double activitycalories, String goal){
+private double adjustForGoal(double activitycalories, String goal){
     double goalCalories;
     switch (goal){
         case"Lose":
@@ -68,11 +69,10 @@ private double goalCalc(double activitycalories, String goal){
 }
 
 public double totalCalories(Users users){
-    double basicalc = basicCalc(users);
-    double activitycalc = activityCalc(basicalc,users.getActivityLevel());
-    double goalcalc = goalCalc(activitycalc, users.getGoal());
+    double calculateBMR = calculateBMR(users);
+    double calculateTDEE = calculateTDEE(calculateBMR,users.getActivityLevel());
 
-    return  goalcalc;
+    return adjustForGoal(calculateTDEE, users.getGoal());
 }
 
 
@@ -80,8 +80,8 @@ public double totalCalories(Users users){
 public static void main(String [] args){
     Caloriealgorithm calc = new Caloriealgorithm();
 
-    Users users = new Users("mads","madsen",20,192,80,"mand","Gain","madsen@gmail.com","testword", LocalDateTime.now(), "none");
-    Users users2 = new Users("mads","madsen",20,192,80,"kvinde","gainweight","madsen@gmail.com","testword", LocalDateTime.now(), "1-2 daily");
+    Users users = new Users("mads","madsen",20,192,80,"male","Gain","madsen@gmail.com","testword", LocalDateTime.now(), "6-7 gange om ugen");
+    Users users2 = new Users("mia","lisbeth",20,192,80,"female","gainweight","madsen@gmail.com","testword", LocalDateTime.now(), "1-2 gange om dagen");
 
 
 

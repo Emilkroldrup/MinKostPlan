@@ -14,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-size: 0.7vw;
+    font-size: 1vw;
 }
 
 .background {
@@ -80,10 +80,12 @@ input[type="text"], input[type="number"], input[type="email"],select {
     margin-bottom: 1vh;
 }
 
+
 .form-actions {
     position: absolute;
-    bottom: 5.5vh;
-    right: 2.1vw;
+    bottom: 0;
+    left: 40%;
+    margin-bottom: 0.4vh;
 }
 
 .btn-change {
@@ -101,6 +103,11 @@ input[type="text"], input[type="number"], input[type="email"],select {
     background-color: #367C39;
 }
 
-form {
-    width: 100%;
+#activity,.activitylabel{
+margin-top: -0.1vh;
 }
+
+.right-box{
+    margin-top: -0.2vh;
+}
+

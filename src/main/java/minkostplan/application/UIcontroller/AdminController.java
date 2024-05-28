@@ -65,32 +65,38 @@ public class AdminController {
      * @return the admin page view
      */
 
-    @PostMapping("/addrecipe")
-    public String addRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("ingredients") List<String> ingredients,
-                            @RequestParam("descriptions") List<String> descriptions,@RequestParam("quantity") List<String> quantity) {
+        @PostMapping("/addrecipe")
+        public String addRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("ingredients") List<String> ingredients,
+                                @RequestParam("descriptions") List<String> descriptions,@RequestParam("quantity") List<String> quantity) {
 
-         recipeRepository.saveRecipe(recipe);
+            int recipeid;
 
-         int recipeid = recipeRepository.getIdByRecipeName(recipe.getName());
+            if(recipe.getInstructions().isEmpty() || recipe.getName().isEmpty() || recipe.getCookName().isEmpty() ||recipe.getAverageTime() == null ){
+                return "adminpage";
+            }
 
-        for (int i = 0; i < ingredients.size(); i++) {
-            String ingredientName = ingredients.get(i);
-            String description = descriptions.get(i);
+            if (ingredients.isEmpty() || descriptions.isEmpty() || quantity.isEmpty()) {
+                return "adminpage";
+            }
 
-            Ingredient ingredient = new Ingredient();
-            ingredient.setName(ingredientName);
-            ingredient.setDescription(description);
+            recipeRepository.saveRecipe(recipe);
+            recipeid = recipeRepository.getIdByRecipeName(recipe.getName());
 
-           String quantityOfIngredient = quantity.get(i);
+            for (int i = 0; i < ingredients.size(); i++) {
+                    String ingredientName = ingredients.get(i);
+                    String description = descriptions.get(i);
 
-           ingredientsRepository.saveIngredient(ingredient);
+                    Ingredient ingredient = new Ingredient();
+                    ingredient.setName(ingredientName);
+                    ingredient.setDescription(description);
+                    String quantityOfIngredient = quantity.get(i);
 
-           int ingredientid = ingredientsRepository.getIdByIngredientName(ingredientName);
+                    ingredientsRepository.saveIngredient(ingredient);
+                    int ingredientid = ingredientsRepository.getIdByIngredientName(ingredientName);
 
-           RecipeIngredient  recipeIngredient = new RecipeIngredient(recipeid, ingredientid, quantityOfIngredient);
-            recepiIngredientRepository.saveRecipeIngredient(recipeIngredient);
+                    RecipeIngredient  recipeIngredient = new RecipeIngredient(recipeid, ingredientid, quantityOfIngredient);
+                    recepiIngredientRepository.saveRecipeIngredient(recipeIngredient);
+            }
+            return "adminpage";
         }
-        return "adminpage";
     }
-
-}
