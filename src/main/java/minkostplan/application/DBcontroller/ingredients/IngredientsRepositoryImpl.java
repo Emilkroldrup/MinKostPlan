@@ -4,8 +4,6 @@ import minkostplan.application.DBcontroller.GenericJdbcRepository;
 import minkostplan.application.entity.Ingredient;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,15 +22,19 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
 
     @Override
     public void saveIngredient(Ingredient ingredient) {
-            String sql = "INSERT INTO ingredients (name, description) VALUES (?, ?)";
-            dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription());
+        String sql = "INSERT INTO ingredients (name, description) VALUES (?, ?)";
+        dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription());
     }
 
     @Override
     public int getIdByIngredientName(String name){
-            String sql = "SELECT ingredient_id FROM ingredients WHERE name = ? LIMIT 1";
-            return jdbcTemplate.queryForObject(sql, Integer.class, name);
+        String sql = "SELECT ingredient_id FROM ingredients WHERE name = ? LIMIT 1";
+        return jdbcTemplate.queryForObject(sql, Integer.class, name);
+    }
 
+    @Override
+    public Ingredient getIngredientById(int id){
+        return findByProperty("ingredient_id", id);
     }
 
     @Override
@@ -42,9 +44,9 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
     }
 
     @Override
-    public void editIngredient(Ingredient ingredient) {
+    public void editIngredient(Ingredient ingredient, int ingredientId) {
         String sql = "UPDATE ingredients SET name = ?, description = ? WHERE ingredient_id = ?";
-        dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription(), ingredient.getIngredientId());
+        dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription(), ingredientId);
     }
 
     @Override
