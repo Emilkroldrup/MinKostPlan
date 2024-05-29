@@ -22,9 +22,8 @@ public class CustomUserDetailsServiceTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        try (AutoCloseable closeable = MockitoAnnotations.openMocks(this)) {
-            customUserDetailsService = new CustomUserDetailsService(userRepository);
-        }
+        MockitoAnnotations.openMocks(this);
+        customUserDetailsService = new CustomUserDetailsService(userRepository);
     }
 
     @Test
@@ -39,18 +38,20 @@ public class CustomUserDetailsServiceTest {
 
         assertEquals(user.getEmail(), userDetails.getUsername());
         assertEquals(user.getPasswordHash(), userDetails.getPassword());
+
+        verify(userRepository, times(1)).findByEmail(user.getEmail());
     }
 
     @Test
-    public void loadUserByUsername_WrongPassword_ThrowsUsernameNotFoundException() {
-        Users user = new Users();
-        user.setEmail("test@example.com");
-        user.setPasswordHash("correctPassword");
+    public void loadUserByUsername_NonExistingEmail_ThrowsUsernameNotFoundException() {
+        String nonExistingEmail = "nonexisting@example.com";
 
-        when(userRepository.findByEmail(user.getEmail())).thenReturn(user);
+        when(userRepository.findByEmail(nonExistingEmail)).thenReturn(null);
 
         assertThrows(UsernameNotFoundException.class, () -> {
-            customUserDetailsService.loadUserByUsername("wrongPassword");
+            customUserDetailsService.loadUserByUsername(nonExistingEmail);
         });
+
+        verify(userRepository, times(1)).findByEmail(nonExistingEmail);
     }
 }
