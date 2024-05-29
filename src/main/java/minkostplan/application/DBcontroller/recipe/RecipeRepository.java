@@ -13,6 +13,8 @@ public interface RecipeRepository extends SimpleDataAccess<Recipe> {
 
     int getIdByRecipeName(String name);
 
+    Recipe getRecipeById(int id);
+
     /**
      *
      * @param recipe
@@ -23,6 +25,5 @@ public interface RecipeRepository extends SimpleDataAccess<Recipe> {
      *
      * @param recipe
      */
-    void updateRecipe(Recipe recipe);
-
+    void updateRecipe(Recipe recipe, int id);
 }

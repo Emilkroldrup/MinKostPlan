@@ -41,15 +41,20 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     }
 
     @Override
+    public Recipe getRecipeById(int id){
+        return findByProperty("recipe_id", id);
+    }
+
+    @Override
     public void deleteRecipe(Recipe recipe) {
         String sql = "DELETE FROM recipes WHERE name = ?";
         dataAccess.getJdbcTemplate().update(sql, recipe.getName());
     }
 
     @Override
-    public void updateRecipe(Recipe recipe) {
-        String sql = "UPDATE recipes SET name = ?, average_time = ? WHERE name = ?";
-        dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getAverageTime(), recipe.getName());
+    public void updateRecipe(Recipe recipe, int recipeId) {
+        String sql = "UPDATE recipes SET name = ?, average_time = ? WHERE recipe_id = ?";
+        dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getAverageTime(), recipeId);
     }
 
     @Override

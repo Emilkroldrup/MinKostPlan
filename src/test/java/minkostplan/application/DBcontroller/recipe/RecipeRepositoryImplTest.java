@@ -4,6 +4,7 @@ import minkostplan.application.entity.Recipe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
@@ -11,34 +12,42 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class RecipeRepositoryImplTest {
 
     @Mock
     private RecipeRepository recipeRepository;
-    private Recipe recipe;
+
+    private Recipe updateRecipe;
 
     @BeforeEach
     void setUp() {
-        Recipe recipe = new Recipe("Flæskesteg", "John Doe", 90, LocalDateTime.now(), "Ostemad");
+        MockitoAnnotations.openMocks(this);
+        updateRecipe = new Recipe("Flæskesteg", "John Doe", 90, LocalDateTime.now(), "Flæskesvær");
     }
 
     @Test
     void saveRecipe(){
-        recipeRepository.saveRecipe(recipe);
-        verify(recipeRepository).saveRecipe(recipe);
+        recipeRepository.saveRecipe(updateRecipe);
+        verify(recipeRepository).saveRecipe(updateRecipe);
     }
 
     @Test
     void deleteRecipe() {
-        recipeRepository.deleteRecipe(recipe);
-        verify(recipeRepository).deleteRecipe(recipe);
+        recipeRepository.deleteRecipe(updateRecipe);
+        verify(recipeRepository).deleteRecipe(updateRecipe);
     }
 
     @Test
     void updateRecipe() {
-        recipeRepository.updateRecipe(recipe);
-        verify(recipeRepository).updateRecipe(recipe);
+        when(recipeRepository.getIdByRecipeName("Flæskesteg")).thenReturn(1);
+        int recipeId = recipeRepository.getIdByRecipeName("Flæskesteg");
+        when(recipeRepository.getRecipeById(1)).thenReturn(updateRecipe);
+        updateRecipe = recipeRepository.getRecipeById(recipeId);
+        updateRecipe.setAverageTime(40);
+        recipeRepository.updateRecipe(updateRecipe, recipeId);
+        verify(recipeRepository).updateRecipe(updateRecipe, recipeId);
     }
 }
