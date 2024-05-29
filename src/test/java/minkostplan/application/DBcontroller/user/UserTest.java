@@ -45,24 +45,21 @@ class UserRepositoryTest {
         goal ="gain weight";
         passwordHash = "testenpassword";
         email = "nej";
-        existingUser = new Users(firstname,lastname, age,height,weight,gender,goal,email,passwordHash, LocalDateTime.now(), activityLevel);
+        createdAt = LocalDateTime.now();
+        activityLevel = "1.2";
+        existingUser = new Users(firstname,lastname, age,height,weight,gender,goal,email,passwordHash, createdAt, activityLevel);
     }
-
 
     @Test
     void findbyEmail(){
         when(userRepository.findByEmail(argThat(email -> email.equals(existingUser.getEmail())))).thenReturn(existingUser);
         Users result = userRepository.findByEmail(email);
-        System.out.println("email" + email);
-        System.out.println(existingUser);
+
+        assertEquals(result,existingUser);
+
         System.out.println("Has to equal: " + existingUser);
         System.out.println();
         System.out.println("Result: " + result);
-        assertEquals(result,existingUser);
-
-
-
-
     }
 
 
