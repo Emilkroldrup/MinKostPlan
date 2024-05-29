@@ -29,7 +29,7 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
     @Override
     public int getIdByIngredientName(String name){
         String sql = "SELECT ingredient_id FROM ingredients WHERE name = ? LIMIT 1";
-        return jdbcTemplate.queryForObject(sql, new Object[]{name}, Integer.class);
+        return jdbcTemplate.queryForObject(sql, Integer.class, name);
     }
 
     @Override
