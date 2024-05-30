@@ -9,39 +9,35 @@ public class Caloriealgorithm {
 
 private double calculateBMR(Users users){
     double basicCalories;
-    if(users.getGender().equals("male")){
+    if(users.getGender().equals("Male")){
         basicCalories = (10 * users.getWeight()) + (6.25*  users.getHeight() - (5 * users.getAge()) + 5);
     }
-    else if(users.getGender().equals("female")){
+    else if(users.getGender().equals("Female")){
         basicCalories = (10 * users.getWeight()) + (6.25* users.getHeight() - (5 * users.getAge()) -161);
     } else {
         throw new IllegalArgumentException("Invalid gender: " + users.getGender());
     }
 
-
     return  basicCalories;
 }
 
 private double calculateTDEE(double bmr, String activityLevel){
-    double activityNumber;
+    double activityNumber = 0;
     switch (activityLevel){
-        case"none":
+        case"None or very little exercise":
             activityNumber = 1.2;
             break;
-        case"1-2 gange om ugen":
+        case"1-2 times a week":
             activityNumber = 1.5;
             break;
-        case"3-5 gange om ugen":
+        case"3-5 times a week":
             activityNumber = 1.7;
             break;
-        case "6-7 gange om ugen":
+        case "6-7 times a week":
             activityNumber = 1.9;
             break;
-        case "1-2 gange om dagen":
+        case "1-2 times a day":
             activityNumber = 2.4;
-            break;
-        default:
-            activityNumber = 1.2;
             break;
     }
     return bmr *activityNumber;
@@ -50,16 +46,16 @@ private double calculateTDEE(double bmr, String activityLevel){
 private double adjustForGoal(double activitycalories, String goal){
     double goalCalories;
     switch (goal){
-        case"Lose":
+        case"Lose weight":
             goalCalories = activitycalories - 500;
             break;
-        case"Gain":
+        case"Gain weight":
             goalCalories = activitycalories + 500;
             break;
-        case"Keep":
+        case"Maintain weight":
             goalCalories = activitycalories + 0;
             break;
-        case "Muscle":
+        case "Build muscle":
             goalCalories = activitycalories + 300;
             break;
         default:
@@ -80,8 +76,8 @@ public double totalCalories(Users users){
 public static void main(String [] args){
     Caloriealgorithm calc = new Caloriealgorithm();
 
-    Users users = new Users("mads","madsen",20,192,80,"male","Gain","madsen@gmail.com","testword", LocalDateTime.now(), "6-7 gange om ugen");
-    Users users2 = new Users("mia","lisbeth",20,192,80,"female","gainweight","madsen@gmail.com","testword", LocalDateTime.now(), "1-2 gange om dagen");
+    Users users = new Users("mads","madsen",20,192,80,"male","Gain weight","madsen@gmail.com","testword", LocalDateTime.now(), "6-7 times a week");
+    Users users2 = new Users("mia","lisbeth",20,192,80,"female","Build muscle","madsen@gmail.com","testword", LocalDateTime.now(), "1-2 gange om dagen");
 
 
 
