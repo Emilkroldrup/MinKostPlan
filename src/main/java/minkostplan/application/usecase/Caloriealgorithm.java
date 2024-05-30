@@ -24,7 +24,7 @@ private double calculateBMR(Users users){
 private double calculateTDEE(double bmr, String activityLevel){
     double activityNumber = 0;
     switch (activityLevel){
-        case"none or very little exercise":
+        case"None or very little exercise":
             activityNumber = 1.2;
             break;
         case"1-2 times a week":
