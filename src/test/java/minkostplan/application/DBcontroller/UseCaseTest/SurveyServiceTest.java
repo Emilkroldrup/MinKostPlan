@@ -72,7 +72,7 @@ public class SurveyServiceTest {
 
         
         verify(passwordEncoder).encode(password);
-        verify(userRepository).save(any(Users.class));
+        verify(userRepository).saveUser(any(Users.class));
     }
     
 }
