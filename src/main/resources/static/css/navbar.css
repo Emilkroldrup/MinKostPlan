@@ -88,10 +88,10 @@
 }
 
 .a-navbar span {
-    background-color: transparent; /* Ensure the span has no background color */
+    background-color: transparent;
 }
 
 .a-navbar.logged-in {
-    padding: 1vh 1.5vw; /* Adjust as needed for styling */
-    border: none; /* No border for logged-in */
+    padding: 1vh 1.5vw;
+    border: none;
 }

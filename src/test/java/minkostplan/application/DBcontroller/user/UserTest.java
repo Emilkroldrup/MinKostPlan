@@ -26,7 +26,6 @@ class UserRepositoryTest {
      */
     @BeforeEach
     void setUp() {
-
         existingUser = new Users("Madsen","Bjerring", 21,190,80,"Male","Gain weight","test@gmail.com","testword", LocalDateTime.now(), "1-2 times a week");
         existingUser2= new Users("egon","Bjerring", 23,190,80,"Female","Gain weight","test2@gmail.com","testword", LocalDateTime.now(), "3-5 times a week");
     }
@@ -39,6 +38,7 @@ class UserRepositoryTest {
     void findByEmail(){
         when(userRepository.findByEmail(eq(existingUser.getEmail()))).thenReturn(existingUser);
         Users result = userRepository.findByEmail("test@gmail.com");
+
 
         assertEquals(existingUser,result);
         System.out.println("Has to equal: " + existingUser);
@@ -80,7 +80,5 @@ class UserRepositoryTest {
         System.out.println("Expected users " + expectedUsers);
         System.out.println("\nResult " + actualUsers);
     }
-
-
 
 }

@@ -13,6 +13,8 @@ public interface IngredientsRepository extends SimpleDataAccess<Ingredient> {
 
     int getIdByIngredientName(String name);
 
+    Ingredient getIngredientById(int id);
+
     /**
      *
      * @param ingredient
@@ -23,6 +25,6 @@ public interface IngredientsRepository extends SimpleDataAccess<Ingredient> {
      *
      * @param ingredient
      */
-    void editIngredient(Ingredient ingredient);
 
+    void editIngredient(Ingredient ingredient, int ingredientId);
 }
