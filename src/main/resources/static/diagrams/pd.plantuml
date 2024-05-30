@@ -1,0 +1,46 @@
+@startuml
+
+
+
+!define RECTANGLE agent
+hide stereotype
+
+database "MySQL" {
+    [SimpleDataAccess]
+}
+
+cloud "Web" {
+    [HTTP]
+}
+
+package "DBcontroller" {
+    package Repositories <<Frame>> 
+        
+    
+}
+
+package "UIcontroller" {
+    package Controllers
+}
+
+package "Config" {
+    [PasswordEncoderConfig] 
+    [SecurityConfig]
+}
+
+package "Entity" {
+    package Models
+}
+
+package "Usecase" {
+    package Service
+}
+
+MySQL --> DBcontroller
+Web --> UIcontroller
+DBcontroller --> Usecase
+UIcontroller --> Usecase
+Usecase -down-> Entity
+Config -left-> Usecase
+
+@enduml
