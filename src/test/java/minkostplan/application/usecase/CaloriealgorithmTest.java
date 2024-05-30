@@ -24,7 +24,7 @@ Users existingUser;
     @BeforeEach
     void setUp() {
         caloriealgorithm = new Caloriealgorithm();
-        existingUser = new Users("Mads","Bjerring", 38,152,90,"male","Gain weight","test@mail.com","testword", LocalDateTime.now(), "1-2 times a week");
+        existingUser = new Users("Mads","Bjerring", 38,152,90,"Male","Gain weight","test@mail.com","testword", LocalDateTime.now(), "1-2 times a week");
     }
 
     /**
