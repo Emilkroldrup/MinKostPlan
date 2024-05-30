@@ -30,7 +30,7 @@ public interface UserRepository extends SimpleDataAccess<Users> {
      * 
      * @param user object of User class
      */
-    void save(Users user);
+    void saveUser(Users user);
 
     /**
      * Edits the details of a user.
