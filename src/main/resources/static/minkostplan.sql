@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: 127.0.0.1:3306
--- Genereringstid: 30. 05 2024 kl. 01:17:30
+-- Genereringstid: 30. 05 2024 kl. 08:24:22
 -- Serverversion: 8.2.0
 -- PHP-version: 8.2.13
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
                                              `Calories` int DEFAULT NULL,
                                              `Carbohydrate` int DEFAULT NULL,
                                              `Fat` int DEFAULT NULL,
-                                             `Proten` int DEFAULT NULL,
+                                             `Protien` int DEFAULT NULL,
                                              PRIMARY KEY (`ingredient_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Contains different ingredients used in recipes.';
 
@@ -43,12 +43,12 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
 -- Data dump for tabellen `ingredients`
 --
 
-INSERT INTO `ingredients` (`ingredient_id`, `name`, `description`, `Calories`, `Carbohydrate`, `Fat`, `Proten`) VALUES
-                                                                                                                    (1, 'Spaghetti', 'Long, thin, cylindrical pasta of Italian origin', 0, 0, 0, 0),
-                                                                                                                    (2, 'Egg', 'Organic free-range eggs', 0, 0, 0, 0),
-                                                                                                                    (3, 'Bacon', 'Thick slices of smoked bacon', 0, 0, 0, 0),
-                                                                                                                    (4, 'Zucchini', 'Fresh zucchini', 0, 0, 0, 0),
-                                                                                                                    (5, 'Tomato', 'Ripe tomatoes', 0, 0, 0, 0);
+INSERT INTO `ingredients` (`ingredient_id`, `name`, `description`, `Calories`, `Carbohydrate`, `Fat`, `Protien`) VALUES
+                                                                                                                     (1, 'Spaghetti', 'Long, thin, cylindrical pasta of Italian origin', 0, 0, 0, 0),
+                                                                                                                     (2, 'Egg', 'Organic free-range eggs', 0, 0, 0, 0),
+                                                                                                                     (3, 'Bacon', 'Thick slices of smoked bacon', 0, 0, 0, 0),
+                                                                                                                     (4, 'Zucchini', 'Fresh zucchini', 0, 0, 0, 0),
+                                                                                                                     (5, 'Tomato', 'Ripe tomatoes', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
