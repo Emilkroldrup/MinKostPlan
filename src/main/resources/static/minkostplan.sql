@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: 127.0.0.1:3306
--- Genereringstid: 28. 05 2024 kl. 14:33:55
+-- Genereringstid: 30. 05 2024 kl. 01:17:30
 -- Serverversion: 8.2.0
 -- PHP-version: 8.2.13
 
@@ -32,19 +32,23 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
                                              `ingredient_id` int NOT NULL AUTO_INCREMENT,
                                              `name` varchar(255) NOT NULL,
                                              `description` text,
+                                             `Calories` int DEFAULT NULL,
+                                             `Carbohydrate` int DEFAULT NULL,
+                                             `Fat` int DEFAULT NULL,
+                                             `Proten` int DEFAULT NULL,
                                              PRIMARY KEY (`ingredient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Contains different ingredients used in recipes.';
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Contains different ingredients used in recipes.';
 
 --
 -- Data dump for tabellen `ingredients`
 --
 
-INSERT INTO `ingredients` (`ingredient_id`, `name`, `description`) VALUES
-                                                                       (1, 'Spaghetti', 'Long, thin, cylindrical pasta of Italian origin'),
-                                                                       (2, 'Egg', 'Organic free-range eggs'),
-                                                                       (3, 'Bacon', 'Thick slices of smoked bacon'),
-                                                                       (4, 'Zucchini', 'Fresh zucchini'),
-                                                                       (5, 'Tomato', 'Ripe tomatoes');
+INSERT INTO `ingredients` (`ingredient_id`, `name`, `description`, `Calories`, `Carbohydrate`, `Fat`, `Proten`) VALUES
+                                                                                                                    (1, 'Spaghetti', 'Long, thin, cylindrical pasta of Italian origin', 0, 0, 0, 0),
+                                                                                                                    (2, 'Egg', 'Organic free-range eggs', 0, 0, 0, 0),
+                                                                                                                    (3, 'Bacon', 'Thick slices of smoked bacon', 0, 0, 0, 0),
+                                                                                                                    (4, 'Zucchini', 'Fresh zucchini', 0, 0, 0, 0),
+                                                                                                                    (5, 'Tomato', 'Ripe tomatoes', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -85,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `recipes` (
                                          `instructions` text,
                                          PRIMARY KEY (`recipe_id`),
                                          UNIQUE KEY `unique_recipe_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores details about various recipes.';
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores details about various recipes.';
 
 --
 -- Data dump for tabellen `recipes`
@@ -118,8 +122,7 @@ INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `quantity`) VALU
                                                                                 (1, 1, '200 grams'),
                                                                                 (1, 2, '4 units'),
                                                                                 (1, 3, '100 grams'),
-                                                                                (2, 4, '150 grams'),
-                                                                                (2, 5, '200 grams');
+                                                                                (2, 4, '150 grams');
 
 -- --------------------------------------------------------
 
@@ -168,18 +171,16 @@ CREATE TABLE IF NOT EXISTS `users` (
                                        `created_at` datetime NOT NULL,
                                        PRIMARY KEY (`user_id`),
                                        UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores information about the users.';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores information about the users.';
 
 --
 -- Data dump for tabellen `users`
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `age`, `height`, `weight`, `gender`, `activityLevel`, `goal`, `email`, `password_hash`, `created_at`) VALUES
-                                                                                                                                                                   (1, 'John', 'Doe', 30, 180, 80, 'male', '1-2 gange om ugen', 'build muscle', 'john.doe@example.com', '$2a$12$zm4obx9Li5PBVNq/VOC73e6/8ACR7tPBLrRdqZF8x622EKtilRutW', '2024-05-09 09:56:28'),
-                                                                                                                                                                   (2, 'Jane', 'Smith', 22, 165, 55, 'female', '3-5 gange om ugen', 'gain weight', 'jane.smith@example.com', 'hashed_password2', '2024-05-09 09:56:28'),
-                                                                                                                                                                   (3, 'test', 'testen', 20, 172, 72, 'male', '1-2 gange om ugen', 'Gain', 'test@mail.com', '$2a$12$nqslPLAkzrttWqMWsTsTfOBSJrhz9QKn7joYOKp2Z6f8DaaOsqQpK', '2024-05-28 14:26:32'),
-                                                                                                                                                                   (11, 'Mads', 'Madsen', 2, 2, 2, 'male', '3-5 gange om ugen', 'keep current weight', 'sdfdsf@safsdfsdf.com', '$2a$10$l3DG8u3N04nbyRYxubHYIO25T6Bd6x7UclKSFMRG3uK4SsMroU9Ta', '2024-05-28 16:28:57'),
-                                                                                                                                                                   (12, 'Mads', 'Madsen', 3, 3, 3, 'male', '1-2 gange om dagen', 'keep current weight', 'onlinebigchungus@gmail.com', '$2a$10$Syj5u3iGl5f0HvyBwYANZ.2EnOyn5m9Z43lvriRC7uUiEYJO9PLg2', '2024-05-28 16:30:24');
+                                                                                                                                                                   (1, 'John', 'Doe', 30, 180, 80, 'male', '1-2 times a week', 'Build muscle', 'john.doe@example.com', '$2a$12$zm4obx9Li5PBVNq/VOC73e6/8ACR7tPBLrRdqZF8x622EKtilRutW', '2024-05-09 09:56:28'),
+                                                                                                                                                                   (2, 'Jane', 'Smith', 22, 165, 55, 'female', '3-5 times a week', 'Gain weight', 'jane.smith@example.com', 'hashed_password2', '2024-05-09 09:56:28'),
+                                                                                                                                                                   (3, 'test', 'testen', 23, 1734, 72, 'Male', '1-2 times a day', 'Lose weight', 'test@mail.com', '$2a$12$nqslPLAkzrttWqMWsTsTfOBSJrhz9QKn7joYOKp2Z6f8DaaOsqQpK', '2024-05-28 14:26:32');
 
 --
 -- Begrænsninger for dumpede tabeller
