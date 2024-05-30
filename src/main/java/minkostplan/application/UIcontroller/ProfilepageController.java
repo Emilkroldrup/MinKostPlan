@@ -37,6 +37,7 @@ public class ProfilepageController {
     @GetMapping("/profile")
     public String profilepage(Model model){
         Users user = UserUtil.getCurrentUser();
+
         model.addAttribute("User",user);
         return"profilePage";
     }
@@ -69,15 +70,22 @@ public class ProfilepageController {
      * Handles the edit profile request.
      *
      * @param user the user entity with updated details
+     * @param model the model to add attributes
      * @return the edit profile details view
      */
     @PostMapping("/editprofile")
     public String editProfile(@ModelAttribute("User") Users user,Model model) {
+
+        Users currentUserEmail = UserUtil.getCurrentUser();
+        String editedEmail = user.getEmail();
+
        userRepository.editUserDetails(user);
+        if (!editedEmail.equals(currentUserEmail.getEmail())) {
+            return "redirect:/login";
+        }
 
        Users userupdate = UserUtil.getCurrentUser();
        model.addAttribute("User",userupdate);
-
         return "editProfileDetails";
     }
 }
