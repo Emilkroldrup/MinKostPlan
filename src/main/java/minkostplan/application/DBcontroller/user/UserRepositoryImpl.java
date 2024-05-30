@@ -39,9 +39,9 @@ public class UserRepositoryImpl implements UserRepository {
     public Users findByEmail(String email) {
         return findByProperty("email", email);
     }
-
+    
     @Override
-    public void save(Users user) {
+    public void saveUser(Users user) {
         String sql = "INSERT INTO users (firstname, lastname, age, height, weight, gender, goal, email, password_hash, created_at, activitylevel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         dataAccess.getJdbcTemplate().update(sql, user.getFirstName(), user.getLastName(), user.getAge(), user.getHeight(), user.getWeight(), user.getGender(), user.getGoal(), user.getEmail(), user.getPasswordHash(), user.getCreatedAt(),user.getActivityLevel());
     }
@@ -57,16 +57,17 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void editUserDetails(Users user) {
+    public void editUserDetails(Users user){
         Users currentuser = UserUtil.getCurrentUser();
         try {
-            String sql = "UPDATE users SET firstname = COALESCE(?, firstname), lastname = COALESCE(?, lastname), email = COALESCE(?, email), age = COALESCE(?, age), height = COALESCE(?, height), weight = COALESCE(?, weight), gender = COALESCE(?, gender), goal = COALESCE(?, goal), activitylevel = COALESCE(?,activitylevel) WHERE email = ?";
+            String sql = "UPDATE users SET firstname = ?, lastname = ?, email = ?, age = ?, height = ?, weight = ?, gender = ?, goal = ?, activitylevel = ? WHERE email = ?";
             if (!user.getFirstName().isEmpty() && !user.getLastName().isEmpty() && !user.getEmail().isEmpty() && user.getAge() >= 0 && user.getHeight() >= 0 && user.getWeight() >= 0 && !user.getGender().isEmpty() && !user.getGoal().isEmpty() && !user.getActivityLevel().isEmpty()) {
                 jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAge(), user.getHeight(), user.getWeight(), user.getGender(), user.getGoal(), user.getActivityLevel(), currentuser.getEmail());
             }
         } catch (DuplicateKeyException duplicateKeyException){
             System.out.println("same user-details already exists " + duplicateKeyException);
+        } catch (Exception e) {
+            System.out.println("Error trying to update user: " + e.getMessage());
         }
-
     }
 }
