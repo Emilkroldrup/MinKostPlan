@@ -1,0 +1,36 @@
+@startuml
+
+package "minkostplan.application" {
+    class Application
+}
+
+package "com.example.project.controller" {
+    class UserController
+    class AdminController
+}
+
+package "com.example.project.service" {
+    class UserService
+    class AdminService
+}
+
+package "com.example.project.repository" {
+    class UserRepository
+    class AdminRepository
+}
+
+package "com.example.project.entity" {
+    class User
+    class Admin 
+}
+
+com.example.project.controller.UserController --> com.example.project.service.UserService
+com.example.project.controller.AdminController --> com.example.project.service.AdminService
+
+com.example.project.service.UserService --> com.example.project.repository.UserRepository
+com.example.project.service.AdminService --> com.example.project.repository.AdminRepository
+
+com.example.project.repository.UserRepository --> com.example.project.model.User
+com.example.project.repository.AdminRepository --> com.example.project.model.Admin
+
+@enduml
