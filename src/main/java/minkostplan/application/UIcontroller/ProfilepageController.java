@@ -80,7 +80,7 @@ public class ProfilepageController {
         String editedEmail = user.getEmail();
 
        userRepository.editUserDetails(user);
-        if (!editedEmail.equals(currentUserEmail.getEmail())) {
+        if (!editedEmail.equals(currentUserEmail.getEmail()) && !editedEmail.equals("")) {
             return "redirect:/login";
         }
 
