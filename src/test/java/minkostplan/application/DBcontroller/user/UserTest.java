@@ -54,7 +54,7 @@ class UserRepositoryTest {
         Users result = userRepository.findByEmail("nonexistingemail");
 
         assertNotEquals(existingUser,result);
-        System.out.println("Has to equal: " + existingUser);
+        System.out.println("Has to equal: " + null);
         System.out.println("\nResult: " + result);
     }
 
@@ -80,5 +80,49 @@ class UserRepositoryTest {
         System.out.println("Expected users " + expectedUsers);
         System.out.println("\nResult " + actualUsers);
     }
+
+
+
+
+    @Test
+    void editUser(){
+        List<Users> expectedUsers = new ArrayList<>();
+        expectedUsers.add(existingUser);
+        expectedUsers.add(existingUser2);
+
+        when(userRepository.findAll()).thenReturn(expectedUsers);
+
+
+        List<Users> actualUsers = userRepository.findAll();
+
+
+        for (int i = 0; i < expectedUsers.size(); i++) {
+            assertEquals(expectedUsers.get(i), actualUsers.get(i));
+        }
+
+        System.out.println("Expected users " + expectedUsers);
+        System.out.println("\nResult " + actualUsers);
+    }
+
+    @Test
+    void saveUser(){
+        List<Users> expectedUsers = new ArrayList<>();
+        expectedUsers.add(existingUser);
+        expectedUsers.add(existingUser2);
+
+        when(userRepository.findAll()).thenReturn(expectedUsers);
+
+
+        List<Users> actualUsers = userRepository.findAll();
+
+
+        for (int i = 0; i < expectedUsers.size(); i++) {
+            assertEquals(expectedUsers.get(i), actualUsers.get(i));
+        }
+
+        System.out.println("Expected users " + expectedUsers);
+        System.out.println("\nResult " + actualUsers);
+    }
+
 
 }
