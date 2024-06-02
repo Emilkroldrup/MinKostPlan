@@ -2,20 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title text="${recipe.name}">Recipe Page</title>
+    <title th:text="${recipe.name}">Recipe Page</title>
     <link rel="stylesheet" th:href="@{/css/recipe.css}">
-    <link rel="stylesheet" th:href="@{/css/slide.css}">
 </head>
 <body>
     <div class="recipe-header">
-        <h1 text="${recipe.name}">Recipe Name</h1>
-        <p text="'Cook: ' + ${recipe.cook}">Cook: Name</p>
-        <p text="'Average Time: ' + ${recipe.averageTime} + ' mins'">Average Time: XX mins</p>
+        <h1 th:text="${recipe.name}">Recipe Name</h1>
+        <p th:text="'Cook: ' + ${recipe.cookName}">Cook: Name</p>
+        <p th:text="'Average Time: ' + ${recipe.averageTime} + ' mins'">Average Time: XX mins</p>
     </div>
     <div class="recipe-content">
         <div class="media">
             <div class="slideshow-container">
-                <div class="mySlides" >
+                <div class="mySlides">
                     <img th:src="@{/images/test1.jpg}" alt="Image 1">
                 </div>
                 <div class="mySlides">
@@ -27,22 +26,13 @@
         <div class="ingredients">
             <h2>Ingredients</h2>
             <ul>
-                <li each="ingredient : ${recipe.ingredients}" text="${ingredient}">Ingredient</li>
-                <li>test</li>
-                <li>test</li>
-                <li>test</li>
-                <li>test</li>
+                <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient}">Ingredient</li>
             </ul>
         </div>
         <div class="instructions">
             <h2>Step by Step Guide</h2>
             <ol>
-                <li each="step : ${recipe.steps}" text="${step}">Cooking Step</li>
-                <li>test</li>
-                <li>test</li>
-                <li>test</li>
-                <li>test</li>
-                <li>test</li>
+                <li th:each="step : ${recipe.instructions}" th:text="${step}">Cooking Step</li>
             </ol>
         </div>
     </div>

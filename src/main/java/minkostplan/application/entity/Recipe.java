@@ -9,14 +9,12 @@ import java.util.List;
 public class Recipe {
 
     private String name;
-
     private int recipe_id;
     private String cookName;
     private Integer averageTime;
     private LocalDateTime createdAt;
-    private String instructions; // Add instructions as a list of strings
-
-
+    private String instructions;
+    private List<RecipeIngredient> ingredients;  // Add this field
 
     /**
      * Default constructor.
@@ -41,7 +39,7 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public Recipe(Integer id,String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions) {
+    public Recipe(Integer id, String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions) {
         this.recipe_id = id;
         this.name = name;
         this.cookName = cookName;
@@ -92,13 +90,20 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-
     public Integer getRecipe_id() {
         return recipe_id;
     }
 
     public void setRecipe_id(Integer recipe_id) {
         this.recipe_id = recipe_id;
+    }
+
+    public List<RecipeIngredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<RecipeIngredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     @Override

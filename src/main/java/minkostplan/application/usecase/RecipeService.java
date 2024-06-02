@@ -19,34 +19,32 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-
     public void saveRecipe(Recipe recipe) {
         try {
             recipeRepository.saveRecipe(recipe);
         } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
+            System.out.println("Error connecting to database: " + dataAccessException.getMessage());
         }
     }
 
     public int getIdByRecipeName(String name){
         try {
-            return  recipeRepository.getIdByRecipeName(name);
+            return recipeRepository.getIdByRecipeName(name);
         } catch (EmptyResultDataAccessException emptyResultDataAccessException){
-            System.out.println("No recipe with the given name" + emptyResultDataAccessException.getMessage());
+            System.out.println("No recipe with the given name: " + emptyResultDataAccessException.getMessage());
+        } catch (DataAccessException dataAccessException){
+            System.out.println("Error connecting to database: " + dataAccessException.getMessage());
         }
-        catch (DataAccessException dataAccessException){
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
-          return -1;
-        }
+        return -1;
+    }
 
     public Recipe getRecipeById(int id){
         try {
-            return  recipeRepository.getRecipeById(id);
+            return recipeRepository.getRecipeById(id);
         } catch (EmptyResultDataAccessException emptyResultDataAccessException){
-            System.out.println("No recipe with the given id" + emptyResultDataAccessException.getMessage());
-        }  catch (DataAccessException dataAccessException){
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
+            System.out.println("No recipe with the given id: " + emptyResultDataAccessException.getMessage());
+        } catch (DataAccessException dataAccessException){
+            System.out.println("Error connecting to database: " + dataAccessException.getMessage());
         }
         return null;
     }
@@ -55,9 +53,9 @@ public class RecipeService {
         try {
             recipeRepository.deleteRecipe(recipe);
         } catch (EmptyResultDataAccessException emptyResultDataAccessException){
-            System.out.println("No recipe like that exists" + emptyResultDataAccessException.getMessage());
-        }catch (DataAccessException dataAccessException){
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
+            System.out.println("No recipe like that exists: " + emptyResultDataAccessException.getMessage());
+        } catch (DataAccessException dataAccessException){
+            System.out.println("Error connecting to database: " + dataAccessException.getMessage());
         }
     }
 
@@ -65,9 +63,9 @@ public class RecipeService {
         try {
             recipeRepository.editRecipe(recipe, recipeId);
         } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
-            System.out.println("No recipe like that exists" + emptyResultDataAccessException.getMessage());
+            System.out.println("No recipe like that exists: " + emptyResultDataAccessException.getMessage());
         } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
+            System.out.println("Error connecting to database: " + dataAccessException.getMessage());
         }
     }
 
@@ -75,22 +73,17 @@ public class RecipeService {
         try {
             return recipeRepository.findByProperty(property, value);
         } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
+            System.out.println("Error connecting to database: " + dataAccessException.getMessage());
         }
         return null;
     }
 
     public List<Recipe> findAllRecipes(){
-        try{
-            return  recipeRepository.findAll();
+        try {
+            return recipeRepository.findAll();
         } catch (DataAccessException dataAccessException){
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
+            System.out.println("Error connecting to database: " + dataAccessException.getMessage());
+            return List.of();
         }
-          return null;
     }
-
-
-
-
-    }
-
+}

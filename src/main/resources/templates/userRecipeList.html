@@ -6,37 +6,40 @@
     <link rel="stylesheet" th:href="@{/css/userrecipe.css}">
 </head>
 <body>
-<section th:replace="navbar.html"></section>
-<section th:replace="footer.html"></section>
+<section th:replace="~{navbar.html}"></section>
+<section th:replace="~{footer.html}"></section>
 
-    <section class="food-selection">
-        <li >Alle</li>
-        <li>Morgenmad</li>
-        <li>Middagsmad</li>
-        <li>Aftensmad</li>
-    </section>
+<section class="food-selection">
+    <li>Alle</li>
+    <li>Morgenmad</li>
+    <li>Middagsmad</li>
+    <li>Aftensmad</li>
+</section>
 
-    <section class="category">
-        <h1>Kategori</h1>
+<section class="category">
+    <h1>Kategori</h1>
+    <label class="checkbox-container">
+        <li>Vegetar</li>
+        <input type="checkbox">
+    </label>
+    <label class="checkbox-container">
+        <li>Glutenfri</li>
+        <input type="checkbox">
+    </label>
+    <label class="checkbox-container">
+        <li>Lav kalorier</li>
+        <input type="checkbox">
+    </label>
+</section>
 
-        <label class="checkbox-container">
-            <li>Vegetar</li>
-            <input type="checkbox">
-        </label>
-
-        <label class="checkbox-container">
-            <li>Glutenfri</li>
-            <input type="checkbox">
-        </label>
-
-        <label class="checkbox-container">
-            <li>Lav kalorier</li>
-            <input type="checkbox">
-        </label>
-
-    </section>
-
-
+<section class="recipe-list">
+    <h1>Recipes</h1>
+    <ul>
+        <li th:each="recipe : ${recipes}">
+            <a th:href="@{'/recipe/' + ${recipe.recipe_id}}" th:text="${recipe.name}">Recipe Name</a>
+        </li>
+    </ul>
+</section>
 
 </body>
 </html>
