@@ -12,11 +12,15 @@ import minkostplan.application.entity.Users;
 @Service
 public class SurveyService{
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    public SurveyService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public Users createUser(String firstName, String lastName, int age, int height, int weight, String gender, String goal, String email, String password, LocalDateTime createdAt, String activityLevel) {
         String passwordHash = passwordEncoder.encode(password);

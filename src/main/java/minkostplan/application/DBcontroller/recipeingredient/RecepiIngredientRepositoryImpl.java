@@ -23,22 +23,19 @@ public class RecepiIngredientRepositoryImpl implements RecepiIngredientRepositor
         this.dataAccess = new GenericJdbcRepository<>(jdbcTemplate, RecipeIngredient.class);
     }
 
-
+    @Override
+    public void saveRecipeIngredient(RecipeIngredient recipeIngredient){
+        String sql = "INSERT INTO recipe_ingredients (recipe_id,ingredient_id,quantity) VALUES (?,?,?)";
+        jdbcTemplate.update(sql,recipeIngredient.getRecipeid(),recipeIngredient.getIngredientid(),recipeIngredient.getQuantity());
+    }
 
     @Override
     public RecipeIngredient findByProperty(String property, Object value) {
         return dataAccess.findByProperty(property, value);
     }
 
-
     @Override
     public List<RecipeIngredient> findAll() {
         return List.of();
-    }
-
-    @Override
-    public void saveRecipeIngredient(RecipeIngredient recipeIngredient){
-        String sql = "INSERT INTO recipe_ingredients (recipe_id,ingredient_id,quantity) VALUES (?,?,?)";
-        jdbcTemplate.update(sql,recipeIngredient.getRecipeid(),recipeIngredient.getIngredientid(),recipeIngredient.getQuantity());
     }
 }

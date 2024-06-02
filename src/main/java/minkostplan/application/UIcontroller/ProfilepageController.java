@@ -18,18 +18,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ProfilepageController {
 
-    UserUtil userUtil;
-    UserRepository userRepository;
-    UserRepositoryImpl userRepositoryimpl;
-
-    UserService userService;
+   private final UserRepository userRepository;
+   private final UserService userService;
 
     @Autowired
-    public ProfilepageController(UserUtil userUtil, UserService userService, UserRepository userRepository) {
-        this.userUtil = userUtil;
+    public ProfilepageController(UserRepository userRepository,  UserService userService) {
         this.userRepository = userRepository;
         this.userService = userService;
-        UserUtil.setUserRepository(userRepository);
     }
 
     /**
