@@ -14,7 +14,7 @@ public class Recipe {
     private Integer averageTime;
     private LocalDateTime createdAt;
     private String instructions;
-    private List<RecipeIngredient> ingredients;  // Add this field
+    private List<RecipeIngredient> ingredients;
 
     /**
      * Default constructor.
