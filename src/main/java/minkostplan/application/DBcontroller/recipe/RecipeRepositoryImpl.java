@@ -52,7 +52,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     }
 
     @Override
-    public void updateRecipe(Recipe recipe, int recipeId) {
+    public void editRecipe(Recipe recipe, int recipeId) {
         String sql = "UPDATE recipes SET name = ?, average_time = ? WHERE recipe_id = ?";
         dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getAverageTime(), recipeId);
     }
