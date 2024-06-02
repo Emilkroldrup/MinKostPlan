@@ -5,6 +5,7 @@ import minkostplan.application.entity.Users;
 import minkostplan.application.usecase.UserService;
 import minkostplan.application.usecase.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ProfilepageController {
 
-   private final UserRepository userRepository;
+
    private final UserService userService;
 
     @Autowired
-    public ProfilepageController(UserRepository userRepository,  UserService userService) {
-        this.userRepository = userRepository;
+    public ProfilepageController( UserService userService) {
         this.userService = userService;
     }
 
@@ -75,16 +75,21 @@ public class ProfilepageController {
     @PostMapping("/editprofile")
     public String editProfile(@ModelAttribute("User") Users user, Model model) {
 
-
         Users currentUserEmail = UserUtil.getCurrentUser();
         String editedEmail = user.getEmail();
-        boolean editUserComplete = userService.editUserDetails(user);
-        if (editUserComplete && !editedEmail.equals(currentUserEmail.getEmail())) {
+        try {
+            boolean editUserComplete = userService.editUserDetails(user);
+            if (editUserComplete && !editedEmail.equals(currentUserEmail.getEmail())) {
                 return "redirect:/login";
+            }
+        } catch (DuplicateKeyException duplicateKeyException) {
+            model.addAttribute("error", "User with same email already exists");
+        } catch (DataAccessException dataAccessException) {
+            model.addAttribute("error", "Error connecting to database");
         }
-            Users userupdate = UserUtil.getCurrentUser();
-            model.addAttribute("User", userupdate);
-            return "editProfileDetails";
+        Users userUpdate = UserUtil.getCurrentUser();
+        model.addAttribute("User", userUpdate);
+        return "editProfileDetails";
 
         }
     }

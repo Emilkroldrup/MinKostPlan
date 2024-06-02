@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 public class IngredientService {
 
+
     private final IngredientsRepository ingredientsRepository;
 
     @Autowired
@@ -21,68 +22,30 @@ public class IngredientService {
     }
 
     public void saveIngredient(Ingredient ingredient) {
-        try {
-            ingredientsRepository.saveIngredient(ingredient);
-        } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
+        ingredientsRepository.saveIngredient(ingredient);
     }
 
     public int getIdByIngredientName(String name) {
-        try {
-            return ingredientsRepository.getIdByIngredientName(name);
-        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
-            System.out.println("No such name exists for ingredient" + emptyResultDataAccessException.getMessage());
-        } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
-        return -1;
+        return ingredientsRepository.getIdByIngredientName(name);
     }
 
     public Ingredient getIngredientById(int id) {
-        try {
-            return ingredientsRepository.getIngredientById(id);
-        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
-            System.out.println("No such id exists for ingredient" + emptyResultDataAccessException.getMessage());
-        } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
-        return null;
+        return ingredientsRepository.getIngredientById(id);
     }
 
     public void deleteIngredient(Ingredient ingredient) {
-        try {
-            ingredientsRepository.deleteIngredient(ingredient);
-        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
-            System.out.println("No such ingredient exists" + emptyResultDataAccessException.getMessage());
-        } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
+        ingredientsRepository.deleteIngredient(ingredient);
     }
 
-    public void editIngredient(Ingredient ingredient, int ingredientId){
-        try{
-            ingredientsRepository.editIngredient(ingredient,ingredientId);
-        } catch (EmptyResultDataAccessException emptyResultDataAccessException) {
-            System.out.println("No such id for an ingredient exists" + emptyResultDataAccessException.getMessage());
-        } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
+    public void editIngredient(Ingredient ingredient, int ingredientId) {
+        ingredientsRepository.editIngredient(ingredient, ingredientId);
     }
-    public Ingredient findByProperty(String property, Object value){
-        try{
-            return ingredientsRepository.findByProperty(property,value);
-        } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
-        return null;
+
+    public Ingredient findByProperty(String property, Object value) {
+        return ingredientsRepository.findByProperty(property, value);
     }
-    public List<Ingredient> findAll(){
-        try {
-            return ingredientsRepository.findAll();
-        }catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
-        return null;
+
+    public List<Ingredient> findAll() {
+        return ingredientsRepository.findAll();
     }
 }

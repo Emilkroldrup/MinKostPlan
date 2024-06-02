@@ -14,6 +14,8 @@ import minkostplan.application.usecase.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -74,22 +76,24 @@ public class AdminController {
 
         @PostMapping("/addrecipe")
         public String addRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("ingredients") List<String> ingredients,
-                                @RequestParam("descriptions") List<String> descriptions,@RequestParam("quantity") List<String> quantity) {
+                                @RequestParam("descriptions") List<String> descriptions,@RequestParam("quantity") List<String> quantity, Model model) {
 
-            int recipeid;
 
-            if(recipe.getInstructions().isEmpty() || recipe.getName().isEmpty() || recipe.getCookName().isEmpty() ||recipe.getAverageTime() == null ){
+            if (recipe.getInstructions().isEmpty() || recipe.getName().isEmpty() || recipe.getCookName().isEmpty() || recipe.getAverageTime() == null) {
+                model.addAttribute("error", "All recipe fields must be filled.");
                 return "adminpage";
             }
 
             if (ingredients.isEmpty() || descriptions.isEmpty() || quantity.isEmpty()) {
+                model.addAttribute("error", "Ingredients, descriptions, and quantity must not be empty.");
                 return "adminpage";
             }
 
-            recipeService.saveRecipe(recipe);
-            recipeid = recipeService.getIdByRecipeName(recipe.getName());
+            try {
+                recipeService.saveRecipe(recipe);
+                int recipeId = recipeService.getIdByRecipeName(recipe.getName());
 
-            for (int i = 0; i < ingredients.size(); i++) {
+                for (int i = 0; i < ingredients.size(); i++) {
                     String ingredientName = ingredients.get(i);
                     String description = descriptions.get(i);
 
@@ -99,11 +103,17 @@ public class AdminController {
                     String quantityOfIngredient = quantity.get(i);
 
                     ingredientService.saveIngredient(ingredient);
-                    int ingredientid = ingredientService.getIdByIngredientName(ingredientName);
+                    int ingredientId = ingredientService.getIdByIngredientName(ingredientName);
 
-                    RecipeIngredient  recipeIngredient = new RecipeIngredient(recipeid, ingredientid, quantityOfIngredient);
+                    RecipeIngredient recipeIngredient = new RecipeIngredient(recipeId, ingredientId, quantityOfIngredient);
                     recipeIngredientService.saveRecipeIngredient(recipeIngredient);
+                }
+            } catch (DuplicateKeyException e) {
+                model.addAttribute("error", "An ingredient with the same name already exists.");
+            } catch (DataAccessException e) {
+                model.addAttribute("error", "Error connecting to database.");
             }
+
             return "adminpage";
         }
     }
