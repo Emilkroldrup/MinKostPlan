@@ -18,9 +18,8 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import minkostplan.application.DBcontroller.picture.PictureStorage;
-import minkostplan.application.entity.ImageInfo;
-
-@Controller
+import minkostplan.application.DBcontroller.picture.PictureStorageImpl;
+import minkostplan.application.entity.ImageRecipeInfo;
 public class ImageController {
 
     @Autowired
@@ -44,7 +43,7 @@ public class ImageController {
      */
     @GetMapping("/images/new")
     public String newImage (Model model)  {
-        return "upload_form";
+        return "uploadForm";
     }
 
    
@@ -68,7 +67,7 @@ public class ImageController {
             model.addAttribute("message", message);
         }
 
-        return "upload_form";
+        return "uploadForm";
     }
 
 
@@ -80,15 +79,15 @@ public class ImageController {
     //  Might be useful for the recipes
     @GetMapping("/images")
     public String getListImages(Model model) {
-        List<ImageInfo> imageInfos = pictureStorage.loadAll().map(path -> {
+        List<ImageRecipeInfo> imageInfos = pictureStorage.loadAll().map(path -> {
             String filename = path.getFileName().toString();
             String url = MvcUriComponentsBuilder.fromMethodName(ImageController.class, "getImage", path.getFileName().toString()).build().toString();
 
-            return new ImageInfo(filename, url);
+            return new ImageRecipeInfo(recipeid, filename, url);
         }).collect(Collectors.toList());
 
         model.addAttribute("images", imageInfos);
-        return "images";
+        return "images"; // add new mapping for the specified wanted view
     }
 
 

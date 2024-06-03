@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image upload example</title>
+  <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+  <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+  <div th:replace="navbar.html"></div>
+
+  <div class="container" style="max-width: 500px">
+    <h3 class="mb-3">Image Upload example</h3>
+
+    <form id="uploadForm" method="post" th:action="@{/images/upload}" enctype="multipart/form-data">
+      <input id="input-file" type="file" name="file" accept="image/png, image/jpeg" />
+      <button class="upload-btn" name="submit-button" type="submit">
+        Upload image
+      </button>
+    </form>
+
+    <div
+      th:if="${message != null}"
+      class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
+      role="alert">
+      [[${message}]]
+      <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+
+  <div th:replace="footer.html"></div>
+
+</body>
+</html>
+  
