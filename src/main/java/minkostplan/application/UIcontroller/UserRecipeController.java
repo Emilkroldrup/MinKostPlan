@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -28,8 +29,12 @@ public class UserRecipeController {
     }
 
     @GetMapping("/recipe/{id}")
-    public String recipePage(@PathVariable int id, Model model) {
+    public String getRecipeById(@PathVariable("id") int id, Model model) {
         Recipe recipe = recipeService.getRecipeById(id);
+        if (recipe.getInstructions() != null) {
+            List<String> instructionsList = Arrays.asList(recipe.getInstructions().split("\n"));
+            recipe.setInstructionsList(instructionsList);
+        }
         model.addAttribute("recipe", recipe);
         return "recipePage";
     }

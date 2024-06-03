@@ -7,33 +7,27 @@
 </head>
 <body>
     <div class="recipe-header">
-        <h1 th:text="${recipe.name}">Recipe Name</h1>
-        <p th:text="'Cook: ' + ${recipe.cookName}">Cook: Name</p>
-        <p th:text="'Average Time: ' + ${recipe.averageTime} + ' mins'">Average Time: XX mins</p>
+        <h1 th:text="${recipe.name}">Opskrift Navn</h1>
+        <p th:text="'Kok: ' + ${recipe.cookName}">Kok: Navn</p>
+        <p th:text="'Gennemsnits tid: ' + ${recipe.averageTime} + ' mins'">Gennemsnitlig tid: XX minutter</p>
     </div>
     <div class="recipe-content">
         <div class="media">
-            <div class="slideshow-container">
-                <div class="mySlides">
-                    <img th:src="@{/images/test1.jpg}" alt="Image 1">
-                </div>
-                <div class="mySlides">
-                    <img th:src="@{/images/test2.jpg}" alt="Image 2">
-                </div>
+            <img th:src="@{/images/test1.jpg}" alt="Opskrift billede">
+        </div>
+        <div class="details">
+            <div class="ingredients">
+                <h2>Ingredienser</h2>
+                <ul>
+                    <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.quantity + ' ' + ingredient.ingredientName}">Ingrediens</li>
+                </ul>
             </div>
-            <script th:src="@{/javascript/slideShow.js}"></script>
-        </div>
-        <div class="ingredients">
-            <h2>Ingredients</h2>
-            <ul>
-                <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient}">Ingredient</li>
-            </ul>
-        </div>
-        <div class="instructions">
-            <h2>Step by Step Guide</h2>
-            <ol>
-                <li th:each="step : ${recipe.instructions}" th:text="${step}">Cooking Step</li>
-            </ol>
+            <div class="instructions">
+                <h2>Trin for trin guide</h2>
+                <ol>
+                    <li th:each="step : ${recipe.instructions}" th:text="${step}">Trin</li>
+                </ol>
+            </div>
         </div>
     </div>
 </body>
