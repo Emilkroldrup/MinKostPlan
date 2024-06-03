@@ -17,31 +17,16 @@ public class RecipeIngredientService {
     public  RecipeIngredientService(RecepiIngredientRepository recepiIngredientRepository){
         this.recepiIngredientRepository = recepiIngredientRepository;
     }
-
     public void saveRecipeIngredient(RecipeIngredient recipeIngredient){
-        try {
             recepiIngredientRepository.saveRecipeIngredient(recipeIngredient);
-        } catch (DataAccessException dataAccessException){
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
     }
 
     public RecipeIngredient findByProperty(String property, Object value){
-        try {
           return recepiIngredientRepository.findByProperty(property,value);
-        } catch (DataAccessException dataAccessException){
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
-        return null;
     }
 
     public List<RecipeIngredient> findAllRecipeIngredients(){
-        try {
             return recepiIngredientRepository.findAll();
-        }catch (DataAccessException dataAccessException){
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
-        }
-        return null;
     }
 
 }

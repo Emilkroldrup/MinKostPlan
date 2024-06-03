@@ -23,7 +23,7 @@
 
     <div class="navbar-account">
         <a href="/profile" class="a-navbar" th:classappend="${#authentication.name != 'anonymousUser'} ? 'logged-in'">
-            <span th:if="${#authentication.name != 'anonymousUser'}" th:text="'Hello, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}" onclick="window.location.href='/profile'"></span>
+            <span th:if="${#authentication.name != 'anonymousUser'}" th:text="'Hej, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}" onclick="window.location.href='/profile'"></span>
         </a>
         <a th:if="${#authentication.name == 'anonymousUser'}" href="login" class="login">Login</a>
     </div>

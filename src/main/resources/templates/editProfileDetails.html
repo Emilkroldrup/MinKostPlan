@@ -11,7 +11,9 @@
 <div class="background">
     <div class="profile-container">
         <header class="header">
-            <h1>Hello User</h1>
+                <a href="/profile" class="a-navbar" th:classappend="${#authentication.name != 'anonymousUser'} ? 'logged-in'">
+                    <span th:text="'Hej, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}" onclick="window.location.href='/profile'"></span>
+                </a>
         </header>
         <main class="profile-content">
             <form th:action="@{/editprofile}" th:method="post">
@@ -28,6 +30,9 @@
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email"  th:field="${User.email}">
+                            <div th:if="${error}" class="error-message" role="alert">
+                                <p th:text="${error}"></p>
+                            </div>
                         </div>
                     </div>
                     <div class="middle-box">
@@ -57,13 +62,13 @@
                         <div class="form-group">
                             <label for="gender">Køn:</label>
                             <select id="gender" name="gender" th:field="${User.gender}">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="Male">Mand</option>
+                                <option value="Female">Kvinde</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="activitylabel" for="activity">Activity:</label>
-                            <select id="activity" name="activity" th:field="${User.activityLevel}">
+                            <label class="activitylabel" for="aktivitet">Aktivitet:</label>
+                            <select id="aktivitet" name="aktivitet" th:field="${User.activityLevel}">
                                 <option value="1-2 gange om ugen">1-2 gange om ugen</option>
                                 <option value="3-5 gange om ugen">3-5 gange om ugen</option>
                                 <option value="6-7 gange om ugen">6-7 gange om ugen</option>
