@@ -48,30 +48,22 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     }
 
     @Override
-public Recipe getRecipeById(int id) {
-    Recipe recipe = findByProperty("recipe_id", id);
-    if (recipe != null) {
-        String sql = "SELECT ri.quantity, i.name AS ingredient_name FROM recipe_ingredients ri " +
-                     "JOIN ingredients i ON ri.ingredient_id = i.ingredient_id " +
-                     "WHERE ri.recipe_id = ?";
-        List<RecipeIngredient> ingredients = jdbcTemplate.query(sql, ps -> ps.setInt(1, id), (rs, rowNum) -> {
-            RecipeIngredient ingredient = new RecipeIngredient();
-            ingredient.setQuantity(rs.getString("quantity"));
-            ingredient.setIngredientName(rs.getString("ingredient_name"));
-            return ingredient;
-        });
-        recipe.setIngredients(ingredients);
-        // Log the ingredients
-        System.out.println("Ingredients for recipe id " + id + ": " + ingredients);
-        logger.info("Ingredients for recipe id {}: {}", id, ingredients);
-    } else {
-        logger.warn("No recipe found with id {}", id);
-        System.out.println("No recipe found with id " + id);
+    public Recipe getRecipeById(int id) {
+        Recipe recipe = findByProperty("recipe_id", id);
+        if (recipe != null) {
+            String sql = "SELECT ri.quantity, i.name AS ingredient_name FROM recipe_ingredients ri " +
+                        "JOIN ingredients i ON ri.ingredient_id = i.ingredient_id " +
+                        "WHERE ri.recipe_id = ?";
+            List<RecipeIngredient> ingredients = jdbcTemplate.query(sql, ps -> ps.setInt(1, id), (rs, rowNum) -> {
+                RecipeIngredient ingredient = new RecipeIngredient();
+                ingredient.setQuantity(rs.getString("quantity"));
+                ingredient.setIngredientName(rs.getString("ingredient_name"));
+                return ingredient;
+            });
+            recipe.setIngredients(ingredients);
+        }
+        return recipe;
     }
-    return recipe;
-}
-
-
 
     @Override
     @Transactional
@@ -91,6 +83,7 @@ public Recipe getRecipeById(int id) {
     public Recipe findByProperty(String property, Object value) {
         return dataAccess.findByProperty(property, value);
     }
+
     @Override
     public List<Recipe> findAll() {
         String sqlRecipes = "SELECT * FROM recipes";
