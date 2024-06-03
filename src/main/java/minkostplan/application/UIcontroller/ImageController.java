@@ -82,6 +82,7 @@ public class ImageController {
         List<ImageRecipeInfo> imageInfos = pictureStorage.loadAll().map(path -> {
             String filename = path.getFileName().toString();
             String url = MvcUriComponentsBuilder.fromMethodName(ImageController.class, "getImage", path.getFileName().toString()).build().toString();
+            int recipeid = imageInfos.getRecipeid();
 
             return new ImageRecipeInfo(recipeid, filename, url);
         }).collect(Collectors.toList());
