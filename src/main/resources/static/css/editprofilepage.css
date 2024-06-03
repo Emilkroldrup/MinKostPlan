@@ -34,6 +34,7 @@ body {
 
 .header {
     margin-bottom: 2vh;
+    font-size: 1.5vw;
 }
 
 .profile-content {
@@ -110,4 +111,8 @@ margin-top: -0.1vh;
 .right-box{
     margin-top: -0.2vh;
 }
-
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 5px; /* Adjust this value as needed */
+}
