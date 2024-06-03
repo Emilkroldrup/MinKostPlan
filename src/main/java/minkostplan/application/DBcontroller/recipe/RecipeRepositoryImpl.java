@@ -4,7 +4,6 @@ import minkostplan.application.DBcontroller.GenericJdbcRepository;
 import minkostplan.application.entity.Recipe;
 import minkostplan.application.entity.RecipeIngredient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,8 +30,8 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     public void saveRecipe(Recipe recipe) {
         recipe.setCreatedAt(LocalDateTime.now());
         try {
-            String sql = "INSERT INTO recipes (name, cook_name, average_time, created_at, instructions) VALUES (?, ?, ?, ?, ?)";
-            dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getCookName(), recipe.getAverageTime(), recipe.getCreatedAt(), recipe.getInstructions());
+            String sql = "INSERT INTO recipes (name, cook_name, average_time, created_at, instructions, meal_type) VALUES (?, ?, ?, ?, ?, ?)";
+            dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getCookName(), recipe.getAverageTime(), recipe.getCreatedAt(), recipe.getInstructions(), recipe.getMealType());
         } catch (DuplicateKeyException e) {
             System.err.println("Duplicate recipe name: " + e.getMessage());
         }
@@ -59,8 +58,8 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     @Override
     @Transactional
     public void editRecipe(Recipe recipe, int recipeId) {
-        String sql = "UPDATE recipes SET name = ?, average_time = ? WHERE recipe_id = ?";
-        dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getAverageTime(), recipeId);
+        String sql = "UPDATE recipes SET name = ?, average_time = ?, meal_type = ? WHERE recipe_id = ?";
+        dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getAverageTime(), recipe.getMealType(), recipeId);
     }
 
     @Override
@@ -82,6 +81,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
                 recipe.setAverageTime(rs.getInt("average_time"));
                 recipe.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
                 recipe.setInstructions(rs.getString("instructions"));
+                recipe.setMealType(rs.getString("meal_type"));
                 return recipe;
             });
 
@@ -101,7 +101,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
             return recipes;
         } catch (Exception e) {
             System.err.println("Error accessing database: " + e.getMessage());
-            return List.of(); 
+            return List.of(); // Return empty list if error
         }
     }
 }

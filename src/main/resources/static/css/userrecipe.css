@@ -6,46 +6,56 @@ html {
     font-family: 'Arial', sans-serif;
 }
 
+body {
+    margin: 0;
+    padding: 5vh 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.navbar, .footer {
+    width: 100%;
+}
+
 .food-selection {
     text-align: center;
     margin-top: 6vh;
     font-weight: bold;
-   font-size: 0.9vw;
+    font-size: 1.2vw;
 }
 
 .food-selection li {
     display: inline-block;
-    margin-right: 1vw;
+    margin-right: 2vw;
+    cursor: pointer;
 }
 
 .food-selection li:hover {
-    cursor: pointer;
-    opacity: 0.4;
+    opacity: 0.7;
     transition: opacity 0.3s ease;
 }
 
 .category {
-    width: 10vw;
+    width: 15vw;
     min-height: 40vh;
-    height: auto;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     position: fixed;
     top: 50%;
-    right: 0;
+    right: 2%;
     transform: translateY(-50%);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     padding: 2vh 2vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .category h1 {
     text-align: center;
     margin-bottom: 10%;
-    font-size: 1vw;
-}
-
-.checkbox-container:hover{
-    cursor: pointer;
+    font-size: 1.2vw;
 }
 
 .checkbox-container {
@@ -53,11 +63,12 @@ html {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10%;
+    cursor: pointer;
 }
 
 .checkbox-container li {
     list-style: none;
-    font-size: 0.8vw;
+    font-size: 1vw;
 }
 
 .category input {
@@ -68,11 +79,9 @@ input[type="checkbox"] {
     appearance: none;
     background-color: #fff;
     border: 0.1vw solid #333;
-    min-width: 1vw;
-    min-height: 1vw;
-    width: auto;
-    height: auto;
-    border-radius: 50%;
+    min-width: 1.2vw;
+    min-height: 1.2vw;
+    border-radius: 0.3vw;
     box-sizing: border-box;
     position: relative;
 }
@@ -88,8 +97,55 @@ input[type="checkbox"]:checked::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(45deg);
-    width: 0.25vw;
+    width: 0.4vw;
     height: 0.9vh;
     border: solid white;
-    border-width: 0 0.13vw 0.13vw 0;
+    border-width: 0 0.15vw 0.15vw 0;
+}
+
+.recipe-list {
+    margin-top: 5vh;
+    text-align: center;
+    width: 100%;
+}
+
+.recipe-list h1 {
+    font-size: 2vw;
+    margin-bottom: 2vh;
+}
+
+.recipe-columns {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.column {
+    width: 30%;
+    padding: 0 1vw;
+}
+
+.column h2 {
+    font-size: 1.5vw;
+    margin-bottom: 1vh;
+}
+
+.column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.column li {
+    font-size: 1.2vw;
+    margin-bottom: 1vh;
+}
+
+.column li a {
+    text-decoration: none;
+    color: #4CAF50;
+    transition: color 0.3s ease;
+}
+
+.column li a:hover {
+    color: #388E3C;
 }

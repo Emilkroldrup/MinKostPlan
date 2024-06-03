@@ -15,6 +15,7 @@ public class Recipe {
     private LocalDateTime createdAt;
     private String instructions;
     private List<RecipeIngredient> ingredients;
+    private String mealType;
 
     /**
      * Default constructor.
@@ -31,21 +32,23 @@ public class Recipe {
      * @param createdAt the creation date and time of the recipe
      * @param instructions the list of instructions for the recipe
      */
-    public Recipe(String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions) {
+    public Recipe(String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions, String mealType) {
         this.name = name;
         this.cookName = cookName;
         this.averageTime = averageTime;
         this.createdAt = createdAt;
         this.instructions = instructions;
+        this.mealType = mealType;
     }
 
-    public Recipe(Integer id, String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions) {
+    public Recipe(Integer id, String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions, String mealType) {
         this.recipe_id = id;
         this.name = name;
         this.cookName = cookName;
         this.averageTime = averageTime;
         this.createdAt = createdAt;
         this.instructions = instructions;
+        this.mealType = mealType;
     }
 
     // Getters and Setters
@@ -106,6 +109,14 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public String getMealType() {
+        return mealType;
+    }
+
+    public void setMealType(String mealType) {
+        this.mealType = mealType;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -115,6 +126,7 @@ public class Recipe {
                 ", averageTime=" + averageTime +
                 ", createdAt=" + createdAt +
                 ", instructions='" + instructions + '\'' +
+                ", mealType='" + mealType + '\'' +
                 '}';
     }
 }
