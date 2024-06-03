@@ -91,11 +91,10 @@ public Recipe getRecipeById(int id) {
     public Recipe findByProperty(String property, Object value) {
         return dataAccess.findByProperty(property, value);
     }
-
     @Override
     public List<Recipe> findAll() {
         String sqlRecipes = "SELECT * FROM recipes";
-        String sqlIngredients = "SELECT * FROM recipe_ingredients";
+        String sqlIngredients = "SELECT ri.recipe_id, ri.ingredient_id, ri.quantity, i.name AS ingredient_name FROM recipe_ingredients ri JOIN ingredients i ON ri.ingredient_id = i.ingredient_id";
 
         try {
             List<Recipe> recipes = jdbcTemplate.query(sqlRecipes, (rs, rowNum) -> {
@@ -115,6 +114,7 @@ public Recipe getRecipeById(int id) {
                 ri.setRecipeid(rs.getInt("recipe_id"));
                 ri.setIngredientid(rs.getInt("ingredient_id"));
                 ri.setQuantity(rs.getString("quantity"));
+                ri.setIngredientName(rs.getString("ingredient_name"));
                 return ri;
             });
 
@@ -122,6 +122,8 @@ public Recipe getRecipeById(int id) {
                 .collect(Collectors.groupingBy(RecipeIngredient::getRecipeid));
 
             recipes.forEach(recipe -> recipe.setIngredients(ingredientsMap.get(recipe.getRecipe_id())));
+            System.out.println("Retrieved recipes: " + recipes);
+            logger.info("Retrieved recipes: {}", recipes);
 
             return recipes;
         } catch (Exception e) {

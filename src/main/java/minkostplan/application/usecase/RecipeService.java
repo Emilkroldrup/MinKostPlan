@@ -80,10 +80,13 @@ public class RecipeService {
 
     public List<Recipe> findAllRecipes(){
         try {
-            return recipeRepository.findAll();
+            List<Recipe> recipes = recipeRepository.findAll();
+            System.out.println("Retrieved recipes: " + recipes);
+            return recipes;
         } catch (DataAccessException dataAccessException){
             System.out.println("Error connecting to database: " + dataAccessException.getMessage());
             return List.of();
         }
     }
 }
+
