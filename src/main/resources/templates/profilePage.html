@@ -8,7 +8,9 @@
 <div class="background">
     <div class="profile-container">
         <header class="header">
-            <h1 >Hello User</h1>
+            <a href="/profile" class="a-navbar" th:classappend="${#authentication.name != 'anonymousUser'} ? 'logged-in'">
+                <span th:text="'Hej, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}" onclick="window.location.href='/profile'"></span>
+            </a>
         </header>
         <main class="profile-content">
             <section class="account-details">
