@@ -1,5 +1,7 @@
 package minkostplan.application.DBcontroller.picture;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Stream;
@@ -29,8 +31,11 @@ public class PictureStorageImpl implements PictureStorage{
 
     @Override
     public void init() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'init'");
+        try {
+            Files.createDirectories(root);
+        } catch (IOException e) {
+            throw new RuntimeException("Couldn't initialize folder for upload.");
+        }
     }
 
     @Override
