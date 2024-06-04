@@ -7,13 +7,7 @@ public class ImageRecipeInfo {
   private String url;
 
 
-  public ImageRecipeInfo(int recipeid, String name, String url) {
-    this.recipeid = recipeid;
-    this.name = name;
-    this.url = url;
-  }
-
-  public ImageRecipeInfo(String name, String url) {
+public ImageRecipeInfo(String name, String url) {
     this.name = name;
     this.url = url;
   }

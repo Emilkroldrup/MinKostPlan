@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import minkostplan.application.DBcontroller.picture.PictureStorage;
-import minkostplan.application.DBcontroller.picture.PictureStorageImpl;
 import minkostplan.application.entity.ImageRecipeInfo;
+
 public class ImageController {
 
     @Autowired
@@ -82,9 +82,8 @@ public class ImageController {
         List<ImageRecipeInfo> imageInfos = pictureStorage.loadAll().map(path -> {
             String filename = path.getFileName().toString();
             String url = MvcUriComponentsBuilder.fromMethodName(ImageController.class, "getImage", path.getFileName().toString()).build().toString();
-            int recipeid = imageInfos.getRecipeid();
 
-            return new ImageRecipeInfo(recipeid, filename, url);
+            return new ImageRecipeInfo(filename, url);
         }).collect(Collectors.toList());
 
         model.addAttribute("images", imageInfos);
