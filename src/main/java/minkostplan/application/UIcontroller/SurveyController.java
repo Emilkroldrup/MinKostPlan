@@ -10,11 +10,9 @@ import minkostplan.application.usecase.SurveyService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
 @Controller
 public class SurveyController {
-    
+
     @Autowired
     private SurveyService surveyService;
 
@@ -29,12 +27,10 @@ public class SurveyController {
                                @RequestParam String goal,
                                @RequestParam String email,
                                @RequestParam String password,
+                               @RequestParam int phone,
                                Model model) {
-        Users user = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, LocalDateTime.now(), activityLevel);
+        Users user = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, LocalDateTime.now(), activityLevel, phone);
         model.addAttribute("user", user);
-        return "redirect:/loginPage"; 
+        return "redirect:/loginPage";
     }
-    
-
-    
 }

@@ -1,13 +1,29 @@
 function nextStep(currentStep) {
     var currentDiv = document.getElementById("step" + currentStep);
     var nextDiv = document.getElementById("step" + (currentStep + 1));
-    if (nextDiv) {
+
+    var radio = currentDiv.querySelectorAll('input[type="radio"]');
+    var numberInputs = currentDiv.querySelectorAll('input[type="number"]')
+    var isValid = false;
+    radio.forEach(function(radio){
+        if (radio.checked) {
+            isValid = true;
+        }
+    });
+
+    numberInputs.forEach(function (input){
+        if (input.value == ""){
+            isValid = false;
+        }
+    });
+
+    if (isValid && nextDiv) {
         currentDiv.style.display = "none";
-        nextDiv.style.display = "block";
+        nextDiv.style.display = "flex";
     }
 }
 
-document.getElementById("surveyForm").addEventListener("submit", function(event) {
+document.getElementById("survey").addEventListener("submit", function(event) {
     event.preventDefault();
 
     var formData = new FormData(event.target);
@@ -20,13 +36,22 @@ document.getElementById("surveyForm").addEventListener("submit", function(event)
         headers: headers,
         body: formData
     })
-    .then(response => response.text())
-    .then(result => {
-        console.log('Success:', result);
-        // redirect to the login page
-        window.location.href = "/login";
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        .then(response => response.text())
+        .then(result => {
+            console.log('Success:', result);
+            window.location.href = "/login";
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 });
+
+function lastStep(step) {
+    var currentStep = document.getElementById("step" + step);
+    var lastStep = document.getElementById("step" + (step - 1));
+    if (lastStep) {
+        currentStep.style.display = "none";
+        lastStep.style.display = "flex";
+    }
+}
