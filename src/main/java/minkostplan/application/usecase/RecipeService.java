@@ -19,12 +19,11 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-
     public void saveRecipe(Recipe recipe) {
         try {
             recipeRepository.saveRecipe(recipe);
         } catch (DataAccessException dataAccessException) {
-            System.out.println("Error connecting to database" + dataAccessException.getMessage());
+            System.out.println("Error connecting to database: " + dataAccessException.getMessage());
         }
     }
 
@@ -51,9 +50,5 @@ public class RecipeService {
     public List<Recipe> findAllRecipes(){
             return  recipeRepository.findAll();
     }
-
-
-
-
-    }
+}
 
