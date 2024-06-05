@@ -20,10 +20,10 @@ import minkostplan.application.DBcontroller.picture.PictureStorage;
 
 @Service
 public class PictureStorageService implements PictureStorage {
-    private final Path root = Paths.get("./uploads");
+    private final Path root = Paths.get("./recipe-images");
 
     /**
-     * Initializes the folder for the upload.
+     * Initializes the folder for the upload. Name of the folder is recipe-images.
      *  If the folder doesn't exist, it creates it.
      * If the folder already exists, it does nothing.
      * If the folder can't be created, it throws a runtime exception.

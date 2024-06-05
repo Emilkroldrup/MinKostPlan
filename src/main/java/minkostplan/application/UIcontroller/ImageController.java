@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +23,6 @@ public class ImageController {
 
     @Autowired
     PictureStorage pictureStorage;
-    
 
     /**
      * Redirects to the home page.
@@ -37,7 +35,7 @@ public class ImageController {
     }
 
     /**
-     * Redirects to the home page.
+     * Redirects to the uploadform
      * @return the upload form
      * 
      */
@@ -77,7 +75,7 @@ public class ImageController {
      * @return the images view
      */
     //  Might be useful for the recipes
-    @GetMapping("/images")
+    @GetMapping("/imagetester/list")
     public String getListImages(Model model) {
         List<ImageRecipeInfo> imageInfos = pictureStorage.loadAll().map(path -> {
             String filename = path.getFileName().toString();
@@ -86,8 +84,8 @@ public class ImageController {
             return new ImageRecipeInfo(filename, url);
         }).collect(Collectors.toList());
 
-        model.addAttribute("images", imageInfos);
-        return "images"; // add new mapping for the specified wanted view
+        model.addAttribute("imagetester", imageInfos);
+        return "imagetester"; // add new mapping for the specified wanted view
     }
 
 
