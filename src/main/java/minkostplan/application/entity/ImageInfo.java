@@ -1,23 +1,14 @@
 package minkostplan.application.entity;
 
-public class ImageRecipeInfo {
+public class ImageInfo {
   
-  private int recipeid;
   private String name;
   private String url;
 
 
-public ImageRecipeInfo(String name, String url) {
+public ImageInfo(String name, String url) {
     this.name = name;
     this.url = url;
-  }
-
-public int getRecipeid() {
-    return recipeid;
-  }
-
-  public void setRecipeid(int recipeid) {
-    this.recipeid = recipeid;
   }
 
   public String getName() {
@@ -39,7 +30,6 @@ public int getRecipeid() {
   @Override
     public String toString() {
         return "ImageRecipeInfo{" +
-        "recipeid=" + recipeid +
         ", name=" + name +
         ", url='" + url + '\'' +
         '}';

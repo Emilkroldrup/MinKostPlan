@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import minkostplan.application.DBcontroller.picture.PictureStorage;
-import minkostplan.application.entity.ImageRecipeInfo;
+import minkostplan.application.entity.ImageInfo;
 
 public class ImageController {
 
@@ -51,7 +51,7 @@ public class ImageController {
      * @param file
      * @return the upload form
      */
-    @PostMapping("/images/upload")
+    @PostMapping("/imagetester/upload")
     public String uploadImage(Model model, @RequestParam("file") MultipartFile file) {
         String message = "";
 
@@ -77,11 +77,11 @@ public class ImageController {
     //  Might be useful for the recipes
     @GetMapping("/imagetester/list")
     public String getListImages(Model model) {
-        List<ImageRecipeInfo> imageInfos = pictureStorage.loadAll().map(path -> {
+        List<ImageInfo> imageInfos = pictureStorage.loadAll().map(path -> {
             String filename = path.getFileName().toString();
             String url = MvcUriComponentsBuilder.fromMethodName(ImageController.class, "getImage", path.getFileName().toString()).build().toString();
 
-            return new ImageRecipeInfo(filename, url);
+            return new ImageInfo(filename, url);
         }).collect(Collectors.toList());
 
         model.addAttribute("imagetester", imageInfos);
@@ -95,7 +95,7 @@ public class ImageController {
      * @return
      */
     // Use this to load the users profile picture when they login
-    @GetMapping("/images/{filename:.+}")
+    @GetMapping("/imagetester/{filename:.+}")
     public ResponseEntity<Resource> getImage(@PathVariable String filename) {
         Resource file = pictureStorage.load(filename);
 
