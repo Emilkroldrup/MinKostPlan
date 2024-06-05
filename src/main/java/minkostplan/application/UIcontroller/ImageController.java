@@ -24,15 +24,6 @@ public class ImageController {
     @Autowired
     PictureStorage pictureStorage;
 
-    /**
-     * Redirects to the home page.
-     * @return the home page
-     * 
-     */
-    @GetMapping("/")
-    public String homepage() {
-        return "redirect:/home";
-    }
 
     /**
      * Redirects to the uploadform
