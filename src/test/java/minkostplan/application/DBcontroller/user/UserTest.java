@@ -26,8 +26,8 @@ class UserRepositoryTest {
      */
     @BeforeEach
     void setUp() {
-        existingUser = new Users("Madsen","Bjerring", 21,190,80,"Male","Gain weight","test@gmail.com","testword", LocalDateTime.now(), "1-2 times a week");
-        existingUser2= new Users("egon","Bjerring", 23,190,80,"Female","Gain weight","test2@gmail.com","testword", LocalDateTime.now(), "3-5 times a week");
+        existingUser = new Users("Madsen","Bjerring", 21,190,80,"Male","Gain weight","test@gmail.com","testword", LocalDateTime.now(), "1-2 times a week", 21212121);
+        existingUser2= new Users("egon","Bjerring", 23,190,80,"Female","Gain weight","test2@gmail.com","testword", LocalDateTime.now(), "3-5 times a week", 20202020);
     }
     
 

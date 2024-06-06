@@ -18,6 +18,7 @@ public class Users {
     private String passwordHash;
     private LocalDateTime createdAt;
     private String activityLevel;
+    private int phone;
 
     /**
      * Default constructor.
@@ -33,7 +34,7 @@ public class Users {
      * @param passwordHash the password hash of the user
      * @param createdAt the creation date and time of the user
      */
-    public Users(String firstName, String lastName, int age, int height, int weight, String gender, String goal, String email, String passwordHash, LocalDateTime createdAt, String activityLevel) {
+    public Users(String firstName, String lastName, int age, int height, int weight, String gender, String goal, String email, String passwordHash, LocalDateTime createdAt, String activityLevel, int phone) {
         this.firstName=firstName;
         this.lastName=lastName;
         this.age=age;
@@ -45,6 +46,7 @@ public class Users {
         this.passwordHash = passwordHash;
         this.createdAt = createdAt;
         this.activityLevel = activityLevel;
+        this.phone = phone;
     }
 
     public String getFirstName() {
@@ -135,21 +137,30 @@ public class Users {
         this.activityLevel=activityLevel;
     }
 
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
-        return "{" +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", age='" + getAge() + "'" +
-            ", height='" + getAge() + "'" +
-            ", weight='" + getWeight() + "'" +
-            ", gender='" + getGender() + "'" +
-            ", goal='" + getGoal() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", passwordHash='" + getPasswordHash() + "'" +
-            ", activityLevel='" + getActivityLevel() + "'" +
-            ", createdAt='" + getCreatedAt() + "'" +
-            "}";
+        return "Users{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", gender='" + gender + '\'' +
+                ", goal='" + goal + '\'' +
+                ", email='" + email + '\'' +
+                ", passwordHash='" + passwordHash + '\'' +
+                ", createdAt=" + createdAt +
+                ", activityLevel='" + activityLevel + '\'' +
+                ", phone=" + phone +
+                '}';
     }
 }
 

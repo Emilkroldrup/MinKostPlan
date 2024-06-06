@@ -76,8 +76,8 @@ public double totalCalories(Users users){
 public static void main(String [] args){
     Caloriealgorithm calc = new Caloriealgorithm();
 
-    Users users = new Users("mads","madsen",20,192,80,"male","Gain weight","madsen@gmail.com","testword", LocalDateTime.now(), "6-7 times a week");
-    Users users2 = new Users("mia","lisbeth",20,192,80,"female","Build muscle","madsen@gmail.com","testword", LocalDateTime.now(), "1-2 gange om dagen");
+    Users users = new Users("mads","madsen",20,192,80,"male","Gain weight","madsen@gmail.com","testword", LocalDateTime.now(), "6-7 times a week", 20202020);
+    Users users2 = new Users("mia","lisbeth",20,192,80,"female","Build muscle","madsen@gmail.com","testword", LocalDateTime.now(), "1-2 gange om dagen", 21211221);
 
 
 

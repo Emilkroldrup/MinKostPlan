@@ -52,5 +52,4 @@ public class HomepageController {
     public String aboutPage(){
         return "aboutPage";
     }
-
 }

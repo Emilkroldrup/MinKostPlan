@@ -18,14 +18,14 @@
         <li><a href="home">Hjem</a></li>
         <li><a href="recipelist">Opskrifter</a></li>
         <li><a href="about">Om os</a></li>
-        <li><a href="admindish">Admin</a></li>
+        <li th:if="${T(minkostplan.application.usecase.UserUtil).getCurrentUserEmail() == 'test@mail.com'}"><a href="admin">Admin</a></li>
     </ul>
 
     <div class="navbar-account">
         <a href="/profile" class="a-navbar" th:classappend="${#authentication.name != 'anonymousUser'} ? 'logged-in'">
             <span th:if="${#authentication.name != 'anonymousUser'}" th:text="'Hej, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}"></span>
         </a>
-        <a th:if="${#authentication.name == 'anonymousUser'}" href="login" class="login">Login</a>
+        <a th:if="${#authentication.name == 'anonymousUser'}" href="login" class="login">Log ind</a>
     </div>
 </nav>
 </body>
