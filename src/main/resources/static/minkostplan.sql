@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
                                              `Calories` int DEFAULT NULL,
                                              `Carbohydrate` int DEFAULT NULL,
                                              `Fat` int DEFAULT NULL,
-                                             `Protien` int DEFAULT NULL,
+                                             `protein` int DEFAULT NULL,
                                              PRIMARY KEY (`ingredient_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Contains different ingredients used in recipes.';
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `ingredients` (
 -- Data dump for tabellen `ingredients`
 --
 
-INSERT INTO `ingredients` (`ingredient_id`, `name`, `description`, `Calories`, `Carbohydrate`, `Fat`, `Protien`) VALUES
+INSERT INTO `ingredients` (`ingredient_id`, `name`, `description`, `Calories`, `Carbohydrate`, `Fat`, `protein`) VALUES
                                                                                                                      (1, 'Spaghetti', 'Long, thin, cylindrical pasta of Italian origin', 0, 0, 0, 0),
                                                                                                                      (2, 'Egg', 'Organic free-range eggs', 0, 0, 0, 0),
                                                                                                                      (3, 'Bacon', 'Thick slices of smoked bacon', 0, 0, 0, 0),

@@ -23,6 +23,7 @@ public class RecepiIngredientRepositoryImpl implements RecepiIngredientRepositor
         this.dataAccess = new GenericJdbcRepository<>(jdbcTemplate, RecipeIngredient.class);
     }
 
+
     @Override
     public void saveRecipeIngredient(RecipeIngredient recipeIngredient){
         String sql = "INSERT INTO recipe_ingredients (recipe_id,ingredient_id,quantity) VALUES (?,?,?)";

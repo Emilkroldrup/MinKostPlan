@@ -20,7 +20,7 @@ class IngredientsRepositoryImplTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        ingredient = new Ingredient(1L, "Mælk", "Arla Skummemælk");
+        ingredient = new Ingredient(1L, "Mælk", "Arla Skummemælk",20,40,100,50);
     }
 
     @Test

@@ -46,9 +46,11 @@ public class RecipeService {
     public Recipe findByProperty(String property, Object value) {
             return recipeRepository.findByProperty(property, value);
     }
-
+    public List<Recipe> findAll(){
+        return  recipeRepository.findAll();
+    }
     public List<Recipe> findAllRecipes(){
-            return  recipeRepository.findAll();
+            return  recipeRepository.findAllRecipe();
     }
 }
 

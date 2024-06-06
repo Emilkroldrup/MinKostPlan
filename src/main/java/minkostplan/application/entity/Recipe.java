@@ -1,6 +1,7 @@
 package minkostplan.application.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ public class Recipe {
      * Default constructor.
      */
     public Recipe() {
+        this.ingredients = new ArrayList<>();
+        this.instructionsList = new ArrayList<>();
     }
 
     /**
@@ -42,15 +45,6 @@ public class Recipe {
         this.mealType = mealType;
     }
 
-    public Recipe(Integer id, String name, String cookName, Integer averageTime, LocalDateTime createdAt, String instructions, String mealType) {
-        this.recipe_id = id;
-        this.name = name;
-        this.cookName = cookName;
-        this.averageTime = averageTime;
-        this.createdAt = createdAt;
-        this.instructions = instructions;
-        this.mealType = mealType;
-    }
 
     // Getters and Setters
 

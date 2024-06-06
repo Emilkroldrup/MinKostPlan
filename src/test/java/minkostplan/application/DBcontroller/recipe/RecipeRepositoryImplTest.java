@@ -25,7 +25,7 @@ class RecipeRepositoryImplTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        updateRecipe = new Recipe("Flæskesteg", "John Doe", 90, LocalDateTime.now(), "Flæskesvær");
+        updateRecipe = new Recipe("Flæskesteg", "John Doe", 90, LocalDateTime.now(), "Flæskesvær","morgenmad");
     }
 
     @Test

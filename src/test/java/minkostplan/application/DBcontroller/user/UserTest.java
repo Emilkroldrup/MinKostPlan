@@ -82,14 +82,29 @@ class UserRepositoryTest {
     }
 
 
+    /**
+     * Tests/Verifies that the editUserDetails method is correctly called when editing an existing user.
+     */
     @Test
     void editUser(){
 
+        doNothing().when(userRepository).editUserDetails(existingUser);
+
+        userRepository.editUserDetails(existingUser);
+
+        verify(userRepository).editUserDetails(existingUser);
     }
 
+    /**
+     * Tests/Verifies that the saveUser method is correctly called when saving a new user.
+     */
     @Test
     void saveUser(){
+        doNothing().when(userRepository).saveUser(existingUser);
 
+        userRepository.saveUser(existingUser);
+
+        verify(userRepository).saveUser(existingUser);
     }
 
 

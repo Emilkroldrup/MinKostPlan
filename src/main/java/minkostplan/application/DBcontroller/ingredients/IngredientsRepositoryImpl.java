@@ -20,10 +20,16 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
         this.dataAccess = new GenericJdbcRepository<>(jdbcTemplate, Ingredient.class);
     }
 
+
+    @Override
+    public List<String> findAllNames() {
+        String sql = "SELECT name FROM ingredients";
+        return jdbcTemplate.queryForList(sql, String.class);
+    }
     @Override
     public void saveIngredient(Ingredient ingredient) {
-        String sql = "INSERT INTO ingredients (name, description) VALUES (?, ?)";
-        dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription());
+        String sql = "INSERT INTO ingredients (name, description,calories,carbohydrate,fat,protein) VALUES (?,?,?,?,?,?)";
+        dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription(),ingredient.getCalories(),ingredient.getCarbohydrate(),ingredient.getFat(),ingredient.getProtein());
     }
 
     @Override
@@ -45,8 +51,8 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
 
     @Override
     public void editIngredient(Ingredient ingredient, int ingredientId) {
-        String sql = "UPDATE ingredients SET name = ?, description = ? WHERE ingredient_id = ?";
-        dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription(), ingredientId);
+        String sql = "UPDATE ingredients SET name = ?, description = ?, calories = ?, carbohydrate = ?, fat = ?, protein = ? WHERE ingredient_id = ?";
+        dataAccess.getJdbcTemplate().update(sql, ingredient.getName(), ingredient.getDescription(),ingredient.getCalories(),ingredient.getCarbohydrate(), ingredient.getFat(), ingredient.getProtein(), ingredientId);
     }
 
     @Override
@@ -56,6 +62,6 @@ public class IngredientsRepositoryImpl implements IngredientsRepository {
 
     @Override
     public List<Ingredient> findAll() {
-        return List.of();
+        return dataAccess.findAll();
     }
 }
