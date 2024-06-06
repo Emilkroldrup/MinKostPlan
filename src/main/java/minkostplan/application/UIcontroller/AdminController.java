@@ -56,6 +56,15 @@ public class AdminController {
         return "adminpage";
     }
 
+    @GetMapping("/navbar")
+    public String navbarAdmin(Model model) {
+        Users user = UserUtil.getCurrentUser();
+        String email = user.getEmail();
+        model.addAttribute("email", email);
+        model.addAttribute("adminEmail", adminEmail);
+        return "navbar";
+    }
+
     /**
      * Adds the recipe and ingredient(s) to the database and to recipeingredients in the database
      * @param recipe recipe object of recipe class
