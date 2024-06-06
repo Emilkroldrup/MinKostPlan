@@ -5,8 +5,6 @@
         overflow-x:hidden;
     }
 
-
-
     .mission{
         width: 17%;
     }
@@ -129,8 +127,8 @@
 
     .image1Container,.image2Container{
         position: relative;
-
     }
+
     .profilepicture1Text,.profilepicture2Text{
         list-style: none;
         display: flex;

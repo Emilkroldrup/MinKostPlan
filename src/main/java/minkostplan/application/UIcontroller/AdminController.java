@@ -76,6 +76,7 @@ public class AdminController {
         return "adminpageingredient";
     }
 
+
     @GetMapping("/admindishes")
     public String adminPageAllDishes(Model model) {
         List<Recipe> recipes = recipeService.findAllRecipes();
@@ -100,6 +101,17 @@ public class AdminController {
         }
         model.addAttribute("ingredients", ingredients);
         return "adminpageallingredients";
+    }
+
+
+
+    @GetMapping("/navbar")
+    public String navbarAdmin(Model model) {
+        Users user = UserUtil.getCurrentUser();
+        String email = user.getEmail();
+        model.addAttribute("email", email);
+        model.addAttribute("adminEmail", adminEmail);
+        return "navbar";
     }
 
 

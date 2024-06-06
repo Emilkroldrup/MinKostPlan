@@ -2,147 +2,175 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>MinKostPlan</title>
     <link rel="stylesheet" th:href="@{/css/homepage.css}">
-    <link rel="stylesheet" th:href="@{/css/navbar.css}">
-    <link rel="stylesheet" th:href="@{/css/footer.css}">
     <script src="/javascript/survey.js" defer></script>
 </head>
 <body>
+    <img src="images/minkostplan-logo.png" alt="mkp-logo" class="logo">
+    <section class="content">
 
-<!--Container for the leak image-->
-<section>
-    <img src="images\leak.png" class="leak-bar">
-</section>
+        <form id="survey" method="post" th:action="@{/survey}" >
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 
-<!--Form for the survey and its controls-->
-<form id="surveyForm" method="post" th:action="@{/survey}" >
-    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            <section class="survey" id="step1">
+                <h1>Hvad er dit mål?</h1>
+                <div class="input-row">
+                    <label class="input-container-radio">
+                        <input type="radio" id="lose weight" name="goal" value="Lose weight">
+                        <label for="lose weight">TAB DIG</label>
+                    </label>
 
-    <div class="survey-step" id="step1">
-        <label>What is your goal?</label>
-        <div>
-            <input type="radio" id="lose weight" name="goal" value="Lose weight" checked />
-            <label for="lose weight">Lose weight</label>
-        </div>
-        <div>
-            <input type="radio" id="gain weight" name="goal" value="Gain weight" checked />
-            <label for="gain weight">Gain weight</label>
-        </div>
-        <div>
-            <input type="radio" id="build muscle" name="goal" value="Build muscle" checked />
-            <label for="build muscle">Build muscle</label>
-        </div>
-        <div>
-            <input type="radio" id="keep current weight" name="goal" value="Maintain weight" checked/>
-            <label for="keep current weight">Keep current weight</label>
-        </div>
+                    <label class="input-container-radio">
+                        <input type="radio" id="gain weight" name="goal" value="Gain weight">
+                        <label for="gain weight">ØG DIN VÆGT</label>
+                    </label>
+                </div>
 
-        <button type="button" onclick="nextStep(1)">Next</button>
-    </div>
+                <div class="input-row">
+                    <label class="input-container-radio">
+                        <input type="radio" id="build muscle" name="goal" value="Build muscle">
+                        <label for="build muscle">OPBYG MUSKLER</label>
+                    </label>
 
-    <div class="survey-step" id="step2" style="display:none;">
-        <label>First Name:</label>
-        <input type="text" id="firstName" name="firstName" required>
+                    <label class="input-container-radio">
+                        <input type="radio" id="keep current weight" name="goal" value="Maintain weight">
+                        <label for="keep current weight">HOLD DIN VÆGT</label>
+                    </label>
+                </div>
+                <button type="button" class="next" onclick="nextStep(1)">Næste</button>
+            </section>
 
-        <label>Last Name:</label>
-        <input type="text" id="lastName" name="lastName" required>
+            <section class="survey" id="step2">
+                <h1>Informationer om dig</h1>
+                <div class="input-row">
+                    <label class="input-container">
+                        <label>Hvad vejer du i kg?</label>
+                        <input type="number" id="weight" name="weight" min="0">
+                    </label>
 
-        <button type="button" onclick="nextStep(2)">Next</button>
-    </div>
+                    <label class="input-container">
+                        <label>Hvor høj er du i cm?</label>
+                        <input type="number" id="height" name="height" min="0">
+                    </label>
+                </div>
 
-    <div class="survey-step" id="step3" style="display:none;">
-        <label>Age:</label>
-        <input type="number" id="age" name="age" required>
+                <div class="input-row">
+                    <section class="input-container">
+                        <label>Hvad er din alder?</label>
+                        <input type="number" id="age" name="age" min="0">
+                    </section>
 
-        <label>Height (cm)</label>
-        <input type="number" id="height" name="height" required>
+                    <section class="input-container-radio">
+                        <label>Hvad er dit køn?</label>
+                        <section class="gender-options">
+                            <input type="radio" id="male" name="gender" value="Mand">
+                            <label for="male">Mand</label>
+                            <input type="radio" id="female" name="gender" value="Kvinde">
+                            <label for="female">Kvinde</label>
+                        </section>
+                    </section>
+                </div>
+                <section class="button-container">
+                    <button type="button" class="back" onclick="lastStep(2)">Tilbage</button>
+                    <button type="button" class="next" onclick="nextStep(2)">Næste</button>
+                </section>
+            </section>
 
-        <label>Weight (kg)</label>
-        <input type="number" id="weight" name="weight" required>
+            <section class="survey" id="step3">
+                <h1>Hvor ofte er du aktiv?</h1>
+                <div class="input-row">
+                    <label class="input-container-radio">
+                        <input type="radio" id="none" name="activityLevel" value="None or very little exercise">
+                        <label for="none">Ingen eller meget lidt aktiv</label>
+                    </label>
 
-        <button type="button" onclick="nextStep(3)">Next</button>
-    </div>
+                    <label class="input-container-radio">
+                        <input type="radio" id="1-2" name="activityLevel" value="1-2 times a week">
+                        <label for="1-2">1-2 gange om ugen</label>
+                    </label>
+                </div>
 
-    <div class="survey-step" id="step4" style="display:none">
-        <label>Køn:</label>
-        <select name="gender" required>
-            <option value="Male">Mand</option>
-            <option value="Female">Kvinde</option>
-        </select>
-        <button type="button" onclick="nextStep(4)">Next</button>
-    </div>
+                <div class="input-row">
+                    <label class="input-container-radio">
+                        <input type="radio" id="3-5" name="activityLevel" value="3-5 times a week">
+                        <label for="3-5">3-5 gange om ugen</label>
+                    </label>
 
-    <div class="survey.step" id="step5" style="display: none;">
-        <label>Hvor ofte er du aktiv?</label>
-        <div>
-            <input type="radio" id="none" name="activityLevel" value="None or very little exercise" checked />
-            <label for="none">Ingen eller meget lidt aktivitet</label>
-        </div>
-        <div>
-            <input type="radio" id="1-2" name="activityLevel" value="1-2 times a week" checked />
-            <label for="1-2">1-2 gange om ugen</label>
-        </div>
-        <div>
-            <input type="radio" id="3-5" name="activityLevel" value="3-5 times a week" checked />
-            <label for="3-5">3-5 gange om ugen</label>
-        </div>
-        <div>
-            <input type="radio" id="6-7" name="activityLevel" value="6-7 times a week" checked/>
-            <label for="6-7">6-7 gange om ugen</label>
-        </div>
-        <div>
-            <input type="radio" id="1-2 daily" name="activityLevel" value="1-2 times a day" checked/>
-            <label for="1-2 daily">1-2 gange om dagen</label>
-        </div>
-        <button type="button" onclick="nextStep(5)">Next</button>
-    </div>
 
-    <div class="survey.step" id="step6" style="display: none;">
-        <label>E-mail:</label>
-        <input type="email" id="email" name="email" required>
+                    <label class="input-container-radio">
+                        <input type="radio" id="6-7" name="activityLevel" value="6-7 times a week">
+                        <label for="6-7">6-7 gange om ugen</label>
+                    </label>
+                </div>
 
-        <label>Password:</label>
-        <input type="password" id="password" name="password" required>
+                <div class="input-row">
+                    <label class="input-container-radio">
+                        <input type="radio" id="1-2 daily" name="activityLevel" value="1-2 times a day">
+                        <label for="1-2 daily">1-2 gange om dagen</label>
+                    </label>
+                </div>
 
-        <button type="submit">Sign up</button>
-    </div>
-</form>
+                <section class="button-container-radio">
+                    <button type="button" class="back" onclick="lastStep(3)">Tilbage</button>
+                    <button type="button" class="next" onclick="nextStep(3)">Next</button>
+                </section>
+            </section>
 
-<div class="paragraph-container">
-    <h2>Den billige løsning til at opnå din drømmekrop</h2><br>
-    <p>Minkostplan.com giver dig skræddersyede kostplaner, som du kender dem.<br> Bare langt billigere.<br>
+            <section class="survey" id="step4">
+                <h1>Kontakt oplysninger</h1>
+                <div class="input-row">
+                    <label class="input-container">
+                        <label>Fornavn:</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Dit fornavn">
+                    </label>
 
-        Hver uge giver vi dig 21 nye opskrifter fordelt på dagens tre måltider.<br>
+                    <label class="input-container">
+                        <label>Efternavn:</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Dit efternavn">
+                    </label>
+                </div>
 
-        Alle opskrifter er skræddersyet efter dine mål og ønsker for at opnå den krop, du drømmer om.<br>
+                <div class="input-row">
+                    <label class="input-container">
+                        <label>Mail</label>
+                        <input type="email" id="email" name="email" placeholder="Din email">
+                    </label>
 
-        Alt sammen til kun DKK 49,00 om ugen (DKK 196,00 pr. måned)</p>
-</div>
+                    <label class="input-container">
+                        <label>Telefonnummer</label>
+                        <input type="number" id="number" name="phone" placeholder="Dit telefonnummer">
+                    </label>
+                </div>
 
-<section >
-    <img alt="italian pasta salad" src="images\italian-pasta-salad.jpg" class="image-container">
-</section>
-
-<section>
-    <div class="paragraph2-container">
-        <h2>Hvordan fungerer det?</h2><br>
-        <p>Hos Minkostplan.com skal du blot udfylde formularen øverst på siden, og så er du i gang.<br> Du modtager din regulerede kostplan lige efter, vi har modtaget din ordre.<br>
-
-            Den indeholder 21 opskrifter. 7 til morgen, 7 til frokost og 7 til aften. <br>Ugen efter vil du på samme ugedag modtage 21 nye opskrifter.<br>
-            Opskrifterne vil aldrig være de samme, men de vil altid være skræddersyet efter dine mål.<br>
-
-            Alle opskrifter har en udførlig guide med både indhold og fremgangsmåde. Minkostplan har en måneds binding.</p>
-    </div>
-    <section >
-        <img alt="father with children" src="images\fatherwithchildren.jpg" class="image2-container">
+                <div class="input-row">
+                    <label class="input-container">
+                        <label>Adgangskode</label>
+                        <input type="password" id="password" name="password" placeholder="Indtast et kodeord">
+                    </label>
+                </div>
+                <section class="button-container">
+                    <button type="button" class="back" onclick="lastStep(4)">Tilbage</button>
+                    <button type="submit" class="start">Opret konto</button>
+                </section>
+            </section>
+        </form>
     </section>
 
-</section>
+    <div class="cut"></div>
+    <div class="cut2"></div>
+    <div class="box"></div>
+    <img src="images/madpyramiden.png" alt="Madpyramiden" class="food-pyramid">
 
-<div th:replace="navbar.html"></div>
-<div th:replace="footer.html"></div>
+    <section class="text-context">
+        <h1>Den billige løsning til at opnå din drømmekrop</h1>
+        <p>Minkostplan.com giver dig skræddersyede kostplaner, som du kender dem. Bare langt billigere.</p>
+        <p>Hver uge giver vi dig 21 nye opskrifter fordelt på dagens tre måltider.</p>
+        <p>Alle opskrifter er skræddersyet efter dine mål og ønsker for at opnå den krop, du drømmer om.</p>
+        <p>Alt sammen til kun DKK 49,00 om ugen (DKK 196,00 pr. måned)</p>
+    </section>
 
+    <section th:replace="navbar.html"></section>
+    <section th:replace="footer.html"></section>
 </body>
 </html>
