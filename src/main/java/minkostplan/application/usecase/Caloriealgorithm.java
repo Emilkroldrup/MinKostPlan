@@ -1,9 +1,12 @@
 package minkostplan.application.usecase;
 
 import minkostplan.application.entity.Users;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+
+@Service
 public class Caloriealgorithm {
 
 
