@@ -54,7 +54,7 @@ class UserRepositoryTest {
         Users result = userRepository.findByEmail("nonexistingemail");
 
         assertNotEquals(existingUser,result);
-        System.out.println("Has to equal: " + existingUser);
+        System.out.println("Has to equal: " + null);
         System.out.println("\nResult: " + result);
     }
 
@@ -80,5 +80,17 @@ class UserRepositoryTest {
         System.out.println("Expected users " + expectedUsers);
         System.out.println("\nResult " + actualUsers);
     }
+
+
+    @Test
+    void editUser(){
+
+    }
+
+    @Test
+    void saveUser(){
+
+    }
+
 
 }

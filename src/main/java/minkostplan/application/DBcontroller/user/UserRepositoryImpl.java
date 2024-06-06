@@ -45,29 +45,22 @@ public class UserRepositoryImpl implements UserRepository {
         String sql = "INSERT INTO users (firstname, lastname, age, height, weight, gender, goal, email, password_hash, created_at, activitylevel, phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         dataAccess.getJdbcTemplate().update(sql, user.getFirstName(), user.getLastName(), user.getAge(), user.getHeight(), user.getWeight(), user.getGender(), user.getGoal(), user.getEmail(), user.getPasswordHash(), user.getCreatedAt(),user.getActivityLevel(), user.getPhone());
     }
-
+    @Override
+    public void editUserDetails(Users user) {
+        Users currentuser = UserUtil.getCurrentUser();
+        String sql = "UPDATE users SET firstname = ?, lastname = ?, email = ?, age = ?, height = ?, weight = ?, gender = ?, goal = ?, activitylevel = ? WHERE email = ?";
+        if (!user.getFirstName().isEmpty() && !user.getLastName().isEmpty() && !user.getEmail().isEmpty() && user.getAge() >= 0 && user.getHeight() >= 0 && user.getWeight() >= 0 && !user.getGender().isEmpty() && !user.getGoal().isEmpty() && !user.getActivityLevel().isEmpty()) {
+            jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAge(), user.getHeight(), user.getWeight(), user.getGender(), user.getGoal(), user.getActivityLevel(), currentuser.getEmail());
+        }
+    }
     @Override
     public Users findByProperty(String property, Object value) {
         return dataAccess.findByProperty(property, value);
     }
-
     @Override
     public List<Users> findAll() {
         return dataAccess.findAll();
     }
 
-    @Override
-    public void editUserDetails(Users user){
-        Users currentuser = UserUtil.getCurrentUser();
-        try {
-            String sql = "UPDATE users SET firstname = ?, lastname = ?, email = ?, age = ?, height = ?, weight = ?, gender = ?, goal = ?, activitylevel = ? WHERE email = ?";
-            if (!user.getFirstName().isEmpty() && !user.getLastName().isEmpty() && !user.getEmail().isEmpty() && user.getAge() >= 0 && user.getHeight() >= 0 && user.getWeight() >= 0 && !user.getGender().isEmpty() && !user.getGoal().isEmpty() && !user.getActivityLevel().isEmpty()) {
-                jdbcTemplate.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getAge(), user.getHeight(), user.getWeight(), user.getGender(), user.getGoal(), user.getActivityLevel(), currentuser.getEmail());
-            }
-        } catch (DuplicateKeyException duplicateKeyException){
-            System.out.println("same user-details already exists " + duplicateKeyException);
-        } catch (Exception e) {
-            System.out.println("Error trying to update user: " + e.getMessage());
-        }
-    }
+
 }
