@@ -46,6 +46,11 @@ public class UserUtil {
         return null;
     }
 
+    public static String getCurrentUserEmail() {
+        Users user = getCurrentUser();
+        return (user != null) ? user.getEmail() : "";
+    }
+
    /**
      * Retrieves the first name of the current authenticated user.
      *
