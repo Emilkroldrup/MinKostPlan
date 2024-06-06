@@ -55,8 +55,9 @@ public class SurveyServiceTest {
         String password = "password1";
         LocalDateTime createdAt = LocalDateTime.now();
         String activityLevel = "none";
+        int phone = 20202020;
 
-        Users userTest = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, createdAt, activityLevel);
+        Users userTest = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, createdAt, activityLevel, phone);
         
         assertNotNull(userTest);
         assertEquals(hashedPassword, userTest.getPasswordHash());
