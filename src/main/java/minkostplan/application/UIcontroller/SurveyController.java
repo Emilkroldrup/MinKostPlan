@@ -3,6 +3,7 @@ package minkostplan.application.UIcontroller;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import minkostplan.application.entity.Users;
@@ -29,8 +30,15 @@ public class SurveyController {
                                @RequestParam String password,
                                @RequestParam int phone,
                                Model model) {
-        Users user = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, LocalDateTime.now(), activityLevel, phone);
-        model.addAttribute("user", user);
-        return "redirect:/loginPage";
+
+        try{
+            Users user = surveyService.createUser(firstName, lastName, age, height, weight, gender, goal, email, password, LocalDateTime.now(), activityLevel, phone);
+            model.addAttribute("user", user);
+            return "redirect:/loginPage";
+        }catch (DuplicateKeyException duplicateKeyException){
+            System.out.println("Same user email is already being used" + duplicateKeyException.getMessage());
+        }
+        return "homepage";
+
     }
 }

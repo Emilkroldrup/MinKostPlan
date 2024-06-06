@@ -47,7 +47,7 @@ class RecipeRepositoryImplTest {
         when(recipeRepository.getRecipeById(1)).thenReturn(updateRecipe);
         updateRecipe = recipeRepository.getRecipeById(recipeId);
         updateRecipe.setAverageTime(40);
-        recipeRepository.updateRecipe(updateRecipe, recipeId);
-        verify(recipeRepository).updateRecipe(updateRecipe, recipeId);
+        recipeRepository.editRecipe(updateRecipe, recipeId);
+        verify(recipeRepository).editRecipe(updateRecipe, recipeId);
     }
 }

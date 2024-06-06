@@ -8,6 +8,7 @@ public class RecipeIngredient {
     private int recipeid;
     private int ingredientid;
     private String quantity;
+    private String ingredientName;
 
     /**
      * Default constructor.
@@ -21,11 +22,13 @@ public class RecipeIngredient {
      * @param recipeid the recipeid
      * @param ingredientid the ingredientid
      * @param quantity the quantity of the ingredient
+     * @param ingredientName the name of the ingredient
      */
-    public RecipeIngredient(int recipeid, int ingredientid, String quantity) {
+    public RecipeIngredient(int recipeid, int ingredientid, String quantity, String ingredientName) {
         this.recipeid = recipeid;
         this.ingredientid = ingredientid;
         this.quantity = quantity;
+        this.ingredientName = ingredientName;
     }
 
     public int getRecipeid() {
@@ -52,12 +55,21 @@ public class RecipeIngredient {
         this.quantity = quantity;
     }
 
+    public String getIngredientName() {
+        return ingredientName;
+    }
+
+    public void setIngredientName(String ingredientName) {
+        this.ingredientName = ingredientName;
+    }
+
     @Override
     public String toString() {
         return "RecipeIngredient{" +
                 "recipeid=" + recipeid +
                 ", ingredientid=" + ingredientid +
                 ", quantity='" + quantity + '\'' +
+                ", ingredientName='" + ingredientName + '\'' +
                 '}';
     }
 }
