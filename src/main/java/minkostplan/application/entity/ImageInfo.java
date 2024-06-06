@@ -1,22 +1,25 @@
 package minkostplan.application.entity;
 
+import java.util.List;
+
 public class ImageInfo {
   
-  private String name;
+  private String fileName;
   private String url;
+  private List<ImageInfo> images;
 
 
-public ImageInfo(String name, String url) {
-    this.name = name;
+public ImageInfo(String fileName, String url) {
+    this.fileName = fileName;
     this.url = url;
   }
 
-  public String getName() {
-    return this.name;
+  public String getFileName() {
+    return this.fileName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
   }
 
   public String getUrl() {
@@ -26,12 +29,23 @@ public ImageInfo(String name, String url) {
   public void setUrl(String url) {
     this.url = url;
   }
+
+  public List<ImageInfo> getImages() {
+    return this.images;
+}
+
+public void setImages(List<ImageInfo> images) {
+    this.images = images;
+}
+  
   
   @Override
     public String toString() {
         return "ImageRecipeInfo{" +
-        ", name=" + name +
-        ", url='" + url + '\'' +
+        ", fileName=" + fileName +
+        ", url='" + url +
+        ", images=" + images +
+        '\'' +
         '}';
   }
 }
