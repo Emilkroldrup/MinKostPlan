@@ -21,6 +21,9 @@ public class IngredientService {
         this.ingredientsRepository = ingredientsRepository;
     }
 
+    public List<String> findAllNames() {
+        return ingredientsRepository.findAllNames();
+    }
     public void saveIngredient(Ingredient ingredient) {
         ingredientsRepository.saveIngredient(ingredient);
     }
@@ -45,7 +48,7 @@ public class IngredientService {
         return ingredientsRepository.findByProperty(property, value);
     }
 
-    public List<Ingredient> findAll() {
+    public List<Ingredient> findAllIngredients() {
         return ingredientsRepository.findAll();
     }
 }

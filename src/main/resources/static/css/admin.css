@@ -2,29 +2,116 @@ body, html {
     height: 100%;
     align-items: center;
     font-family: 'Arial', sans-serif;
-    background-image: url('../images/Ceasar.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: #EFF9F0;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    max-width: 90vw;
+    height: auto;
+    max-height: 90vh;
+    background-color: white;
+    padding: 2vh 2vw;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    z-index: 1001;
+    overflow-y: auto;
+}
+
+
+.popup:target {
+    display: block;
+}
+
+.popup:target ~ .overlay {
+    display: block;
+}
+
+
+body.popup-open {
+    overflow: hidden;
+}
+
+body.popup-open > *:not(.popup):not(.overlay) {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+
+.menu-select{
+    width: 20vw;
+    height: 55vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 25vh;
+    left: 15.5vw;
+    border-radius: 10px;
+    padding: 2vh 2vw;
+    font-size: 1vw;
+
+}
+
+.inner-boxmenu{
+    width: 18vw;
+    height:  50vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 2vh 2vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+.side-BoxCreateIngredient,.side-BoxAllDishes,.side-BoxCreateDish ,.side-BoxAllIngredient{
+    width: 15vw;
+    height: 5vh;
+    margin-top: 1.5vh;
+    font-weight: bold;
+    font-size: 1.1vw;
 }
 
 
 .box {
-    width: 50vw;
-    height: 60vh;
+    width: 42vw;
+    height: 55vh;
     background-color: rgba(255, 255, 255, 0.8);
     position: absolute;
-    top: 20vh;
-    left: 25vw;
+    top: 25vh;
+    left: 38vw;
     border-radius: 10px;
     padding: 2vh 2vw;
-    position: relative;
     font-size: 1vw;
 }
 
 .inner-box {
     width: 40vw;
-    height: 50vh;
+    height:  50vh;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     padding: 2vh 2vw;
@@ -42,10 +129,12 @@ body, html {
     text-align: center;
 }
 
-.dish-name, .cook-name, .avg-time, .dish-recipe, .addPic {
-    margin-top: 10px;
-    padding-top: 10px;
+
+.dish-name,.cook-name,.avg-time, .dish-recipe, .addPic {
+    margin-top: 1vh;
+    padding-top: 0.7vh;
 }
+
 
 .dish-name input,
 .cook-name input,
@@ -53,37 +142,13 @@ body, html {
 .dish-recipe textarea{
     font-size: 0.7vw;
     width: auto;
+    margin-left: 13.6vw;
 }
 
-.ingredient {
-    position: absolute;
-    top: 15%;
-    left: 45%;
-    font-size: 1.1vw;
+.dish-recipe textarea{
+    margin-left: 10.9vw;
 }
 
-.addIng .ingredient-input, .addIng .quantity-input {
-    margin-bottom: 20px;
-    width: 30%;
-}
-
-.addIng {
-    margin-top: 10px;
-    margin-bottom: 10px;
-
-}
-
-.addIng button {
-    background-color: red;
-}
-
-.addIng button:hover {
-    background-color: darkred;
-}
-
-.ingredient input {
-    width: 70%;
-}
 
 .food-picture {
     display: none;
@@ -95,7 +160,7 @@ body, html {
 
 button, .fileButton {
     padding: 8px 10px;
-    background-color: #45A049;
+    background-color: #79D779;
     color: white;
     border: none;
     border-radius: 10px;
@@ -104,9 +169,16 @@ button, .fileButton {
     font-size: 0.9vw;
 }
 
-button:hover {
-    background-color: #367C39;
+.fileButton{
+    margin-left:15.4vw
 }
+
+button:hover,.fileButton:hover {
+    transform: scale(1.05);
+    background-color: #454545;
+}
+
+
 
 input, textarea, select {
     background: #e9e9e9;
@@ -123,18 +195,60 @@ input, textarea, select {
 
 .dish-type {
     position: absolute;
-    width: 100%;
-    left: 70%;
-    top: 15%;
+    left: 75%;
+    top: 6.1vh;
 }
 
 
-.dish-type {
+
+
+.dish-type select{
   width: 115%;
 
 }
+.ingredient{
+    width: auto;
+    max-width: 27%;
+    margin-top:-35vh;
+    position:absolute;
+    left: 1vw;
+    top: 41vh;
+}
 
+.ingredient ul {
+    list-style-type: none ;
+}
+input[type="checkbox"]:checked + .quantity-input {
+    display: block;
+}
 
+.ingredient-label {
+    display: flex;
+    align-items: center;
+}
+input[type="checkbox"]:checked {
+    background-color: #79D779;
+}
+.quantity-input {
+    display: none;
+    width:3vw ;
+    font-size: 0.5vw;
+   background-color: lightgray;
+}
+input[type="checkbox"] {
+    appearance: none;
+    width: 12.5px;
+    height: 12.5px;
+    border-radius: 50%;
+    border: 2px solid #79D779;
+    outline: none;
+    cursor: pointer;
+}
+
+.ingredient-label, .input[type="checkbox"] {
+    margin-top: 1vh;
+
+}
 
 .dish-create {
     position: absolute;
@@ -142,10 +256,25 @@ input, textarea, select {
     top: 85%;
 }
 
-form {
-    display: contents;
+.dish-type select{
+font-size: 0.8vw;
 }
 
-.dish-type select {
-font-size: 1vw;
+.quantity-input {
+    display: none;
 }
+
+input[type="checkbox"]:checked + .quantity-input {
+    display: block;
+}
+
+details.ingredient {
+    background-color: #EBEBEB;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 0.7vh;
+    font-size: 0.83vw;
+}
+
+
+

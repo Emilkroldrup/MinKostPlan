@@ -8,8 +8,8 @@
 <div class="background">
     <div class="profile-container">
         <header class="header">
-            <a href="/profile" class="a-navbar" th:classappend="${#authentication.name != 'anonymousUser'} ? 'logged-in'">
-                <span th:text="'Hej, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}" onclick="window.location.href='/profile'"></span>
+            <a class="a-navbar" th:classappend="${#authentication.name != 'anonymousUser'} ? 'logged-in'">
+                <span th:text="'Hej, ' + ${T(minkostplan.application.usecase.UserUtil).getCurrentUserFirstName()}"></span>
             </a>
         </header>
         <main class="profile-content">

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+
+<section class="box">
+  <section class="inner-box">
+    <h1>Alle retter</h1>
+    <div>
+      <div>
+        <ul>
+          <li th:each="recipe, iter : ${recipes}">
+            <span th:text="${recipe.name}"></span>
+
+            <a th:href="'#editPopup' + ${iter.index}"><button>Rediger</button></a>
+
+            <a th:href="'#deletePopup' + ${iter.index}"><button>Slet</button></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</section>
+
+<div th:each="recipe, iter : ${recipes}">
+  <div th:id="'editPopup' + ${iter.index}" class="popup">
+    <h2>Rediger opskrift</h2>
+    <form th:action="@{/editrecipe}" method="post">
+      <input type="hidden" th:value="${recipe.recipe_id}" name="id" />
+
+      <div class="form-group">
+        <label for="name">Navn</label>
+        <input type="text" id="name" name="name" th:value="${recipe.name}">
+      </div>
+
+      <div class="form-group">
+        <label for="cookName">Kok</label>
+        <input type="text" id="cookName" name="cookName" th:value="${recipe.cookName}">
+      </div>
+
+      <div class="form-group">
+        <label for="averageTime">Gennemsnitlig tid</label>
+        <input type="number" id="averageTime" name="averageTime" th:value="${recipe.averageTime}">
+      </div>
+
+      <div class="form-group">
+        <label for="instructions">Fremgangsmåde</label>
+        <input type="text" id="instructions" name="instructions" th:value="${recipe.instructions}">
+      </div>
+
+      <div class="form-group">
+        <label for="mealType">Mad-type</label>
+        <input type="text" id="mealType" name="mealType" th:value="${recipe.mealType}">
+      </div>
+
+      <button type="submit">Gem ændringer</button>
+    </form>
+    <a href="#"><button onclick="window.history.back();">Tilbage</button></a>
+  </div>
+  <div class="overlay" th:id="'overlay' + ${iter.index}"></div>
+</div>
+
+
+<div th:each="recipe, iter : ${recipes}">
+  <div th:id="'deletePopup' + ${iter.index}" class="popup">
+    <h2>Er du sikker på, at du vil slette denne opskrift?</h2>
+    <form th:action="@{/deletedish}" method="post">
+      <input type="hidden" th:value="${recipe.recipe_id}" name="id" />
+      <button type="submit">Godkend</button>
+    </form>
+    <a href="#"><button onclick="window.history.back();">Tilbage</button></a>
+  </div>
+  <div class="overlay" th:id="'deleteOverlay' + ${iter.index}"></div>
+</div>
+
+<section class="menu-select">
+  <section class="inner-boxmenu">
+    <h1>Menu</h1>
+    <button class="side-BoxCreateDish" onclick="window.location.href='/admindish';">Opret ret</button>
+    <button class="side-BoxCreateIngredient"  onclick="window.location.href='/adminingredient';">Opret ingredient </button>
+    <button class="side-BoxAllDishes">Alle retter</button>
+    <button class="side-BoxAllIngredient" onclick="window.location.href='/adminingredients';" >Alle ingredienser</button>
+  </section>
+</section>
+
+<section th:replace="navbar.html"></section>
+
+<script th:src="@{/javascript/adminPage.js}"></script>
+
+</body>
+</html>

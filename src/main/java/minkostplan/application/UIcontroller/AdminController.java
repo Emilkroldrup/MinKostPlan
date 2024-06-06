@@ -105,7 +105,7 @@ public class AdminController {
                     ingredientService.saveIngredient(ingredient);
                     int ingredientId = ingredientService.getIdByIngredientName(ingredientName);
 
-                    RecipeIngredient recipeIngredient = new RecipeIngredient(recipeId, ingredientId, quantityOfIngredient, ingredientName);
+                    RecipeIngredient recipeIngredient = new RecipeIngredient(recipeId, ingredientId, quantityOfIngredient,ingredientName);
                     recipeIngredientService.saveRecipeIngredient(recipeIngredient);
                 }
             } catch (DuplicateKeyException e) {

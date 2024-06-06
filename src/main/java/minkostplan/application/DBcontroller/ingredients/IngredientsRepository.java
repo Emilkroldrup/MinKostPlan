@@ -3,7 +3,12 @@ package minkostplan.application.DBcontroller.ingredients;
 import minkostplan.application.entity.Ingredient;
 import minkostplan.application.DBcontroller.SimpleDataAccess;
 
+import java.util.List;
+
 public interface IngredientsRepository extends SimpleDataAccess<Ingredient> {
+
+
+    List<String> findAllNames();
 
     /**
      *

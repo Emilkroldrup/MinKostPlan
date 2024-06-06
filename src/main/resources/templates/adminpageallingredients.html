@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+
+
+<section class="box">
+    <section class="inner-box">
+        <h1>Alle ingredienser</h1>
+        <div>
+            <ul>
+                <li th:each="ingredient, iter : ${ingredients}">
+                    <span th:text="${ingredient.name}"></span>
+
+                    <a th:href="'#editPopup' + ${iter.index}"><button>Rediger</button></a>
+
+                    <a th:href="'#deletePopup' + ${iter.index}"><button>Slet</button></a>
+                </li>
+            </ul>
+        </div>
+
+    </section>
+</section>
+<div th:each="ingredient, iter : ${ingredients}">
+    <div th:id="'editPopup' + ${iter.index}" class="popup">
+        <h2>Rediger opskrift</h2>
+        <form th:action="@{/editingredient}" method="post">
+            <input type="hidden" th:value="${ingredient.ingredientId}" name="id" />
+
+            <div class="form-group">
+                <label for="name">Navn</label>
+                <input type="text" id="name" name="name" th:value="${ingredient.name}">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Beskrivelse</label>
+                <input type="text" id="description" name="description" th:value="${ingredient.description}">
+            </div>
+
+            <div class="form-group">
+                <label for="calories">Kalorier</label>
+                <input type="number" id="calories" name="calories" th:value="${ingredient.calories}">
+            </div>
+
+            <div class="form-group">
+                <label for="carbohydrate">Kulhydrater</label>
+                <input type="number" id="carbohydrate" name="carbohydrate" th:value="${ingredient.carbohydrate}">
+            </div>
+            <div class="form-group">
+                <label for="fat">Fedt</label>
+                <input type="number" id="fat" name="fat" th:value="${ingredient.fat}">
+            </div>
+            <div class="form-group">
+                <label for="protein">Protein</label>
+                <input type="number" id="protein" name="protein" th:value="${ingredient.protein}">
+            </div>
+
+            <button type="submit">Gem ændringer</button>
+        </form>
+        <a href="#"><button onclick="window.history.back();">Tilbage</button></a>
+    </div>
+    <div class="overlay" th:id="'overlay' + ${iter.index}"></div>
+</div>
+
+
+<div th:each="ingredient, iter : ${ingredients}">
+    <div th:id="'deletePopup' + ${iter.index}" class="popup">
+        <h2>Er du sikker på, at du vil slette denne opskrift?</h2>
+        <form th:action="@{/deleteingredient}" method="post">
+            <input type="hidden" th:value="${ingredient.ingredientId}" name="id" />
+            <button type="submit">Godkend</button>
+        </form>
+        <a href="#"><button onclick="window.history.back();">Tilbage</button></a>
+    </div>
+    <div class="overlay" th:id="'deleteOverlay' + ${iter.index}"></div>
+</div>
+
+<section class="menu-select">
+    <section class="inner-boxmenu">
+        <h1>Menu</h1>
+        <button class="side-BoxCreateDish" onclick="window.location.href='/admindish';">Opret ret</button>
+        <button class="side-BoxCreateIngredient"  onclick="window.location.href='/adminingredient';">Opret ingredient </button>
+        <button class="side-BoxAllDishes">Alle retter</button>
+        <button class="side-BoxAllIngredient" onclick="window.location.href='/adminingredients';" >Alle ingredienser</button>
+    </section>
+</section>
+
+<section class="menu-select">
+    <section class="inner-boxmenu">
+        <h1>Menu</h1>
+        <button class="side-BoxCreateDish" onclick="window.location.href='/admindish';">Opret ret</button>
+
+        <button class="side-BoxCreateIngredient"  onclick="window.location.href='/adminingredient';">Opret ingredient </button>
+
+        <button class="side-BoxAllDishes" onclick="window.location.href='/admindishes';" >Alle retter</button>
+
+        <button class="side-BoxAllIngredient" >Alle ingredienser</button>
+
+    </section>
+</section>
+
+<section th:replace="navbar.html"></section>
+
+<script th:src="@{/javascript/adminPage.js}"></script>
+
+</body>
+</html>
