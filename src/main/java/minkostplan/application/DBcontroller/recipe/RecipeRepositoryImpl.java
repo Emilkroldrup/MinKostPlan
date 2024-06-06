@@ -29,7 +29,7 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     public void saveRecipe(Recipe recipe) {
         recipe.setCreatedAt(LocalDateTime.now());
         try{
-            String sql = "INSERT INTO recipes (name, cook_name, average_time, created_at, instructions, meal_type) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO recipes (name, cook_name, average_time, created_at, instructions, meal_type) VALUES (?, ?, ?, ?, ?, ?)";
             dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getCookName(), recipe.getAverageTime(), recipe.getCreatedAt(), recipe.getInstructions(), recipe.getMealType());
         } catch (DuplicateKeyException e){
             System.out.println("same name as another recipe" + e.getMessage());
