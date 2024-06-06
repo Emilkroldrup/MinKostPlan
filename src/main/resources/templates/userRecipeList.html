@@ -1,42 +1,41 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Recipe-list</title>
+    <title>Recipe List</title>
     <link rel="stylesheet" th:href="@{/css/userrecipe.css}">
 </head>
 <body>
-<section th:replace="navbar.html"></section>
-<section th:replace="footer.html"></section>
-
-    <section class="food-selection">
-        <li >Alle</li>
-        <li>Morgenmad</li>
-        <li>Middagsmad</li>
-        <li>Aftensmad</li>
+    <section class="navbar" th:replace="~{navbar.html}"></section>
+    <section class="recipe-list">
+        <h1>Opskrifter</h1>
+        <div class="recipe-columns">
+            <div class="column">
+                <h2>Morgenmad</h2>
+                <ul>
+                    <li th:each="recipe : ${recipes}" th:if="${recipe.mealType == 'breakfast'}">
+                        <a th:href="@{'/recipe/' + ${recipe.recipe_id}}" th:text="${recipe.name}">Recipe Name</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="column">
+                <h2>Frokost</h2>
+                <ul>
+                    <li th:each="recipe : ${recipes}" th:if="${recipe.mealType == 'lunch'}">
+                        <a th:href="@{'/recipe/' + ${recipe.recipe_id}}" th:text="${recipe.name}">Recipe Name</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="column">
+                <h2>Aftensmad</h2>
+                <ul>
+                    <li th:each="recipe : ${recipes}" th:if="${recipe.mealType == 'dinner'}">
+                        <a th:href="@{'/recipe/' + ${recipe.recipe_id}}" th:text="${recipe.name}">Recipe Name</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </section>
-
-    <section class="category">
-        <h1>Kategori</h1>
-
-        <label class="checkbox-container">
-            <li>Vegetar</li>
-            <input type="checkbox">
-        </label>
-
-        <label class="checkbox-container">
-            <li>Glutenfri</li>
-            <input type="checkbox">
-        </label>
-
-        <label class="checkbox-container">
-            <li>Lav kalorier</li>
-            <input type="checkbox">
-        </label>
-
-    </section>
-
-
-
+    <section class="footer" th:replace="~{footer.html}"></section>
 </body>
 </html>
