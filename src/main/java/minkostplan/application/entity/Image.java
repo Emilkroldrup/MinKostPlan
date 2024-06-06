@@ -2,14 +2,14 @@ package minkostplan.application.entity;
 
 import java.util.List;
 
-public class ImageInfo {
+public class Image {
   
   private String fileName;
   private String url;
-  private List<ImageInfo> images;
+  private List<Image> images;
 
 
-public ImageInfo(String fileName, String url) {
+public Image(String fileName, String url) {
     this.fileName = fileName;
     this.url = url;
   }
@@ -30,18 +30,18 @@ public ImageInfo(String fileName, String url) {
     this.url = url;
   }
 
-  public List<ImageInfo> getImages() {
+  public List<Image> getImages() {
     return this.images;
 }
 
-public void setImages(List<ImageInfo> images) {
+public void setImages(List<Image> images) {
     this.images = images;
 }
   
   
   @Override
     public String toString() {
-        return "ImageRecipeInfo{" +
+        return "Image{" +
         ", fileName=" + fileName +
         ", url='" + url +
         ", images=" + images +

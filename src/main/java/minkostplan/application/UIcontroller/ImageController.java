@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import minkostplan.application.DBcontroller.picture.PictureStorage;
-import minkostplan.application.entity.ImageInfo;
+import minkostplan.application.entity.Image;
 
 public class ImageController {
 
@@ -47,7 +47,7 @@ public class ImageController {
         String message = "";
 
         try {
-            pictureStorage.save(file);
+            pictureStorage.saveUpload(file);
 
             message = "Uploaded the image succesfully: " + file.getOriginalFilename();
             model.addAttribute("message", message);
@@ -68,14 +68,14 @@ public class ImageController {
     //  Might be useful for the recipes
     @GetMapping("/imagetester/list")
     public String getListImages(Model model) {
-        List<ImageInfo> imageInfos = pictureStorage.loadAll().map(path -> {
+        List<Image> images = pictureStorage.loadAll().map(path -> {
             String filename = path.getFileName().toString();
             String url = MvcUriComponentsBuilder.fromMethodName(ImageController.class, "getImage", path.getFileName().toString()).build().toString();
 
-            return new ImageInfo(filename, url);
+            return new Image(filename, url);
         }).collect(Collectors.toList());
 
-        model.addAttribute("imagetester", imageInfos);
+        model.addAttribute("imagetester", images);
         return "imagetester"; // add new mapping for the specified wanted view
     }
 
@@ -115,7 +115,7 @@ public class ImageController {
             redirectAttributes.addFlashAttribute("message", "Could not delete the image: " + filename + ". Error: " + e.getMessage());
         }
 
-        return "redirect:/images";
+        return "redirect:/imagetester";
 
     }
 }

@@ -6,11 +6,14 @@ import java.util.stream.Stream;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import minkostplan.application.DBcontroller.SimpleDataAccess;
+import minkostplan.application.entity.Image;
+
 public interface PictureStorage {
 
     public void init();
 
-    public void save(MultipartFile file);
+    public void saveUpload(MultipartFile file);
 
     public Resource load(String filename);
 

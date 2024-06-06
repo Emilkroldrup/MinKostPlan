@@ -6,6 +6,7 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.springframework.core.io.Resource;
@@ -15,6 +16,7 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import minkostplan.application.DBcontroller.picture.PictureStorage;
+import minkostplan.application.entity.Image;
 
 
 
@@ -47,7 +49,7 @@ public class PictureStorageService implements PictureStorage {
      * 
      */
     @Override
-    public void save(MultipartFile file) {
+    public void saveUpload(MultipartFile file) {
         try {
             Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
         } catch (Exception e) {

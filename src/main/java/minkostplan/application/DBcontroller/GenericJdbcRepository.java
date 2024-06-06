@@ -50,8 +50,8 @@ public class GenericJdbcRepository<T> implements SimpleDataAccess<T> {
             return "recipes";
         } else if(className.equals("Ingredient")){
             return "ingredients";
-        } else if(className.equals("ImageInfo")){
-            return "imageinfo";
+        } else if(className.equals("Image")){
+            return "recipepictures";
         }else {
             return className.toLowerCase();
         }
