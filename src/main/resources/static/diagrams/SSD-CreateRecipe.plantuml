@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+header System sekvens diagram
+actor Admin
+
+title Create dish
+        Admin -> System: Navigates to adminpage
+         Admin <-- System: Shows adminpage
+        Admin -> System: Enter recipe(dishname,cookname,avaragetime,instruction,type)
+
+
+loop adding ingredients
+ Admin -> System: Choses ingredient
+ Admin -> System: Enters its quantity
+end
+
+ Admin -> System: Presses Create dish
+ Admin <-- System: Validates info
+ alt Incorrect input
+  Admin <-- System: Displays error message
+   Admin -> System: Provides new details
+ end
+  Admin <-- System: Adds dish
+
+
+@enduml
