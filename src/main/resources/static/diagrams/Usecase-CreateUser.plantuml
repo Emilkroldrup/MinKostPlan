@@ -1,0 +1,16 @@
+@startuml Add New User
+left to right direction
+actor "Guestuser" as user
+rectangle System {
+  usecase "Fill out survey in homepage" as UC1
+  usecase "Validate user details" as UC2
+  usecase "User gets created" as UC3
+  usecase "Send to loginpage" as UC4
+}
+
+user --> UC1
+System --> UC2
+System --> UC3
+System --> UC4
+
+@enduml
