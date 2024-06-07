@@ -2,6 +2,7 @@ package minkostplan.application.UIcontroller;
 import minkostplan.application.DBcontroller.user.UserRepository;
 import minkostplan.application.DBcontroller.user.UserRepositoryImpl;
 import minkostplan.application.entity.Users;
+import minkostplan.application.usecase.Caloriealgorithm;
 import minkostplan.application.usecase.UserService;
 import minkostplan.application.usecase.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,11 @@ public class ProfilepageController {
 
 
    private final UserService userService;
-
+   private final Caloriealgorithm caloriealgorithm;
     @Autowired
-    public ProfilepageController( UserService userService) {
+    public ProfilepageController(UserService userService, Caloriealgorithm caloriealgorithm) {
         this.userService = userService;
+        this.caloriealgorithm = caloriealgorithm;
     }
 
     /**
@@ -36,8 +38,9 @@ public class ProfilepageController {
     @GetMapping("/profile")
     public String profilepage(Model model) {
         Users user = UserUtil.getCurrentUser();
-
+        model.addAttribute("calc",caloriealgorithm);
         model.addAttribute("User", user);
+        System.out.println("Hej" + user);
         return "profilePage";
     }
 

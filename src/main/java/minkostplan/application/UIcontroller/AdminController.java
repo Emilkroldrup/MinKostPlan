@@ -48,8 +48,8 @@ public class AdminController {
      * @param model for recipe, used to pass data from controller to view in our html
      * @return the admin page view
      */
-    @GetMapping("/admindish")
-    public String adminPageDish(Model model) {
+    @GetMapping("/adminrecipe")
+    public String adminPageRecipe(Model model) {
 
         Users user = UserUtil.getCurrentUser();
         String email = user.getEmail();
@@ -77,8 +77,8 @@ public class AdminController {
     }
 
 
-    @GetMapping("/admindishes")
-    public String adminPageAllDishes(Model model) {
+    @GetMapping("/adminrecipes")
+    public String adminPageAllRecipes(Model model) {
         List<Recipe> recipes = recipeService.findAllRecipes();
         Users user = UserUtil.getCurrentUser();
         String email = user.getEmail();
@@ -149,7 +149,7 @@ public class AdminController {
         } catch (DataAccessException e) {
             model.addAttribute("error", "Error connecting to database.");
         }
-        return "redirect:/admindish";
+        return "redirect:/adminrecipe";
     }
 
     @PostMapping("/addingredient")
@@ -166,10 +166,10 @@ public class AdminController {
 
 
     @PostMapping("/editrecipe")
-    public String editDish(@ModelAttribute("recipe") Recipe recipe, @RequestParam("id") int recipeId,Model model){
+    public String editRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("id") int recipeId,Model model){
         try {
             recipeService.editRecipe(recipe,recipeId);
-            return "redirect:/admindishes";
+            return "redirect:/adminrecipes";
         } catch (DataAccessException e) {
             model.addAttribute("error", "Error saving ingredient.");
             System.out.println("HEYYY" + e.getMessage());
@@ -177,12 +177,12 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/deletedish")
-    public String deleteDish(@ModelAttribute("recipe") Recipe recipe, @RequestParam("id") int recipeId,Model model){
+    @PostMapping("/deleterecipe")
+    public String deleteRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("id") int recipeId,Model model){
         try {
             Recipe recipe1=  recipeService.getRecipeById(recipeId);
             recipeService.deleteRecipe(recipe1);
-            return "redirect:/admindishes";
+            return "redirect:/adminrecipes";
         } catch (DataAccessException e) {
             model.addAttribute("error", "Error saving ingredient.");
             System.out.println("HEYYY" + e.getMessage());
