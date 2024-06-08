@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+header System sekvens diagram
+actor GuestUser
+note left of GuestUser
+  Homepage
+end note
+title Create user
+        GuestUser <-- System: shows survey
+
+
+loop types in details
+ GuestUser -> System: Types requried details
+          GuestUser -> System: Presses Next
+          GuestUser <-- System: Validates info
+          alt Incorrect input
+          GuestUser <-- System: Displays error message
+          GuestUser -> System: Provides new details
+          end
+         GuestUser <-- System: shows new details requried
+
+end
+
+ GuestUser -> System: Presses sign up
+ GuestUser <-- System: Validates info
+     alt Incorrect input
+           GuestUser <-- System: Displays error message
+           GuestUser -> System: Provides new details
+           end
+  GuestUser <-- System: Creates user
+  GuestUser <-- System: Redirects user to loginpage
+
+@enduml

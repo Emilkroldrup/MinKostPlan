@@ -1,0 +1,19 @@
+@startuml Create dish
+left to right direction
+actor "User" as Admin
+rectangle System {
+  usecase "Navigate to profilepage" as UC1
+  usecase "Presses activate subscription" as UC2
+  usecase "Payment method" as UC3
+  usecase "Payment details" as UC4
+  usecase "Validation check" as UC5
+  usecase "User gets subscription" as UC6
+}
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+System --> UC5
+System --> UC6
+@enduml
