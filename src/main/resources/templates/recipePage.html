@@ -19,7 +19,10 @@
             <div class="ingredients">
                 <h2>Ingredienser</h2>
                 <ul>
-                    <li th:each="ingredient : ${recipe.ingredients}" th:text="${ingredient.quantity + ' ' + ingredient.ingredientName}">Ingrediens</li>
+                    <li th:each="ingredient : ${recipe.ingredients}">
+                        <p th:text="${ingredient.ingredientName}">Ingredient Name</p>
+                        <p>Mængde: <span th:text="${quantity} + ' ' + ${units}"></span></p>
+                    </li>
                 </ul>
             </div>
             <div class="instructions">
