@@ -6,5 +6,5 @@ import minkostplan.application.entity.RecipeIngredient;
 public  interface  RecepiIngredientRepository  extends SimpleDataAccess<RecipeIngredient> {
     void saveRecipeIngredient(RecipeIngredient recipeIngredient);
 
-    RecipeIngredient getRecipeIngredientByIngredientId(int ingredientId);
+    RecipeIngredient getRecipeIngredientById(int ingredientId, int recipeId);
 }

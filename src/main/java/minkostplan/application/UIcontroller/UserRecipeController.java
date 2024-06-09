@@ -19,13 +19,15 @@ public class UserRecipeController {
 
     private final RecipeService recipeService;
     private final Caloriealgorithm caloriealgorithm;
+    private final RecipeAlgorithm recipeAlgorithm;
     private final IngredientService ingredientService;
     private final RecipeIngredientService recipeIngredientService;
 
     @Autowired
-    public UserRecipeController(RecipeService recipeService, Caloriealgorithm caloriealgorithm, IngredientService ingredientService, RecipeIngredientService recipeIngredientService) {
+    public UserRecipeController(RecipeService recipeService, Caloriealgorithm caloriealgorithm, RecipeAlgorithm recipeAlgorithm, IngredientService ingredientService, RecipeIngredientService recipeIngredientService) {
         this.recipeService = recipeService;
         this.caloriealgorithm = caloriealgorithm;
+        this.recipeAlgorithm = recipeAlgorithm;
         this.ingredientService = ingredientService;
         this.recipeIngredientService = recipeIngredientService;
     }
@@ -54,21 +56,16 @@ public class UserRecipeController {
 
         Users user = UserUtil.getCurrentUser();
         Ingredient ingredient = ingredientService.getIngredientById(id);
-        RecipeIngredient recipeIngredient = recipeIngredientService.getRecipeIngredientByIngredientId(id);
+        RecipeIngredient recipeIngredient = recipeIngredientService.getRecipeIngredientByIngredientId(id, id);
         double totalCalories = 0;
-        System.out.println(recipe.getIngredients());
         for (RecipeIngredient recipeIngredient1 : recipe.getIngredients()) {
             int ingredientId = ingredientService.getIdByIngredientName(recipeIngredient1.getIngredientName());
             Ingredient recipeIngredientDetail = ingredientService.getIngredientById(ingredientId);
             totalCalories += recipeIngredientDetail.getCalories();
         }
         double userCalories = caloriealgorithm.totalCalories(user);
-        double mealCalories = caloriealgorithm.mealCalories(userCalories, recipe.getMealType());
-        double ingredientCalories = caloriealgorithm.caloriesCalculated(ingredient.getCalories(), recipeIngredient.getQuantity());
-        String units = caloriealgorithm.units(recipeIngredient.getQuantity());
-        double percentageCalories = caloriealgorithm.percentageCalculator(totalCalories, ingredientCalories);
-        double regulatedCalories = caloriealgorithm.regulationCalories(percentageCalories, mealCalories);
-        double quantity = caloriealgorithm.quantity(regulatedCalories, ingredient.getCalories());
+        double quantity = recipeAlgorithm.ingredientSize(userCalories, recipe.getMealType(), ingredient.getCalories(), recipeIngredient.getQuantity(), totalCalories);
+        String units = recipeAlgorithm.units(recipeIngredient.getQuantity());
 
         model.addAttribute("recipe", recipe);
         model.addAttribute("quantity", quantity);
