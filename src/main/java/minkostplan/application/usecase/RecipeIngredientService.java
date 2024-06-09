@@ -31,7 +31,7 @@ public class RecipeIngredientService {
             throw new UnexpectedErrorHappendExpception( "Data access error occurred: " + e.getMessage(), e);
         }
     }
-
+  
     public RecipeIngredient findByProperty(String property, Object value) {
         try {
             return recepiIngredientRepository.findByProperty(property, value);
@@ -39,6 +39,7 @@ public class RecipeIngredientService {
             logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
             throw new UnexpectedErrorHappendExpception( "Data access error occurred: " + e.getMessage(), e);
         }
+
     }
 
     public List<RecipeIngredient> findAllRecipeIngredients() {
