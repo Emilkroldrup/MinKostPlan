@@ -4,10 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" th:href="@{/css/editprofilepage.css}">
+    <link rel="stylesheet" th:href="@{/css/error.css}">
 </head>
 <body>
 <div th:replace="navbar.html"></div>
-<div th:replace="footer.html"></div>
+
 <div class="background">
     <div class="profile-container">
         <header class="header">
@@ -30,23 +31,23 @@
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email"  th:field="${User.email}">
-                            <div th:if="${error}" class="error-message" role="alert">
-                                <p th:text="${error}"></p>
+                            <div th:if="${errorMessage}" class = "error-message-editemail" role="alert">
+                                <p th:text="${errorMessage}"></p>
                             </div>
                         </div>
                     </div>
                     <div class="middle-box">
                         <div class="form-group">
                             <label for="alder">Alder:</label>
-                            <input type="number" id="alder" name="alder" th:field="${User.age}">
+                            <input type="number" id="alder" name="alder" th:field="${User.age}" min="0" max="130">
                         </div>
                         <div class="form-group">
                             <label for="højde">Højde:</label>
-                            <input type="number" id="højde" name="højde" th:field="${User.height}">
+                            <input type="number" id="højde" name="højde" th:field="${User.height}" min="20" max="300">
                         </div>
                         <div class="form-group">
                             <label for="vægt">Vægt:</label>
-                            <input type="number" id="vægt" name="vægt" th:field="${User.weight}">
+                            <input type="number" id="vægt" name="vægt" th:field="${User.weight}" min="0" max="300">
                         </div>
                     </div>
                     <div class="right-box">

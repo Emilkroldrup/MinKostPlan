@@ -28,13 +28,8 @@ public class RecipeRepositoryImpl implements RecipeRepository {
     @Override
     public void saveRecipe(Recipe recipe) {
         recipe.setCreatedAt(LocalDateTime.now());
-        try{
             String sql = "INSERT INTO recipes (name, cook_name, average_time, created_at, instructions, meal_type) VALUES (?, ?, ?, ?, ?, ?)";
             dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getCookName(), recipe.getAverageTime(), recipe.getCreatedAt(), recipe.getInstructions(), recipe.getMealType());
-        } catch (DuplicateKeyException e){
-            System.out.println("same name as another recipe" + e.getMessage());
-        }
-
     }
 
     @Override
@@ -69,8 +64,8 @@ public class RecipeRepositoryImpl implements RecipeRepository {
 
     @Override
     public void editRecipe(Recipe recipe, int recipeId) {
-        String sql = "UPDATE recipes SET name = ?, average_time = ?, instructions = ?, meal_type = ? WHERE recipe_id = ?";
-        dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getAverageTime(), recipe.getInstructions(), recipe.getMealType(), recipeId);
+        String sql = "UPDATE recipes SET name = ?, cook_name = ?, average_time = ?, instructions = ?, meal_type = ? WHERE recipe_id = ?";
+        dataAccess.getJdbcTemplate().update(sql, recipe.getName(), recipe.getCookName(), recipe.getAverageTime(), recipe.getInstructions(), recipe.getMealType(), recipeId);
     }
 
     @Override

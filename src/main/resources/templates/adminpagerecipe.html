@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/error.css}">
 </head>
 
 
@@ -16,19 +17,22 @@
             <h1>Tilføj en ret</h1>
             <form th:action="@{/addrecipe}" th:object="${recipe}" th:method="post">
                 <section class="dish-name">
-                    <input type="text" th:field="*{name}" placeholder="Skriv navnet på retten..">
+                    <input type="text" th:field="*{name}" placeholder="Skriv navnet på retten.." required>
+                    <div  class="error-message-addrecipe" >
+                        <p th:text="${errorMessage}"></p>
+                    </div>
                 </section>
 
                 <section class="cook-name">
-                    <input type="text" th:field="*{cookName}" placeholder="Skriv navnet på kokken..">
+                    <input type="text" th:field="*{cookName}" placeholder="Skriv navnet på kokken.." required>
                 </section>
 
                 <section class="avg-time">
-                    <input type="number" th:field="*{averageTime}" placeholder="Gennemsnitstid minutter..">
+                    <input type="number" th:field="*{averageTime}" placeholder="Gennemsnitstid minutter.." required>
                 </section>
 
                 <section class="dish-recipe">
-                    <textarea type="text" th:field="*{instructions}" cols="40" rows="10" placeholder="Fremgangsmåden på opskriften.."></textarea>
+                    <textarea type="text" th:field="*{instructions}" cols="40" rows="10" placeholder="Fremgangsmåden på opskriften.." required></textarea>
                 </section>
 
                 <section class="addPic">
@@ -48,9 +52,9 @@
                 <details class ="ingredient">
                     <summary>Ingredienser</summary>
                     <ul>
-                        <li th:each="ingredient : ${ingredients}">
-                            <label th:for="${ingredient}" class="ingredient-label">
-                                <input type="checkbox" th:id="${ingredient}" th:name="ingredientNames" th:value="${ingredient}">
+                        <li th:each="ingredient : ${ingredients}" >
+                            <label th:for="${ingredient}" class="ingredient-label" >
+                                <input type="checkbox" th:id="${ingredient}" th:name="ingredientNames" th:value="${ingredient}"   >
                                 <input type="text" class="quantity-input" name="quantities" th:attr="name='quantities[' + ${ingredient} + ']'" placeholder="Quantity">
                                 <span th:text="${ingredient}">Ingredient Name</span>
 

@@ -36,17 +36,26 @@ document.getElementById("survey").addEventListener("submit", function(event) {
         headers: headers,
         body: formData
     })
-        .then(response => response.text())
+        .then(response => {
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        })
         .then(result => {
             console.log('Success:', result);
-            window.location.href = "/login";
-
+            // Check if the response indicates a duplicate key error
+            if (result.includes('homepage')) {
+                console.log("duplicate error happend")
+            } else {
+                window.location.href = "/login";
+            }
         })
         .catch(error => {
             console.error('Error:', error);
         });
 });
-
 function lastStep(step) {
     var currentStep = document.getElementById("step" + step);
     var lastStep = document.getElementById("step" + (step - 1));
