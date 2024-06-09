@@ -11,10 +11,10 @@ public class Caloriealgorithm {
 
     private double calculateBMR(Users users){
         double basicCalories;
-        if(users.getGender().equals("Male")){
+        if(users.getGender().equals("Mand")){
             basicCalories = (10 * users.getWeight()) + (6.25*  users.getHeight() - (5 * users.getAge()) + 5);
         }
-        else if(users.getGender().equals("Female")){
+        else if(users.getGender().equals("Kvinde")){
             basicCalories = (10 * users.getWeight()) + (6.25* users.getHeight() - (5 * users.getAge()) -161);
         } else {
             throw new IllegalArgumentException("Invalid gender: " + users.getGender());
@@ -26,19 +26,19 @@ public class Caloriealgorithm {
     private double calculateTDEE(double bmr, String activityLevel){
         double activityNumber = 0;
         switch (activityLevel){
-            case"None or very little exercise":
+            case"Ingen eller meget lidt aktivitet":
                 activityNumber = 1.2;
                 break;
-            case"1-2 times a week":
+            case"1-2 gange om ugen":
                 activityNumber = 1.5;
                 break;
-            case"3-5 times a week":
+            case"3-5 gange om ugen":
                 activityNumber = 1.7;
                 break;
-            case "6-7 times a week":
+            case "6-7 gange om ugen":
                 activityNumber = 1.9;
                 break;
-            case "1-2 times a day":
+            case "1-2 gange om dagen":
                 activityNumber = 2.4;
                 break;
         }
@@ -71,45 +71,5 @@ public class Caloriealgorithm {
         double calculateTDEE = calculateTDEE(calculateBMR,users.getActivityLevel());
 
         return adjustForGoal(calculateTDEE, users.getGoal());
-    }
-
-    public double mealCalories(double userCalories, String mealType){
-        if(mealType.equals("morgenmad")){
-            return Math.round(userCalories * 0.4);
-        } else if(mealType.equals("middagsmad") || mealType.equals("aftensmad")){
-            return Math.round(userCalories * 0.3);
-        }
-        throw new IllegalArgumentException("Ugyldig måltidstype: " + mealType);
-    }
-
-    public double caloriesCalculated(double productCalories, String quantity){
-        String unit = quantity.replaceAll("[0-9]", "").trim();
-        String numberValue = quantity.replaceAll("[^0-9]", "");
-        double quantityValue = Double.parseDouble(numberValue);
-        if(unit.equals("Unit")){
-            return Math.round(productCalories * quantityValue);
-        } else {
-            return Math.round(productCalories / 100 * quantityValue);
-        }
-    }
-
-    public String units(String quantity){
-        return quantity.replaceAll("[0-9]", "").trim();
-    }
-
-    public double percentageCalculator(double totalCaloriesInMeal, double unitCalories){
-        return Math.round((unitCalories / totalCaloriesInMeal) * 100);
-    }
-
-    public double regulationCalories(double percentage, double userCalories){
-        return Math.round((percentage / 100) * userCalories);
-    }
-
-    public double quantity(double regulatedCalories, double productCalories){
-        return Math.round(regulatedCalories / productCalories * 100);
-    }
-
-    public double nutritionalContent(double quantity, double productQuantity){
-        return Math.round(quantity / 100 * productQuantity);
     }
 }

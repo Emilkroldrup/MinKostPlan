@@ -3,6 +3,7 @@ package minkostplan.application.DBcontroller.recipeingredient;
 import minkostplan.application.DBcontroller.GenericJdbcRepository;
 import minkostplan.application.entity.RecipeIngredient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -28,13 +29,14 @@ public class RecepiIngredientRepositoryImpl implements RecepiIngredientRepositor
         jdbcTemplate.update(sql,recipeIngredient.getRecipeid(),recipeIngredient.getIngredientid(),recipeIngredient.getQuantity());
     }
 
+
     @Override
-    public RecipeIngredient getRecipeIngredientByIngredientId(int ingredientId){
-        RecipeIngredient recipeIngredient = findByProperty("ingredient_id", ingredientId);
+    public RecipeIngredient getRecipeIngredientById(int ingredientId, int recipeId){
+        RecipeIngredient recipeIngredient = new RecipeIngredient();
+        String sql = "SELECT * FROM recipe_ingredients WHERE recipe_id = ? AND ingredient_id = ?";
+        recipeIngredient = dataAccess.getJdbcTemplate().queryForObject(sql, new BeanPropertyRowMapper<>(RecipeIngredient.class), recipeId, ingredientId);
         return recipeIngredient;
     }
-
-
 
     @Override
     public RecipeIngredient findByProperty(String property, Object value) {
