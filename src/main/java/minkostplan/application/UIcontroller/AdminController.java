@@ -123,28 +123,24 @@ public class AdminController {
      * @param recipe recipe object of recipe class
      * @return the admin page view
      */
-
     @PostMapping("/addrecipe")
-public String addRecipe(@ModelAttribute("recipe") Recipe recipe, @ModelAttribute("ingredientNames") List<String> ingredientNames,@RequestParam Map<String, String> params, Model model)  {
-        if (recipe.getInstructions().isEmpty() || recipe.getName().isEmpty() || recipe.getCookName().isEmpty() || recipe.getAverageTime() == null) {
-            model.addAttribute("error", "All recipe fields must be filled.");
-            return "redirect:/adminrecipe";
+    public String addRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam(name = "ingredientNames", required = false)
+           List<String> ingredientNames, @RequestParam Map<String, String> params,RedirectAttributes redirectAttributes) {
+
+        if (ingredientNames == null || ingredientNames.isEmpty()) {
+            redirectAttributes.addFlashAttribute("Erroringredient","Select atleast 1 ingredient");
+            return "redirect:adminrecipe";
         }
+
         recipeService.saveRecipe(recipe);
         int recipeId = recipeService.getIdByRecipeName(recipe.getName());
 
-
-
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            String paramName = entry.getKey();
-            if (paramName.startsWith("quantities[")) {
-                String ingredientName = paramName.substring("quantities[".length(), paramName.length() - 1);
-                String quantity = entry.getValue();
-                if (quantity != null && !quantity.isEmpty()) {
-                    int ingredientId = ingredientService.getIdByIngredientName(ingredientName);
-                    RecipeIngredient recipeIngredient = new RecipeIngredient(recipeId, ingredientId, quantity, ingredientName);
-                    recipeIngredientService.saveRecipeIngredient(recipeIngredient);
-                }
+        for (String ingredientName : ingredientNames) {
+            String quantity = params.get("quantities[" + ingredientName + "]");
+            if (quantity != null && !quantity.isEmpty()) {
+                int ingredientId = ingredientService.getIdByIngredientName(ingredientName);
+                RecipeIngredient recipeIngredient = new RecipeIngredient(recipeId, ingredientId, quantity, ingredientName);
+                recipeIngredientService.saveRecipeIngredient(recipeIngredient);
             }
         }
         return "redirect:/adminrecipe";

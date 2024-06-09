@@ -1,213 +1,223 @@
-CREATE DATABASE  IF NOT EXISTS `minkostplan` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `minkostplan`;
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: minkostplan
--- ------------------------------------------------------
--- Server version	8.0.35
+-- Vært: 127.0.0.1:3306
+-- Genereringstid: 09. 06 2024 kl. 13:37:06
+-- Serverversion: 8.2.0
+-- PHP-version: 8.2.13
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `ingredients`
+-- Database: `minkostplan`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `ingredients`
 --
 
 DROP TABLE IF EXISTS `ingredients`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ingredients` (
-  `ingredient_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `description` text,
-  `calories` int DEFAULT NULL,
-  `carbohydrate` int DEFAULT NULL,
-  `fat` int DEFAULT NULL,
-  `protein` int DEFAULT NULL,
-  PRIMARY KEY (`ingredient_id`)
+CREATE TABLE IF NOT EXISTS `ingredients` (
+                                             `ingredient_id` int NOT NULL AUTO_INCREMENT,
+                                             `name` varchar(255) NOT NULL,
+                                             `description` text,
+                                             `calories` int DEFAULT NULL,
+                                             `carbohydrate` int DEFAULT NULL,
+                                             `fat` int DEFAULT NULL,
+                                             `protein` int DEFAULT NULL,
+                                             PRIMARY KEY (`ingredient_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Contains different ingredients used in recipes.';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ingredients`
+-- Data dump for tabellen `ingredients`
 --
 
-LOCK TABLES `ingredients` WRITE;
-/*!40000 ALTER TABLE `ingredients` DISABLE KEYS */;
-INSERT INTO `ingredients` VALUES (1,'Spaghetti','Lang, tynd, cylindrisk pasta af italiensk oprindelse',0,0,0,0),(2,'Æg','Økologiske fritgående æg',0,0,0,0),(3,'Bacon','Tykkere skiver af røget bacon',0,0,0,0),(4,'Zucchini','Frisk zucchini',0,0,0,0),(5,'Tomat','Modne tomater',0,0,0,0),(6,'Kartoffel','Danske kartofler',77,17,0,2),(7,'Løg','Friske løg',40,9,0,1),(8,'Hvidløg','Økologisk hvidløg',149,33,1,6),(9,'Gulerod','Friske gulerødder',41,10,0,1),(10,'Peberfrugt','Rød peberfrugt',31,6,0,1);
-/*!40000 ALTER TABLE `ingredients` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `ingredients` (`ingredient_id`, `name`, `description`, `calories`, `carbohydrate`, `fat`, `protein`) VALUES
+                                                                                                                     (1, 'Spaghetti', 'Lang, tynd, cylindrisk pasta af italiensk oprindelse', 0, 0, 0, 0),
+                                                                                                                     (2, 'Æg', 'Økologiske fritgående æg', 0, 0, 0, 0),
+                                                                                                                     (3, 'Bacon', 'Tykkere skiver af røget bacon', 0, 0, 0, 0),
+                                                                                                                     (4, 'Zucchini', 'Frisk zucchini', 0, 0, 0, 0),
+                                                                                                                     (5, 'Tomat', 'Modne tomater', 0, 0, 0, 0),
+                                                                                                                     (6, 'Kartoffel', 'Danske kartofler', 77, 17, 0, 2),
+                                                                                                                     (7, 'Løg', 'Friske løg', 40, 9, 0, 1);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `profilepictures`
+-- Struktur-dump for tabellen `profilepictures`
 --
 
 DROP TABLE IF EXISTS `profilepictures`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `profilepictures` (
-  `picture_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int DEFAULT NULL,
-  `status` int NOT NULL,
-  PRIMARY KEY (`picture_id`),
-  KEY `profilepictures_fk` (`user_id`)
+CREATE TABLE IF NOT EXISTS `profilepictures` (
+                                                 `picture_id` int NOT NULL AUTO_INCREMENT,
+                                                 `user_id` int DEFAULT NULL,
+                                                 `status` int NOT NULL,
+                                                 PRIMARY KEY (`picture_id`),
+                                                 KEY `profilepictures_fk` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores details about uploaded profile pictures.';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `profilepictures`
+-- Data dump for tabellen `profilepictures`
 --
 
-LOCK TABLES `profilepictures` WRITE;
-/*!40000 ALTER TABLE `profilepictures` DISABLE KEYS */;
-INSERT INTO `profilepictures` VALUES (1,1,1),(2,2,0),(3,3,1),(4,4,1),(5,5,0);
-/*!40000 ALTER TABLE `profilepictures` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `profilepictures` (`picture_id`, `user_id`, `status`) VALUES
+                                                                      (1, 1, 1),
+                                                                      (2, 2, 0),
+                                                                      (3, 3, 1),
+                                                                      (4, 4, 1),
+                                                                      (5, 5, 0);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `recipe_ingredients`
---
-
-DROP TABLE IF EXISTS `recipe_ingredients`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `recipe_ingredients` (
-  `recipe_id` int DEFAULT NULL,
-  `ingredient_id` int DEFAULT NULL,
-  `quantity` varchar(255) NOT NULL,
-  KEY `ingredients_fk` (`ingredient_id`),
-  KEY `recipe_fk` (`recipe_id`),
-  CONSTRAINT `ingredients_fk` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`),
-  CONSTRAINT `recipe_fk` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Links recipes to their ingredients and specifies the amount needed.';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `recipe_ingredients`
---
-
-LOCK TABLES `recipe_ingredients` WRITE;
-/*!40000 ALTER TABLE `recipe_ingredients` DISABLE KEYS */;
-INSERT INTO `recipe_ingredients` VALUES (1,1,'200 gram'),(1,2,'4 enheder'),(1,3,'100 gram'),(2,4,'150 gram'),(127,1,'500 gram'),(127,8,'3 fed'),(171,1,'200 gram'),(172,4,'300 gram'),(172,5,'200 gram'),(173,2,'2 enheder'),(173,9,'1 stk'),(174,5,'100 gram'),(174,10,'1 stk');
-/*!40000 ALTER TABLE `recipe_ingredients` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `recipes`
+-- Struktur-dump for tabellen `recipes`
 --
 
 DROP TABLE IF EXISTS `recipes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `recipes` (
-  `recipe_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `cook_name` varchar(100) DEFAULT NULL,
-  `average_time` int NOT NULL COMMENT 'in minutes',
-  `created_at` datetime NOT NULL,
-  `instructions` text,
-  `meal_type` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`recipe_id`),
-  UNIQUE KEY `unique_recipe_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores details about various recipes.';
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE IF NOT EXISTS `recipes` (
+                                         `recipe_id` int NOT NULL AUTO_INCREMENT,
+                                         `name` varchar(255) NOT NULL,
+                                         `cook_name` varchar(100) DEFAULT NULL,
+                                         `average_time` int NOT NULL COMMENT 'in minutes',
+                                         `created_at` datetime NOT NULL,
+                                         `instructions` text,
+                                         `meal_type` varchar(100) DEFAULT NULL,
+                                         PRIMARY KEY (`recipe_id`),
+                                         UNIQUE KEY `unique_recipe_name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=260 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores details about various recipes.';
 
 --
--- Dumping data for table `recipes`
+-- Data dump for tabellen `recipes`
 --
 
-LOCK TABLES `recipes` WRITE;
-/*!40000 ALTER TABLE `recipes` DISABLE KEYS */;
-INSERT INTO `recipes` VALUES (1,'Spaghetti Carbonara','Kok Gino',30,'2024-05-09 09:57:03',NULL,'dinner'),(2,'Ratatouille','Kok Rémy',45,'2024-05-09 09:57:03',NULL,'dinner'),(127,'Kylling','Mads',4,'2024-06-04 23:25:49','Steg kyllingen i olie.','lunch'),(171,'Pølser','Peter',30,'2024-06-06 13:41:04','Put pølser i en gryde','lunch'),(172,'Grøntsagssuppe','Anna',60,'2024-06-06 14:32:39','Kog alle grøntsagerne sammen.','dinner'),(173,'Pandekager','Lars',20,'2024-06-07 07:30:00','Bland ingredienserne og steg pandekagerne.','breakfast'),(174,'Salat','Eva',15,'2024-06-07 12:00:00','Skær grøntsagerne og bland dem.','breakfast');
-/*!40000 ALTER TABLE `recipes` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `recipes` (`recipe_id`, `name`, `cook_name`, `average_time`, `created_at`, `instructions`, `meal_type`) VALUES
+                                                                                                                        (1, 'Ratatouille ', 'fgdf', 30, '2024-05-09 09:57:03', 'dfg', 'aftensmad'),
+                                                                                                                        (127, 'Kylling', 'Mads', 4, '2024-06-04 23:25:49', 'Steg kyllingen i olie.', 'morgenmad'),
+                                                                                                                        (171, 'Pølser', 'Peter', 30, '2024-06-06 13:41:04', 'Put pølser i en gryde', 'middagsmad'),
+                                                                                                                        (172, 'Grøntsagssuppe', 'Annaa', 60, '2024-06-06 14:32:39', 'Kog alle grøntsagerne sammen.', 'aftensmad'),
+                                                                                                                        (249, 'Spaghetti Carbonaraaa', 'sdf', 3, '2024-06-09 14:31:56', 'sdf', 'morgenmad');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `subscriptions`
+-- Struktur-dump for tabellen `recipe_ingredients`
+--
+
+DROP TABLE IF EXISTS `recipe_ingredients`;
+CREATE TABLE IF NOT EXISTS `recipe_ingredients` (
+                                                    `recipe_id` int DEFAULT NULL,
+                                                    `ingredient_id` int DEFAULT NULL,
+                                                    `quantity` varchar(255) NOT NULL,
+                                                    KEY `ingredients_fk` (`ingredient_id`),
+                                                    KEY `recipe_fk` (`recipe_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Links recipes to their ingredients and specifies the amount needed.';
+
+--
+-- Data dump for tabellen `recipe_ingredients`
+--
+
+INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `quantity`) VALUES
+                                                                                (1, 1, '200 gram'),
+                                                                                (1, 2, '4 enheder'),
+                                                                                (1, 3, '100 gram'),
+                                                                                (127, 1, '500 gram'),
+                                                                                (171, 1, '200 gram'),
+                                                                                (172, 4, '300 gram'),
+                                                                                (172, 5, '200 gram'),
+                                                                                (249, 1, '15ml'),
+                                                                                (249, 2, '200gram');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur-dump for tabellen `subscriptions`
 --
 
 DROP TABLE IF EXISTS `subscriptions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `subscriptions` (
-  `subscription_id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int DEFAULT NULL,
-  `start_date` datetime DEFAULT NULL,
-  `end_date` datetime DEFAULT NULL,
-  `status` enum('aktiv','inaktiv') DEFAULT NULL COMMENT 'Subscription status',
-  PRIMARY KEY (`subscription_id`),
-  KEY `subscriptions_user_user_id_fk` (`user_id`)
+CREATE TABLE IF NOT EXISTS `subscriptions` (
+                                               `subscription_id` int NOT NULL AUTO_INCREMENT,
+                                               `user_id` int DEFAULT NULL,
+                                               `start_date` datetime DEFAULT NULL,
+                                               `end_date` datetime DEFAULT NULL,
+                                               `status` enum('aktiv','inaktiv') DEFAULT NULL COMMENT 'Subscription status',
+                                               PRIMARY KEY (`subscription_id`),
+                                               KEY `subscriptions_user_user_id_fk` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Manages subscription details for users';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `subscriptions`
+-- Data dump for tabellen `subscriptions`
 --
 
-LOCK TABLES `subscriptions` WRITE;
-/*!40000 ALTER TABLE `subscriptions` DISABLE KEYS */;
-INSERT INTO `subscriptions` VALUES (1,1,'2021-01-01 00:00:00','2022-01-01 00:00:00','aktiv'),(2,2,'2021-06-01 00:00:00','2022-06-01 00:00:00','inaktiv'),(3,3,'2021-07-01 00:00:00','2022-07-01 00:00:00','aktiv'),(4,4,'2021-08-01 00:00:00','2022-08-01 00:00:00','inaktiv'),(5,5,'2021-09-01 00:00:00','2022-09-01 00:00:00','aktiv');
-/*!40000 ALTER TABLE `subscriptions` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `subscriptions` (`subscription_id`, `user_id`, `start_date`, `end_date`, `status`) VALUES
+                                                                                                   (1, 1, '2021-01-01 00:00:00', '2022-01-01 00:00:00', 'aktiv'),
+                                                                                                   (2, 2, '2021-06-01 00:00:00', '2022-06-01 00:00:00', 'inaktiv'),
+                                                                                                   (3, 3, '2021-07-01 00:00:00', '2022-07-01 00:00:00', 'aktiv'),
+                                                                                                   (4, 4, '2021-08-01 00:00:00', '2022-08-01 00:00:00', 'inaktiv'),
+                                                                                                   (5, 5, '2021-09-01 00:00:00', '2022-09-01 00:00:00', 'aktiv');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur-dump for tabellen `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(30) NOT NULL,
-  `lastname` varchar(30) NOT NULL,
-  `age` int NOT NULL,
-  `height` int NOT NULL,
-  `weight` int NOT NULL,
-  `gender` varchar(30) NOT NULL,
-  `activityLevel` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `goal` varchar(30) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `password_hash` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores information about the users.';
-/*!40101 SET character_set_client = @saved_cs_client */;
+CREATE TABLE IF NOT EXISTS `users` (
+                                       `user_id` int NOT NULL AUTO_INCREMENT,
+                                       `firstname` varchar(30) NOT NULL,
+                                       `lastname` varchar(30) NOT NULL,
+                                       `age` int NOT NULL,
+                                       `height` int NOT NULL,
+                                       `weight` int NOT NULL,
+                                       `gender` varchar(30) NOT NULL,
+                                       `activityLevel` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+                                       `goal` varchar(30) NOT NULL,
+                                       `email` varchar(50) NOT NULL,
+                                       `phone` int NOT NULL,
+                                       `password_hash` varchar(255) NOT NULL,
+                                       `created_at` datetime NOT NULL,
+                                       PRIMARY KEY (`user_id`),
+                                       UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=188 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Stores information about the users.';
 
 --
--- Dumping data for table `users`
+-- Data dump for tabellen `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John','Doe',30,180,80,'mand','1-2 gange om ugen','Opbygge muskler','john.doe@example.com','$2a$12$zm4obx9Li5PBVNq/VOC73e6/8ACR7tPBLrRdqZF8x622EKtilRutW','2024-05-09 09:56:28'),(2,'Jane','Smith',22,165,55,'kvinde','3-5 gange om ugen','Øge vægt','jane.smith@example.com','hashed_password2','2024-05-09 09:56:28'),(3,'Admin','Testen',23,173,72,'mand','1-2 gange om ugen','Tabe vægt','test@mail.com','$2a$12$nqslPLAkzrttWqMWsTsTfOBSJrhz9QKn7joYOKp2Z6f8DaaOsqQpK','2024-05-28 14:26:32'),(18,'Mads','Flæske',1,1,1,'mand','6-7 gange om ugen','Vedligeholde vægt','mads@example.com','hashed_password4','2024-06-03 10:36:44'),(19,'Emil','Strongman',1,1,1,'mand','Slet ingen eller meg','Vedligeholde vægt','emil@example.com','hashed_password5','2024-06-03 10:38:36'),(20,'Bjørn','Bjørn',1,1,1,'mand','3-5 gange om ugen','Opbygge muskler','bjorn@example.com','hashed_password6','2024-06-06 00:58:11'),(21,'Hans','Andersen',29,175,70,'mand','1-2 gange om dagen','Vedligeholde vægt','hans.andersen@example.com','hashed_password7','2024-06-07 10:00:00'),(22,'Sofie','Larsen',25,165,60,'kvinde','3-4 gange om ugen','Tabe vægt','sofie.larsen@example.com','hashed_password8','2024-06-07 11:00:00'),(23,'Lars','Hansen',35,180,80,'mand','5-6 gange om ugen','Opbygge muskler','lars.hansen@example.com','hashed_password9','2024-06-07 12:00:00');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `age`, `height`, `weight`, `gender`, `activityLevel`, `goal`, `email`, `phone`, `password_hash`, `created_at`) VALUES
+                                                                                                                                                                            (1, 'John', 'Doe', 30, 180, 80, 'mand', '1-2 gange om ugen', 'Byg muskel', 'john.doe@example.com', 52342432, '$2a$12$zm4obx9Li5PBVNq/VOC73e6/8ACR7tPBLrRdqZF8x622EKtilRutW', '2024-05-09 09:56:28'),
+                                                                                                                                                                            (2, 'Jane', 'Smith', 22, 165, 55, 'kvinde', '3-5 gange om ugen', 'Øg vægt', 'jane.smith@example.com', 63454354, 'hashed_password2', '2024-05-09 09:56:28'),
+                                                                                                                                                                            (3, 'Mads', 'Madsen', 23, 173, 72, 'Male', '3-5 gange om ugen', 'Beholde vægt', 'test@mail.com', 45252334, '$2a$12$nqslPLAkzrttWqMWsTsTfOBSJrhz9QKn7joYOKp2Z6f8DaaOsqQpK', '2024-05-28 14:26:32'),
+                                                                                                                                                                            (144, 'Mads', 'Madsen', 23, 2, 60, 'Mand', '3-5 times a week', 'Tabe vægt', 'masdassenarbejdsmail@gmail.com', 51957478, '$2a$10$oYyS6ncHYdgpyyu/ZX.H6OruiyB0h6FhYy488VqmHC.jKEL2g0u4C', '2024-06-08 22:08:17'),
+                                                                                                                                                                            (146, 'Mads', 'Madsen', 23, 2, 60, 'Mand', '3-5 times a week', 'Tabe vægt', 'massdassenarbejdsmail@gmail.com', 51957478, '$2a$10$MjOjmagr7VXRWoH/Hc4ga.YK33ac8/wMe71ovIsdM4t56DvpmRBQW', '2024-06-08 22:10:13'),
+                                                                                                                                                                            (147, 'Mads', 'Madsen', 23, 2, 60, 'Mand', '3-5 times a week', 'Tabe vægt', 'massdassdfssenarbejdsmail@gmail.com', 51957478, '$2a$10$iCc2z.Le9Rs0mZcpUYyV8OrkxrUVdO9ETzlpkstEwcpCNZGE5GbTO', '2024-06-08 22:13:59'),
+                                                                                                                                                                            (152, 'Mads', 'Madsen', 234, 234, 234, 'Mand', '3-5 times a week', 'Tabe vægt', 'tesst@mail.com', 51957478, '$2a$10$6lh6b9IQnrpjDrux65JzkOpv0V7rHkkXF4Q5XP2BVgzyikYQ5fgS.', '2024-06-08 22:18:36'),
+                                                                                                                                                                            (161, 'Mads', 'Madsen', 302, 196, 60, 'Mand', '3-5 times a week', 'Tabe vægt', 'onlinebigchungus@gmail.com', 51957478, '$2a$10$V0ZqxC/Y3Q8vxN4nWAeO9u86wV4ifw02KEk9DMvPnwgc5kXtlIELe', '2024-06-08 22:31:23');
 
 --
--- Dumping events for database 'minkostplan'
+-- Begrænsninger for dumpede tabeller
 --
 
 --
--- Dumping routines for database 'minkostplan'
+-- Begrænsninger for tabel `recipe_ingredients`
 --
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+ALTER TABLE `recipe_ingredients`
+    ADD CONSTRAINT `fk_recipe_id` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`) ON DELETE CASCADE,
+    ADD CONSTRAINT `ingredients_fk` FOREIGN KEY (`ingredient_id`) REFERENCES `ingredients` (`ingredient_id`) ON DELETE CASCADE,
+    ADD CONSTRAINT `recipe_fk` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`recipe_id`) ON DELETE CASCADE;
+COMMIT;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2024-06-07 16:58:37

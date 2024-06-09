@@ -2,8 +2,9 @@ package minkostplan.application.usecase;
 
 import minkostplan.application.DBcontroller.recipe.RecipeRepository;
 import minkostplan.application.entity.Recipe;
+import minkostplan.application.entity.RecipeIngredient;
 import minkostplan.application.usecase.CustomExceptions.RecipeNameAlreadyExistsException;
-import minkostplan.application.usecase.CustomExceptions.UnexpectedErrorHappendExpception;
+import minkostplan.application.usecase.CustomExceptions.UnexpectedDataErrorExpception;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.dao.DataAccessException;
@@ -26,20 +27,21 @@ public class RecipeService {
         try {
             recipeRepository.saveRecipe(recipe);
         } catch (DuplicateKeyException duplicateKeyException) {
-            logger.error("Same recipe name already exists exception occurred while editing user details: {}", duplicateKeyException.getMessage());
-            throw new RecipeNameAlreadyExistsException("recipe name already exists: " + recipe.getName(),duplicateKeyException);
+            logger.error("Same recipe name already exists exception occurred while saving recipe details: {}", duplicateKeyException.getMessage());
+            throw new RecipeNameAlreadyExistsException("Recipe name already exists: " + recipe.getName(),duplicateKeyException);
         } catch (DataAccessException e) {
             logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
-            throw new UnexpectedErrorHappendExpception("Data access error occurred: " + e.getMessage(), e);
+            throw new UnexpectedDataErrorExpception("Data access error occurred while saving recipe: " + e.getMessage(), e);
         }
     }
+
 
     public int getIdByRecipeName(String name) {
         try {
             return recipeRepository.getIdByRecipeName(name);
         } catch (DataAccessException e) {
-            logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
-            throw new UnexpectedErrorHappendExpception("Data access error occurred: " + e.getMessage(), e);
+            logger.error("Data access exception occurred while getting recipe id by its name: {}", e.getMessage());
+            throw new UnexpectedDataErrorExpception("Data access error occurred while getting recipe by name: " + e.getMessage(), e);
         }
     }
 
@@ -47,8 +49,8 @@ public class RecipeService {
         try {
             return recipeRepository.getRecipeById(id);
         } catch (DataAccessException e) {
-            logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
-            throw new UnexpectedErrorHappendExpception("Data access error occurred: " + e.getMessage(), e);
+            logger.error("Data access exception occurred while getting recipe by id: {}", e.getMessage());
+            throw new UnexpectedDataErrorExpception("Data access error occurred while getting recipe by id: " + e.getMessage(), e);
         }
     }
 
@@ -56,8 +58,8 @@ public class RecipeService {
         try {
             recipeRepository.deleteRecipe(recipe);
         } catch (DataAccessException e) {
-            logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
-            throw new UnexpectedErrorHappendExpception("Data access error occurred: " + e.getMessage(), e);
+            logger.error("Data access exception occurred while deleting recipe: {}", e.getMessage());
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to delete recipe: " + e.getMessage(), e);
         }
     }
 
@@ -65,11 +67,11 @@ public class RecipeService {
         try {
             recipeRepository.editRecipe(recipe, recipeId);
         } catch (DuplicateKeyException duplicateKeyException) {
-            logger.error("Same Recipe name already exists exception occurred while editing user details: {}", duplicateKeyException.getMessage());
+            logger.error("Same Recipe name already exists exception occurred while editing recipe details: {}", duplicateKeyException.getMessage());
             throw new RecipeNameAlreadyExistsException("Recipe name already exists: " + recipe.getName(),duplicateKeyException);
         } catch (DataAccessException e) {
-            logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
-            throw new UnexpectedErrorHappendExpception("Data access error occurred: " + e.getMessage(), e);
+            logger.error("Data access exception occurred while saving the recipes: {}", e.getMessage());
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to edit recipe: " + e.getMessage(), e);
         }
     }
 
@@ -77,8 +79,8 @@ public class RecipeService {
         try {
             return recipeRepository.findByProperty(property, value);
         } catch (DataAccessException e) {
-            logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
-            throw new UnexpectedErrorHappendExpception("Data access error occurred: " + e.getMessage(), e);
+            logger.error("Data access exception occurred while finding the recipe: {}", e.getMessage());
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to find al recipe: " + e.getMessage(), e);
         }
     }
 
@@ -86,8 +88,8 @@ public class RecipeService {
         try {
             return recipeRepository.findAll();
         } catch (DataAccessException e) {
-            logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
-            throw new UnexpectedErrorHappendExpception("Data access error occurred: " + e.getMessage(), e);
+            logger.error("Data access exception occurred while finding all recipes: {}", e.getMessage());
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to find all recipes: " + e.getMessage(), e);
         }
     }
 
@@ -95,8 +97,8 @@ public class RecipeService {
             try {
                 return recipeRepository.findAllRecipe();
             } catch (DataAccessException e) {
-                logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
-                throw new UnexpectedErrorHappendExpception("Data access error occurred: " + e.getMessage(), e);
+                logger.error("Data access exception occurred while finding all recipes: {}", e.getMessage());
+                throw new UnexpectedDataErrorExpception("Data access error occurred while trying to find all recipes: " + e.getMessage(), e);
             }
         }
     }

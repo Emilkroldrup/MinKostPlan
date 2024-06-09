@@ -22,7 +22,9 @@
                         <p th:text="${errorMessage}"></p>
                     </div>
                 </section>
-
+                <div  class="error-message-gettingingredient" >
+                    <p th:text="${Erroringredient}"></p>
+                </div>
                 <section class="cook-name">
                     <input type="text" th:field="*{cookName}" placeholder="Skriv navnet på kokken.." required>
                 </section>
