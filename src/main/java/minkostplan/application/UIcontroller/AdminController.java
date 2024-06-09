@@ -8,6 +8,7 @@ import minkostplan.application.entity.RecipeIngredient;
 import minkostplan.application.entity.Users;
 import minkostplan.application.usecase.*;
 
+import minkostplan.application.usecase.CustomExceptions.RecipeNameAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataAccessException;
@@ -15,6 +16,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
@@ -123,97 +125,61 @@ public class AdminController {
      */
 
     @PostMapping("/addrecipe")
-    public String addRecipe(@ModelAttribute("recipe") Recipe recipe, @ModelAttribute("ingredientNames") List<String> ingredientNames, @RequestParam Map<String, String> params, Model model) {
-        try {
-            if (recipe.getInstructions().isEmpty() || recipe.getName().isEmpty() || recipe.getCookName().isEmpty() || recipe.getAverageTime() == null) {
-                model.addAttribute("error", "All recipe fields must be filled.");
-                return "adminpagerecipe";
-            }
-            recipeService.saveRecipe(recipe);
-            int recipeId = recipeService.getIdByRecipeName(recipe.getName());
+public String addRecipe(@ModelAttribute("recipe") Recipe recipe, @ModelAttribute("ingredientNames") List<String> ingredientNames,@RequestParam Map<String, String> params, Model model)  {
+        if (recipe.getInstructions().isEmpty() || recipe.getName().isEmpty() || recipe.getCookName().isEmpty() || recipe.getAverageTime() == null) {
+            model.addAttribute("error", "All recipe fields must be filled.");
+            return "redirect:/adminrecipe";
+        }
+        recipeService.saveRecipe(recipe);
+        int recipeId = recipeService.getIdByRecipeName(recipe.getName());
 
-            for (Map.Entry<String, String> entry : params.entrySet()) {
-                String paramName = entry.getKey();
-                if (paramName.startsWith("quantities[")) {
-                    String ingredientName = paramName.substring("quantities[".length(), paramName.length() - 1);
-                    String quantity = entry.getValue();
-                    if (quantity != null && !quantity.isEmpty()) {
-                        int ingredientId = ingredientService.getIdByIngredientName(ingredientName);
-                        RecipeIngredient recipeIngredient = new RecipeIngredient(recipeId, ingredientId, quantity,ingredientName);
-                        recipeIngredientService.saveRecipeIngredient(recipeIngredient);
-                    }
+
+
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            String paramName = entry.getKey();
+            if (paramName.startsWith("quantities[")) {
+                String ingredientName = paramName.substring("quantities[".length(), paramName.length() - 1);
+                String quantity = entry.getValue();
+                if (quantity != null && !quantity.isEmpty()) {
+                    int ingredientId = ingredientService.getIdByIngredientName(ingredientName);
+                    RecipeIngredient recipeIngredient = new RecipeIngredient(recipeId, ingredientId, quantity, ingredientName);
+                    recipeIngredientService.saveRecipeIngredient(recipeIngredient);
                 }
             }
-        } catch (DuplicateKeyException e) {
-            model.addAttribute("error", "An ingredient with the same name already exists.");
-        } catch (DataAccessException e) {
-            model.addAttribute("error", "Error connecting to database.");
         }
         return "redirect:/adminrecipe";
     }
 
     @PostMapping("/addingredient")
-    public String addIngredient(@ModelAttribute("ingredient") Ingredient ingredient,Model model){
-        try {
-            ingredientService.saveIngredient(ingredient);
-            System.out.println("loll" + ingredient);
-            return "redirect:/adminingredient";
-        } catch (DataAccessException e) {
-            model.addAttribute("error", "Error saving ingredient.");
-            return "redirect:/adminingredient";
-        }
+    public String addIngredient(@ModelAttribute("ingredient") Ingredient ingredient){
+        ingredientService.saveIngredient(ingredient);
+        System.out.println("loll" + ingredient);
+        return "redirect:/adminingredient";
     }
 
-
     @PostMapping("/editrecipe")
-    public String editRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("id") int recipeId,Model model){
-        try {
-            recipeService.editRecipe(recipe,recipeId);
-            return "redirect:/adminrecipes";
-        } catch (DataAccessException e) {
-            model.addAttribute("error", "Error saving ingredient.");
-            System.out.println("HEYYY" + e.getMessage());
-            return "redirect:/adminingredient";
-        }
+    public String editRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("id") int recipeId) {
+        recipeService.editRecipe(recipe, recipeId);
+        return "redirect:/adminrecipes";
     }
 
     @PostMapping("/deleterecipe")
-    public String deleteRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("id") int recipeId,Model model){
-        try {
-            Recipe recipe1=  recipeService.getRecipeById(recipeId);
-            recipeService.deleteRecipe(recipe1);
-            return "redirect:/adminrecipes";
-        } catch (DataAccessException e) {
-            model.addAttribute("error", "Error saving ingredient.");
-            System.out.println("HEYYY" + e.getMessage());
-            return "redirect:/adminingredient";
-        }
+    public String deleteRecipe(@ModelAttribute("recipe") Recipe recipe, @RequestParam("id") int recipeId) {
+        Recipe recipe1 = recipeService.getRecipeById(recipeId);
+        recipeService.deleteRecipe(recipe1);
+        return "redirect:/adminrecipes";
     }
-
 
     @PostMapping("/editingredient")
-    public String editIngredient(@ModelAttribute("ingredient") Ingredient ingredient, @RequestParam("id") int ingredientId,Model model){
-        try {
-            ingredientService.editIngredient(ingredient,ingredientId);
-            return "redirect:/adminingredients";
-        } catch (DataAccessException e) {
-            model.addAttribute("error", "Error saving ingredient.");
-            System.out.println("HEYYY" + e.getMessage());
-            return "redirect:/adminingredient";
-        }
+    public String editIngredient(@ModelAttribute("ingredient") Ingredient ingredient, @RequestParam("id") int ingredientId){
+        ingredientService.editIngredient(ingredient, ingredientId);
+        return "redirect:/adminingredients";
     }
 
-
     @PostMapping("/deleteingredient")
-    public String deleteIngredient(@ModelAttribute("ingredient") Ingredient ingredient, @RequestParam("id") int ingredientId,Model model){
-        try {
-            Ingredient ingredient1=  ingredientService.getIngredientById(ingredientId);
-            ingredientService.deleteIngredient(ingredient1);
-            return "redirect:/adminingredients";
-        } catch (DataAccessException e) {
-            model.addAttribute("error", "Error saving ingredient.");
-            System.out.println("HEYYY" + e.getMessage());
-            return "redirect:/adminingredient";
-        }
+    public String deleteIngredient(@ModelAttribute("ingredient") Ingredient ingredient, @RequestParam("id") int ingredientId){
+        Ingredient ingredient1 = ingredientService.getIngredientById(ingredientId);
+        ingredientService.deleteIngredient(ingredient1);
+        return "redirect:/adminingredients";
     }
 }

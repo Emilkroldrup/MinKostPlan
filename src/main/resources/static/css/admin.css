@@ -50,14 +50,9 @@ body, html {
 }
 
 
-body.popup-open {
-    overflow: hidden;
-}
 
-body.popup-open > *:not(.popup):not(.overlay) {
-    filter: blur(5px);
-    pointer-events: none;
-}
+
+
 
 
 .menu-select{

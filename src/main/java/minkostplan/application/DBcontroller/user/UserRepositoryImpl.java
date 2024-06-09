@@ -2,15 +2,11 @@ package minkostplan.application.DBcontroller.user;
 
 import minkostplan.application.entity.Users;
 import minkostplan.application.DBcontroller.GenericJdbcRepository;
-
 import minkostplan.application.usecase.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
-
 /**
  * Implementation of the UserRepository interface.
  */
@@ -61,6 +57,5 @@ public class UserRepositoryImpl implements UserRepository {
     public List<Users> findAll() {
         return dataAccess.findAll();
     }
-
 
 }

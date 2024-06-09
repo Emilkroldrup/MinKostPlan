@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controller for handling profile page related requests.
@@ -21,8 +22,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProfilepageController {
 
 
-   private final UserService userService;
-   private final Caloriealgorithm caloriealgorithm;
+    private final UserService userService;
+    private final Caloriealgorithm caloriealgorithm;
+
     @Autowired
     public ProfilepageController(UserService userService, Caloriealgorithm caloriealgorithm) {
         this.userService = userService;
@@ -38,7 +40,7 @@ public class ProfilepageController {
     @GetMapping("/profile")
     public String profilepage(Model model) {
         Users user = UserUtil.getCurrentUser();
-        model.addAttribute("calc",caloriealgorithm);
+        model.addAttribute("calc", caloriealgorithm);
         model.addAttribute("User", user);
         System.out.println("Hej" + user);
         return "profilePage";
@@ -68,6 +70,7 @@ public class ProfilepageController {
         return "editProfileDetails";
     }
 
+
     /**
      * Handles the edit profile request.
      *
@@ -75,26 +78,20 @@ public class ProfilepageController {
      * @param model the model to add attributes
      * @return the edit profile details view
      */
+
     @PostMapping("/editprofile")
     public String editProfile(@ModelAttribute("User") Users user, Model model) {
-
         Users currentUserEmail = UserUtil.getCurrentUser();
         String editedEmail = user.getEmail();
-        try {
-            boolean editUserComplete = userService.editUserDetails(user);
-            if (editUserComplete && !editedEmail.equals(currentUserEmail.getEmail())) {
-                return "redirect:/login";
-            }
-        } catch (DuplicateKeyException duplicateKeyException) {
-            model.addAttribute("error", "User with same email already exists");
-        } catch (DataAccessException dataAccessException) {
-            model.addAttribute("error", "Error connecting to database");
-        }
-        Users userUpdate = UserUtil.getCurrentUser();
-        model.addAttribute("User", userUpdate);
-        return "editProfileDetails";
 
+        boolean editUserComplete = userService.editUserDetails(user);
+        if (editUserComplete && !editedEmail.equals(currentUserEmail.getEmail())) {
+            return "redirect:/login";
+        } else {
+            Users userUpdate = UserUtil.getCurrentUser();
+            model.addAttribute("User", userUpdate);
+            return "editProfileDetails";
         }
     }
-
+}
 
