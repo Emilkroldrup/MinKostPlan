@@ -32,9 +32,9 @@ public class RecipeIngredientService {
         }
     }
 
-    public RecipeIngredient getRecipeIngredientByIngredientId(int ingredientId) {
+    public RecipeIngredient getRecipeIngredientByIngredientId(int ingredientId, int recipeId) {
         try {
-            return recepiIngredientRepository.getRecipeIngredientByIngredientId(ingredientId);
+            return recepiIngredientRepository.getRecipeIngredientById(ingredientId, recipeId);
         } catch (DataAccessException e) {
             logger.error("Data access exception occurred while trying to get recipe ingredient by ingredient ID: {}", e.getMessage(), e);
             throw new UnexpectedDataErrorExpception("Data access error occurred while trying to get recipe ingredient by ingredient ID: " + e.getMessage(), e);
