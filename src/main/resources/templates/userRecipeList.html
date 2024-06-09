@@ -10,27 +10,22 @@
     <section class="recipe-list">
         <h1>Opskrifter</h1>
         <div class="recipe-columns">
-            <div class="column">
-                <h2>Morgenmad</h2>
+            <div class="column" th:each="mealType : ${ {'morgenmad', 'frokost', 'aftensmad'} }">
+                <h2 class="column__header" th:text="${mealType}"></h2>
                 <ul>
-                    <li th:each="recipe : ${recipes}" th:if="${recipe.mealType == 'morgenmad'}">
-                        <a th:href="@{'/recipe/' + ${recipe.recipe_id}}" th:text="${recipe.name}">Recipe Name</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="column">
-                <h2>Frokost</h2>
-                <ul>
-                    <li th:each="recipe : ${recipes}" th:if="${recipe.mealType == 'middagsmad'}">
-                        <a th:href="@{'/recipe/' + ${recipe.recipe_id}}" th:text="${recipe.name}">Recipe Name</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="column">
-                <h2>Aftensmad</h2>
-                <ul>
-                    <li th:each="recipe : ${recipes}" th:if="${recipe.mealType == 'aftensmad'}">
-                        <a th:href="@{'/recipe/' + ${recipe.recipe_id}}" th:text="${recipe.name}">Recipe Name</a>
+                    <li th:each="recipe : ${recipes}" th:if="${recipe.mealType == mealType}">
+                        <a th:href="@{'/recipe/' + ${recipe.recipe_id}}" class="recipe-item">
+                            <div class="recipe-item__img">
+                                <img th:src="'/images/recipes/recipeid' + ${recipe.recipe_id} + '.png'" alt="recipe image">
+                            </div>
+                            <div class="recipe-item__info">
+                                <label th:text="${recipe.cookName}"></label>
+                                <label th:text="${recipe.averageTime} + ' ' + min"></label>
+                            </div>
+                            <div class="recipe-item__title">
+                                <label th:text="${recipe.name}"></label>
+                            </div>
+                        </a>
                     </li>
                 </ul>
             </div>

@@ -3,8 +3,6 @@ package minkostplan.application.usecase;
 import minkostplan.application.entity.Users;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-
 @Service
 public class Caloriealgorithm {
 
@@ -61,7 +59,7 @@ public class Caloriealgorithm {
                 goalCalories = activitycalories + 300;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid goal" + goal);
+                throw new IllegalArgumentException("Invalid goal " + goal);
         }
         return goalCalories;
     }
