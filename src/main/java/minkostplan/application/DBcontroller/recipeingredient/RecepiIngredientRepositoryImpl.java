@@ -34,6 +34,8 @@ public class RecepiIngredientRepositoryImpl implements RecepiIngredientRepositor
         return recipeIngredient;
     }
 
+
+
     @Override
     public RecipeIngredient findByProperty(String property, Object value) {
         return dataAccess.findByProperty(property, value);

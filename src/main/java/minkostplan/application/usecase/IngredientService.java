@@ -2,6 +2,7 @@ package minkostplan.application.usecase;
 
 import minkostplan.application.DBcontroller.ingredients.IngredientsRepository;
 import minkostplan.application.entity.Ingredient;
+import minkostplan.application.usecase.CustomExceptions.UnexpectedDataErrorExpception;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,72 +26,72 @@ public class IngredientService {
     public List<String> findAllNames() {
         try {
             return ingredientsRepository.findAllNames();
-        } catch (DataAccessException dataAccessException) {
-            logger.error("Error finding all ingredient names: {}", dataAccessException.getMessage());
-            throw dataAccessException;
+        } catch (DataAccessException e) {
+            logger.error("Data access exception occurred while trying to find all ingredient names: {}", e.getMessage(), e);
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to find all ingredient names: " + e.getMessage(), e);
         }
     }
 
     public void saveIngredient(Ingredient ingredient) {
         try {
             ingredientsRepository.saveIngredient(ingredient);
-        } catch (DataAccessException dataAccessException) {
-            logger.error("Error saving ingredient: {}", dataAccessException.getMessage());
-            throw dataAccessException;
+        } catch (DataAccessException e) {
+            logger.error("Data access exception occurred while trying to save ingredient: {}", e.getMessage(), e);
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to save ingredient: " + e.getMessage(), e);
         }
     }
 
     public int getIdByIngredientName(String name) {
         try {
             return ingredientsRepository.getIdByIngredientName(name);
-        } catch (DataAccessException dataAccessException) {
-            logger.error("Error getting ID by ingredient name: {}", dataAccessException.getMessage());
-            throw dataAccessException;
+        } catch (DataAccessException e) {
+            logger.error("Data access exception occurred while trying to find ingredient by its name: {}", e.getMessage(), e);
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to find ingredient by its name: " + e.getMessage(), e);
         }
     }
 
     public Ingredient getIngredientById(int id) {
         try {
             return ingredientsRepository.getIngredientById(id);
-        } catch (DataAccessException dataAccessException) {
-            logger.error("Error getting ingredient by ID: {}", dataAccessException.getMessage());
-            throw dataAccessException;
+        } catch (DataAccessException e) {
+            logger.error("Data access exception occurred while trying to find ingredient by its ID: {}", e.getMessage(), e);
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to find ingredient by its ID: " + e.getMessage(), e);
         }
     }
 
     public void deleteIngredient(Ingredient ingredient) {
         try {
             ingredientsRepository.deleteIngredient(ingredient);
-        } catch (DataAccessException dataAccessException) {
-            logger.error("Error deleting ingredient: {}", dataAccessException.getMessage());
-            throw dataAccessException;
+        } catch (DataAccessException e) {
+            logger.error("Data access exception occurred while trying to delete ingredient: {}", e.getMessage(), e);
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to delete ingredient: " + e.getMessage(), e);
         }
     }
 
     public void editIngredient(Ingredient ingredient, int ingredientId) {
         try {
             ingredientsRepository.editIngredient(ingredient, ingredientId);
-        } catch (DataAccessException dataAccessException) {
-            logger.error("Error editing ingredient: {}", dataAccessException.getMessage());
-            throw dataAccessException;
+        } catch (DataAccessException e) {
+            logger.error("Data access exception occurred while trying to edit ingredient: {}", e.getMessage(), e);
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to edit ingredient: " + e.getMessage(), e);
         }
     }
 
     public Ingredient findByProperty(String property, Object value) {
         try {
             return ingredientsRepository.findByProperty(property, value);
-        } catch (DataAccessException dataAccessException) {
-            logger.error("Error finding ingredient: {}", dataAccessException.getMessage());
-            throw dataAccessException;
+        } catch (DataAccessException e) {
+            logger.error("Data access exception occurred while trying to find ingredient by property: {}", e.getMessage(), e);
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to find ingredient by property: " + e.getMessage(), e);
         }
     }
 
     public List<Ingredient> findAllIngredients() {
         try {
             return ingredientsRepository.findAll();
-        } catch (DataAccessException dataAccessException) {
-            logger.error("Error finding all ingredients: {}", dataAccessException.getMessage());
-            throw dataAccessException;
+        } catch (DataAccessException e) {
+            logger.error("Data access exception occurred while trying to find all ingredients: {}", e.getMessage(), e);
+            throw new UnexpectedDataErrorExpception("Data access error occurred while trying to find all ingredients: " + e.getMessage(), e);
         }
     }
 }

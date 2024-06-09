@@ -51,13 +51,13 @@ public class Caloriealgorithm {
             case"Tabe vægt":
                 goalCalories = activitycalories - 500;
                 break;
-            case"Øge vægt":
+            case"Øg vægt":
                 goalCalories = activitycalories + 500;
                 break;
-            case"Vedligeholde vægt":
+            case"Beholde vægt":
                 goalCalories = activitycalories + 0;
                 break;
-            case "Opbygge muskler":
+            case "Byg muskel":
                 goalCalories = activitycalories + 300;
                 break;
             default:
@@ -74,9 +74,9 @@ public class Caloriealgorithm {
     }
 
     public double mealCalories(double userCalories, String mealType){
-        if(mealType.equals("breakfast")){
+        if(mealType.equals("morgenmad")){
             return Math.round(userCalories * 0.4);
-        } else if(mealType.equals("lunch") || mealType.equals("dinner")){
+        } else if(mealType.equals("middagsmad") || mealType.equals("aftensmad")){
             return Math.round(userCalories * 0.3);
         }
         throw new IllegalArgumentException("Ugyldig måltidstype: " + mealType);
