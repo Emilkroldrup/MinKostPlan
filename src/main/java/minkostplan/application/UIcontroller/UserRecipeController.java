@@ -55,20 +55,25 @@ public class UserRecipeController {
         }
 
         Users user = UserUtil.getCurrentUser();
-        Ingredient ingredient = ingredientService.getIngredientById(id);
-        RecipeIngredient recipeIngredient = recipeIngredientService.getRecipeIngredientByIngredientId(id, id);
+        // Ingredient ingredient = ingredientService.getIngredientById(id);
+        // RecipeIngredient recipeIngredient = recipeIngredientService.getRecipeIngredientByIngredientId(id);
         double totalCalories = 0;
+        System.out.println(recipe.getIngredients());
         for (RecipeIngredient recipeIngredient1 : recipe.getIngredients()) {
             int ingredientId = ingredientService.getIdByIngredientName(recipeIngredient1.getIngredientName());
             Ingredient recipeIngredientDetail = ingredientService.getIngredientById(ingredientId);
             totalCalories += recipeIngredientDetail.getCalories();
 
-            // recipeIngredient1.set
+            //recipeIngredient1.set;
 
         }
-        double userCalories = caloriealgorithm.totalCalories(user);
-        double quantity = recipeAlgorithm.ingredientSize(userCalories, recipe.getMealType(), ingredient.getCalories(), recipeIngredient.getQuantity(), totalCalories);
-        String units = recipeAlgorithm.units(recipeIngredient.getQuantity());
+        // double userCalories = caloriealgorithm.totalCalories(user);
+        // double mealCalories = caloriealgorithm.mealCalories(userCalories, recipe.getMealType());
+        // double ingredientCalories = caloriealgorithm.caloriesCalculated(ingredient.getCalories(), recipeIngredient.getQuantity());
+        // String units = caloriealgorithm.units(recipeIngredient.getQuantity());
+        // double percentageCalories = caloriealgorithm.percentageCalculator(totalCalories, ingredientCalories);
+        // double regulatedCalories = caloriealgorithm.regulationCalories(percentageCalories, mealCalories);
+        // double quantity = caloriealgorithm.quantity(regulatedCalories, ingredient.getCalories());
 
         model.addAttribute("recipe", recipe);
         // model.addAttribute("quantity", quantity);
