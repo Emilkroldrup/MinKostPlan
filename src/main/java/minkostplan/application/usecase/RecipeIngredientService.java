@@ -14,11 +14,15 @@ public class RecipeIngredientService {
 
     private final RecepiIngredientRepository recepiIngredientRepository;
     @Autowired
-    public  RecipeIngredientService(RecepiIngredientRepository recepiIngredientRepository){
+    public RecipeIngredientService(RecepiIngredientRepository recepiIngredientRepository){
         this.recepiIngredientRepository = recepiIngredientRepository;
     }
     public void saveRecipeIngredient(RecipeIngredient recipeIngredient){
             recepiIngredientRepository.saveRecipeIngredient(recipeIngredient);
+    }
+
+    public RecipeIngredient getRecipeIngredientByIngredientId(int id){
+        return recepiIngredientRepository.getRecipeIngredientByIngredientId(id);
     }
 
     public RecipeIngredient findByProperty(String property, Object value){

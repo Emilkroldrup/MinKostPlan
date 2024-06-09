@@ -35,7 +35,6 @@ Users existingUser;
     void calculatecalories(){
        double usercalories = caloriealgorithm.totalCalories(existingUser);
 
-
         double bmr = (10 * existingUser.getWeight()) + (6.25 * existingUser.getHeight()) - (5 * existingUser.getAge()) + 5;
         double tdee = bmr * 1.5;
         double expectedCalories = tdee + 500;
@@ -43,6 +42,5 @@ Users existingUser;
         assertEquals(expectedCalories,usercalories);
         System.out.println("User calories " + usercalories);
         System.out.println("Excepted calories " + expectedCalories);
-
     }
 }
