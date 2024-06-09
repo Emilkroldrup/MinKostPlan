@@ -53,26 +53,29 @@ public class UserRecipeController {
         }
 
         Users user = UserUtil.getCurrentUser();
-        Ingredient ingredient = ingredientService.getIngredientById(id);
-        RecipeIngredient recipeIngredient = recipeIngredientService.getRecipeIngredientByIngredientId(id);
+        // Ingredient ingredient = ingredientService.getIngredientById(id);
+        // RecipeIngredient recipeIngredient = recipeIngredientService.getRecipeIngredientByIngredientId(id);
         double totalCalories = 0;
         System.out.println(recipe.getIngredients());
         for (RecipeIngredient recipeIngredient1 : recipe.getIngredients()) {
             int ingredientId = ingredientService.getIdByIngredientName(recipeIngredient1.getIngredientName());
             Ingredient recipeIngredientDetail = ingredientService.getIngredientById(ingredientId);
             totalCalories += recipeIngredientDetail.getCalories();
+
+            // recipeIngredient1.set
+
         }
-        double userCalories = caloriealgorithm.totalCalories(user);
-        double mealCalories = caloriealgorithm.mealCalories(userCalories, recipe.getMealType());
-        double ingredientCalories = caloriealgorithm.caloriesCalculated(ingredient.getCalories(), recipeIngredient.getQuantity());
-        String units = caloriealgorithm.units(recipeIngredient.getQuantity());
-        double percentageCalories = caloriealgorithm.percentageCalculator(totalCalories, ingredientCalories);
-        double regulatedCalories = caloriealgorithm.regulationCalories(percentageCalories, mealCalories);
-        double quantity = caloriealgorithm.quantity(regulatedCalories, ingredient.getCalories());
+        // double userCalories = caloriealgorithm.totalCalories(user);
+        // double mealCalories = caloriealgorithm.mealCalories(userCalories, recipe.getMealType());
+        // double ingredientCalories = caloriealgorithm.caloriesCalculated(ingredient.getCalories(), recipeIngredient.getQuantity());
+        // String units = caloriealgorithm.units(recipeIngredient.getQuantity());
+        // double percentageCalories = caloriealgorithm.percentageCalculator(totalCalories, ingredientCalories);
+        // double regulatedCalories = caloriealgorithm.regulationCalories(percentageCalories, mealCalories);
+        // double quantity = caloriealgorithm.quantity(regulatedCalories, ingredient.getCalories());
 
         model.addAttribute("recipe", recipe);
-        model.addAttribute("quantity", quantity);
-        model.addAttribute("units", units);
+        // model.addAttribute("quantity", quantity);
+        // model.addAttribute("units", units);
         return "recipePage";
     }
 }

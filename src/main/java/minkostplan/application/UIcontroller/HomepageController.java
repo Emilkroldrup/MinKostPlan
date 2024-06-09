@@ -30,7 +30,7 @@ public class HomepageController {
      */
     @GetMapping("/home")
     public String home() {
-        return "homepage";
+    return "homepage";
     }
 
     /**

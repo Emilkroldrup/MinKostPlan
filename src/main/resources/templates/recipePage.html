@@ -21,7 +21,7 @@
                 <ul>
                     <li th:each="ingredient : ${recipe.ingredients}">
                         <p th:text="${ingredient.ingredientName}">Ingredient Name</p>
-                        <p>Mængde: <span th:text="${quantity} + ' ' + ${units}"></span></p>
+                        <p>Mængde: <span th:text="${ingredient.quantity}"></span></p>
                     </li>
                 </ul>
             </div>

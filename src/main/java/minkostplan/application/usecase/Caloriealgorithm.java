@@ -11,10 +11,10 @@ public class Caloriealgorithm {
 
     private double calculateBMR(Users users){
         double basicCalories;
-        if(users.getGender().equals("Male")){
+        if(users.getGender().equals("mand")){
             basicCalories = (10 * users.getWeight()) + (6.25*  users.getHeight() - (5 * users.getAge()) + 5);
         }
-        else if(users.getGender().equals("Female")){
+        else if(users.getGender().equals("kvinde")){
             basicCalories = (10 * users.getWeight()) + (6.25* users.getHeight() - (5 * users.getAge()) -161);
         } else {
             throw new IllegalArgumentException("Invalid gender: " + users.getGender());
@@ -26,19 +26,19 @@ public class Caloriealgorithm {
     private double calculateTDEE(double bmr, String activityLevel){
         double activityNumber = 0;
         switch (activityLevel){
-            case"None or very little exercise":
+            case"Slet ingen eller meget lidt motion":
                 activityNumber = 1.2;
                 break;
-            case"1-2 times a week":
+            case"1-2 gange om ugen":
                 activityNumber = 1.5;
                 break;
-            case"3-5 times a week":
+            case"3-5 gange om ugen":
                 activityNumber = 1.7;
                 break;
-            case "6-7 times a week":
+            case "6-7 gange om ugen":
                 activityNumber = 1.9;
                 break;
-            case "1-2 times a day":
+            case "1-2 gange om dagen":
                 activityNumber = 2.4;
                 break;
         }
@@ -48,20 +48,20 @@ public class Caloriealgorithm {
     private double adjustForGoal(double activitycalories, String goal){
         double goalCalories;
         switch (goal){
-            case"Lose weight":
+            case"Tabe vægt":
                 goalCalories = activitycalories - 500;
                 break;
-            case"Gain weight":
+            case"Øge vægt":
                 goalCalories = activitycalories + 500;
                 break;
-            case"Maintain weight":
+            case"Vedligeholde vægt":
                 goalCalories = activitycalories + 0;
                 break;
-            case "Build muscle":
+            case "Opbygge muskler":
                 goalCalories = activitycalories + 300;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid goal" + goal);
+                throw new IllegalArgumentException("Invalid goal " + goal);
         }
         return goalCalories;
     }

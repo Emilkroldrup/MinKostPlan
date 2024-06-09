@@ -50,4 +50,13 @@ public class RecipeIngredientService {
             throw new UnexpectedErrorHappendExpception( "Data access error occurred: " + e.getMessage(), e);
         }
     }
+
+    public RecipeIngredient getRecipeIngredientByIngredientId(int ingredientId) {
+        try {
+            return recepiIngredientRepository.getRecipeIngredientByIngredientId(ingredientId);
+        } catch (DataAccessException e) {
+            logger.error("Data access exception occurred while editing user details: {}", e.getMessage());
+            throw new UnexpectedErrorHappendExpception( "Data access error occurred: " + e.getMessage(), e);
+        }
+    }
 }
