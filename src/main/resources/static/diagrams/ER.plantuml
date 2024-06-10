@@ -10,8 +10,10 @@ entity "Users" as users {
   height : int
   weight : int
   gender : varchar(30)
+  activityLevel : varchar(50)
   goal : varchar(30)
   email : varchar(50)
+  phone : int
   password_hash : varchar(255)
   created_at : datetime
 }
@@ -24,6 +26,7 @@ entity "Recipes" as recipes {
   average_time : int
   created_at : datetime
   instructions : text
+  meal_type : varchar(100)
 }
 
 entity "Ingredients" as ingredients {
@@ -31,6 +34,10 @@ entity "Ingredients" as ingredients {
   --
   name : varchar(255)
   description : text
+  calories : int
+  carbohydrate : int
+  fat : int
+  protein : int
 }
 
 entity "Recipe Ingredients" as recipe_ingredients {
@@ -46,7 +53,14 @@ entity "Subscriptions" as subscriptions {
   user_id : int
   start_date : datetime
   end_date : datetime
-  status : enum('active','inactive')
+  status : enum('aktiv','inaktiv')
+}
+
+entity "Profile Pictures" as profilepictures {
+  + picture_id : int
+  --
+  user_id : int
+  status : int
 }
 
 ' Define relationships
@@ -54,6 +68,6 @@ recipes ||--o{ recipe_ingredients : "uses"
 ingredients ||--o{ recipe_ingredients : "included in"
 users ||--o{ recipes : "creates" "optional [0..*]"
 users ||--o{ subscriptions : "has"
-
+users ||--o{ profilepictures : "uploads"
 
 @enduml
